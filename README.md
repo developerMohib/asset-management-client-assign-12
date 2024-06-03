@@ -6,7 +6,7 @@
 - admin-password : 
 
 # [Live Link this application](https://www.google.com/)
-[clic-here](https://www.google.com/) or [https://www.google.com/]
+[click-here](https://www.google.com/) or [https://www.google.com/]
 
 ## About this application 
 # Main Features
@@ -27,6 +27,6 @@
 
 ## Usage Packages 
 
-[Reac-Router-Dom](https://reactrouter.com/en/main)
-[Tailwindcss](https://tailwindcss.com/)
-[React-Helmet](https://www.npmjs.com/package/react-helmet-async)
+- [React-Router-Dom](https://reactrouter.com/en/main) 
+- [Tailwindcss](https://tailwindcss.com/)
+- [React-Helmet](https://www.npmjs.com/package/react-helmet-async)
