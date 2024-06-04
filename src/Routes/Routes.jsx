@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
           element: <JoinHRManager> </JoinHRManager>
         },
         {
-          path: 'login',
+          path: '/login',
           element: <Login> </Login>
         },
       ],

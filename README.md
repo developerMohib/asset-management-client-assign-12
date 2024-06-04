@@ -31,4 +31,5 @@
 - [Tailwindcss](https://tailwindcss.com/)
 - [React-Helmet](https://www.npmjs.com/package/react-helmet-async)
 - [Metarial-Ui](https://mui.com/material-ui)
+- [Daisy-Ui](https://daisyui.com/)
 - [React-Icons](https://react-icons.github.io/)
