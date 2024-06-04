@@ -3,8 +3,8 @@ import Root from "../Root/Root";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
-import JoinEmployee from "../Pages/JoinEmployee/JoinEmployee";
-import JoinHRManager from "../Pages/JoinHRManager/JoinHRManager";
+import JoinEmployee from "../Pages/Register/JoinEmployee";
+import JoinManager from "../Pages/Register/JoinManager";
 
 export const router = createBrowserRouter([
     {
@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
         },
         {
           path: "/join-employee",
-          element: <JoinEmployee></JoinEmployee>
+          element: <JoinEmployee></JoinEmployee> ,
         },
         {
           path: "/join-manager",
-          element: <JoinHRManager> </JoinHRManager>
+          element: <JoinManager></JoinManager> ,
         },
         {
           path: '/login',

@@ -1,6 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/corporate-solution.png";
-
+import "./Navbar.css" ;
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
@@ -9,9 +9,9 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <NavLink className='px-1 border-b mx-1 text-xl' to="/"> Home </NavLink>
-      <NavLink className='px-1 border-b mx-1 text-xl' to="/join-employee"> Join As Employee </NavLink>
-      <NavLink className='px-1 border-b mx-1 text-xl' to="/join-manager"> Join As Manager </NavLink>
+      <NavLink className={({isActive}) => isActive ? 'text-xl isActive' : 'text-xl notActive'} to="/"> Home </NavLink>
+      <NavLink className={({isActive}) => isActive ? 'text-xl isActive' : 'text-xl notActive'} to="/join-employee"> Join As Employee </NavLink>
+      <NavLink className={({isActive}) => isActive ? 'text-xl isActive' : 'text-xl notActive'} to="/join-manager"> Join As Manager </NavLink>
     </>
   );
 
@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className=" mx-1 p-1 lg:hidden">
-            <MenuIcon sx={{ fontSize: 'large' }} ></MenuIcon>
+            <MenuIcon></MenuIcon>
           </div>
           <ul
             tabIndex={0}
