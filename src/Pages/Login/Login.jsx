@@ -4,8 +4,8 @@ import { IoEyeOff } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
 import { useState } from "react";
 import loginImage from "../../assets/login-to-access.jpg";
-import GoogleLogin from "./Social/GoogleLogin";
-import FacebookLogin from "./Social/FacebookLogin";
+import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
+import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
