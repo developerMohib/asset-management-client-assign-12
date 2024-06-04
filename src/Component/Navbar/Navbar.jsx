@@ -5,13 +5,13 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const navLinks = (
     <>
-      <NavLink to="/"> Home </NavLink>
-      <NavLink to="/join-employee"> Join As Employee </NavLink>
-      <NavLink to="/join-manager"> Join As Manager </NavLink>
+      <NavLink className='px-1 border-b mx-1 text-xl' to="/"> Home </NavLink>
+      <NavLink className='px-1 border-b mx-1 text-xl' to="/join-employee"> Join As Employee </NavLink>
+      <NavLink className='px-1 border-b mx-1 text-xl' to="/join-manager"> Join As Manager </NavLink>
     </>
   );
 
@@ -31,8 +31,12 @@ const Navbar = () => {
         </div>
         <div>
           {" "}
-          <Link className="text-xl">
+          <Link to='/'>
+            <div className="flex text-xl leading-none">
+
+            <img className="w-10 mr-2" src={logo} alt="" />
             Corporate <br /> Solution{" "}
+            </div>
           </Link>{" "}
         </div>
       </div>
@@ -41,8 +45,9 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1"> {navLinks} </ul>
           </div>
         <div>
-          {" "}
-          <button className="btn btn-outline"> Login</button>{" "}
+          <Link to='/login' >
+          <button className="btn btn-outline text-xl font-normal "> Login</button>{" "}
+          </Link>
         </div>
       </div>
     </div>
