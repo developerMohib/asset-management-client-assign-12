@@ -1,10 +1,17 @@
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
+import About from "./HomeComp/About/About";
+import Banner from "./HomeComp/Banner/Banner";
+import Packages from "./HomeComp/Packages/Packages";
+import Subscription from "./HomeComp/Sebscription/Subscription";
 
 const Home = () => {
     return (
         <div>
             <HelmetTitle routeName={'Home'}> </HelmetTitle>
-            <h1 className="font-roboto" >I am home </h1>
+            <Banner> </Banner>
+            <About></About>
+            <Packages></Packages>
+            <Subscription> </Subscription>
         </div>
     );
 };

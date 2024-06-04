@@ -33,4 +33,6 @@
 - [Metarial-Ui](https://mui.com/material-ui)
 - [Daisy-Ui](https://daisyui.com/)
 - [React-Icons](https://react-icons.github.io/)
-- [Reac-Hot-Toast]()
+- [React-Hot-Toast](https://react-hot-toast.com/)
+- [Swiper-slider](https://swiperjs.com/)
+- [React-Hook-From](https://react-hook-form.com/)
