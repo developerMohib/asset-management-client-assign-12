@@ -22,12 +22,13 @@ export const AuthCustomContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const axiosPublic = useAxiosPublic() ;
+
   // sign up
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
+
   // update Profile
   const updateProfileUser = (name, photoURL) => {
     return updateProfile(auth.currentUser, {
@@ -35,16 +36,19 @@ const AuthProvider = ({ children }) => {
       photoURL: photoURL,
     });
   };
+
   // email password login
   const loginWithEmailPass = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+
   // google sign in
   const loginWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
+  
   // facebook sign in
   const loginWithFacebook = () => {
     setLoading(true);

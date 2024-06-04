@@ -33,3 +33,4 @@
 - [Metarial-Ui](https://mui.com/material-ui)
 - [Daisy-Ui](https://daisyui.com/)
 - [React-Icons](https://react-icons.github.io/)
+- [Reac-Hot-Toast]()
