@@ -67,6 +67,11 @@ const Login = () => {
                 </div>
                 {/* Third Party Login  */}
                 <div className="mb-3">
+                <input
+                      className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
+                      type="submit"
+                      value="Sign in"
+                    />
                   <GoogleLogin></GoogleLogin>
                   <FacebookLogin></FacebookLogin>
                 </div>

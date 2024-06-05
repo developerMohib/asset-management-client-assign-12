@@ -1,4 +1,4 @@
-import React from 'react';
+
 import toast from 'react-hot-toast';
 import useAuth from '../../../Hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const GoogleLogin = () => {
                 console.log(res)
             //   })
               toast.success("login successfully");
-            //   navigate(from, { replace: true });
+              navigate(from, { replace: true });
             });
           };
         return (

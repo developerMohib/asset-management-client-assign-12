@@ -24,6 +24,8 @@ const JoinEmployee = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
+    const birthDate = data.date ;
+    console.log(name, email, password, birthDate)
 
     // sign up
     createUser(email, password)
@@ -48,18 +50,17 @@ const JoinEmployee = () => {
   return (
     <div>
       <HelmetTitle routeName={"Join Employee"}> </HelmetTitle>
-      <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-10">
+      <div className="flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 md:py-10">
         <div className="mt-3 w-full">
           <p className="text-center font-bold text-3xl mb-10 ">
             Please Register as an Employee{" "}
           </p>
         </div>
-        <div className="flex shadow-md">
+        <div className="md:flex shadow-md">
           <div
-            className="flex flex-wrap content-center justify-center rounded-l-md bg-white"
-            style={{ width: "24rem", height: "32rem" }}
+            className="flex flex-wrap content-center justify-center rounded-l-md bg-white md:w-[24rem] md:h-full py-5"
           >
-            <div className="w-72">
+            <div className="md:w-72">
               <h1 className="text-xl font-semibold">Welcome back</h1>
               <small className="text-gray-400">
                 Welcome back! Please enter your details
@@ -146,9 +147,22 @@ const JoinEmployee = () => {
                     </p>
                   )}
                 </div>
+
+                <div className="mb-3">
+                  <label className="mb-2 block text-xs font-semibold">
+                    Date Of Birth
+                  </label>
+                  <input
+                    {...register("date", { required: true })}
+                    type="date"
+                    name="date"
+                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                  />
+                </div>
+
                 <div className="mb-3">
                   <input
-                    className={`mb-1.5 block w-full text-center text-white bg-green-500 hover:bg-green-900 px-2 py-1.5 rounded-md cursor-pointer`}
+                    className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
                     value="Sign up"
                   />
@@ -185,11 +199,10 @@ const JoinEmployee = () => {
           </div>
 
           <div
-            className="flex flex-wrap content-center justify-center rounded-r-md"
-            style={{ width: "24rem", height: "32rem" }}
+            className="flex flex-wrap content-center justify-center rounded-r-md md:w-[24rem] md:h-full"
           >
             <img
-              className="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"
+              className="w-full md:h-full bg-center bg-no-repeat bg-cover rounded-r-md"
               src={JoinEmployeeImg}
             />
           </div>
