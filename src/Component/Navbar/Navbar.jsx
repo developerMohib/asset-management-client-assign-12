@@ -1,4 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
+import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import logo from "../../assets/corporate-solution.png";
 import "./Navbar.css";
 import { useState } from "react";
@@ -6,11 +7,18 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { user } = useAuth();
-  console.log(user, "log in user");
+  const { user,logOut } = useAuth();
+  
+  const handleLogOut = () =>{
+    logOut()
+    .then(() => {
+      toast.success('log out successfully')
+    })
+  }
 
   const navLinks = (
     <>
@@ -45,18 +53,22 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 sticky top-0 ">
+    <div className="navbar bg-base-100 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className=" mx-1 p-1 lg:hidden">
-            <MenuIcon></MenuIcon>
+          <div onClick={() => setOpen(!open)} tabIndex={0} role="button" className=" mx-1 p-1 lg:hidden">
+            {
+              open === true ? <RestaurantMenuIcon></RestaurantMenuIcon> : <MenuIcon></MenuIcon>
+            }
           </div>
-          <ul
+          {
+            open && <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
           </ul>
+          }
         </div>
         <div>
           {" "}
@@ -89,7 +101,7 @@ const Navbar = () => {
                     src={user?.photoURL}
                     alt=""
                   />
-                  <button
+                  <button onClick={handleLogOut}
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="Log Out"
                     data-tooltip-place="left"
