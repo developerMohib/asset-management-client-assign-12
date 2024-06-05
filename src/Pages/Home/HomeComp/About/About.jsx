@@ -3,7 +3,31 @@ import { TbHexagonNumber1, TbHexagonNumber2, TbHexagonNumber3, TbHexagonNumber4,
 
 const About = () => {
   return (
-    <div className="bg-gray-700 p-4 min-h-screen mt-20 rounded-lg">
+    <div>
+      <div className="sm:flex items-center max-w-screen-xl  pt-10 pb-5">
+    <div className="sm:w-1/2 p-10">
+        <div className="image object-center text-center">
+            <img src="https://i.imgur.com/WbQnbas.png" alt="Company" />
+        </div>
+    </div>
+    <div className="sm:w-1/2 p-5">
+        <div className="text">
+            <span className="text-gray-500 border-b-2 border-indigo-600 uppercase">About us</span>
+            <h2 className="my-4 font-bold text-3xl sm:text-4xl">
+                About <span className="text-indigo-600">Our Company</span>
+            </h2>
+            <p className="text-gray-700">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, commodi
+                doloremque, fugiat illum magni minus nisi nulla numquam obcaecati placeat quia, repellat tempore
+                voluptatum.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+      <div className="bg-gray-700 p-4 min-h-screen rounded-lg">
       <div className="max-w-7xl mx-auto h-max px-6 md:px-12 xl:px-6">
         <div className="md:w-2/3 lg:w-1/2">
           <MdSevereCold className="text-white text-5xl "> </MdSevereCold>
@@ -73,6 +97,7 @@ const About = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
