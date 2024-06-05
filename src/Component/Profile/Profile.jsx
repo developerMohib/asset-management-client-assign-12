@@ -6,7 +6,7 @@ const Profile = () => {
     return (
         <div>
             <HelmetTitle routeName={'Profile'}></HelmetTitle>
-            <h1>Hi i am employee Profile</h1>
+            <h1>Hi i am employee / manager Profile</h1>
         </div>
     );
 };
