@@ -9,7 +9,7 @@ const FacebookLogin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
-    console.log(location?.state, "logi in");
+    // console.log(location?.state, "logi in");
   
     const handleFacebookLogin = () => {
       loginWithFacebook()

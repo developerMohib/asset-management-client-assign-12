@@ -37,3 +37,4 @@
 - [Swiper-slider](https://swiperjs.com/)
 - [React-Hook-From](https://react-hook-form.com/)
 - [React-Tooltip](https://react-tooltip.com/)
+- [Axios](https://axios-http.com/)

@@ -25,12 +25,13 @@ const JoinEmployee = () => {
     const email = data.email;
     const password = data.password;
     const birthDate = data.date ;
-    console.log(name, email, password, birthDate)
+    const logo = data.logo ;
+    console.log(name, email, password, birthDate, logo[0] )
 
     // sign up
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         updateProfileUser(name, photoURL).then(() => {
           console.log("update profile");
@@ -40,6 +41,7 @@ const JoinEmployee = () => {
           };
           console.log(userInfo, "user info");
           navigate("/", { replace: true });
+          toast.success('log in successfully')
         });
       })
       .catch((err) => {
@@ -67,6 +69,7 @@ const JoinEmployee = () => {
               </small>
 
               <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+                {/* Name */}
                 <div className="mb-3">
                   <label className="mb-2 block text-xs font-semibold">
                     Name
@@ -87,6 +90,7 @@ const JoinEmployee = () => {
                     </p>
                   )}
                 </div>
+                {/* Email */}
                 <div className="mb-3">
                   <label className="mb-2 block text-xs font-semibold">
                     Email
@@ -102,7 +106,7 @@ const JoinEmployee = () => {
                     <p className="text-red-600">Email is required</p>
                   )}
                 </div>
-
+                  {/* Password */}
                 <div className="mb-3 relative ">
                   <label className="mb-2 block text-xs font-semibold">
                     Password
@@ -147,7 +151,7 @@ const JoinEmployee = () => {
                     </p>
                   )}
                 </div>
-
+                  {/* date of birth */}
                 <div className="mb-3">
                   <label className="mb-2 block text-xs font-semibold">
                     Date Of Birth
@@ -159,7 +163,20 @@ const JoinEmployee = () => {
                     className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                   />
                 </div>
-
+                {/* logo */}
+                <div className="mb-3">
+                <label className="mb-2 block text-xs font-semibold">
+                    Logo <span className="font-semibold text-sm text-gray-400" > (if you have) </span>
+                  </label>
+                  <input
+                  {...register('logo')}
+                  name="logo"
+                  type="file"
+                  accept="image/*"
+                  className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                  />
+                </div>
+                  {/* Submit button */}
                 <div className="mb-3">
                   <input
                     className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
