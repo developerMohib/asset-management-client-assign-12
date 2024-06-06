@@ -59,7 +59,7 @@ const JoinManager = () => {
             
           <div
               className="flex flex-wrap content-center justify-center rounded-r-md"
-              style={{ width: "24rem", height: "32rem" }}
+              style={{ width: "24rem" }}
             >
               <img
                 className="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md"
@@ -70,7 +70,7 @@ const JoinManager = () => {
 
             <div
               className="flex flex-wrap content-center justify-center rounded-l-md bg-white"
-              style={{ width: "24rem", height: "32rem" }}
+              style={{ width: "24rem", }}
             >
               <div className="w-72">
                 <h1 className="text-xl font-semibold">Welcome back</h1>
@@ -79,6 +79,7 @@ const JoinManager = () => {
                 </small>
   
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+                  {/* Manager Name */}
                   <div className="mb-3">
                     <label className="mb-2 block text-xs font-semibold">
                       Name
@@ -99,6 +100,44 @@ const JoinManager = () => {
                       </p>
                     )}
                   </div>
+                  
+                  {/* Company Name */}
+                  <div className="mb-3">
+                    <label className="mb-2 block text-xs font-semibold">
+                      Name
+                    </label>
+                    <input
+                      {...register("name", { required: true, maxLength: 20 })}
+                      type="text"
+                      name="name"
+                      placeholder="Enter your name"
+                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                    />
+                    {errors.name?.type === "required" && (
+                      <p className="text-red-600">Name is required</p>
+                    )}
+                    {errors.name?.type === "maxLength" && (
+                      <p className="text-red-600">
+                        Name should not be lenght 20 char
+                      </p>
+                    )}
+                  </div>
+
+                {/* Company logo */}
+                <div className="mb-3">
+                <label className="mb-2 block text-xs font-semibold">
+                    Logo <span className="font-semibold text-sm text-gray-400" > (if you have) </span>
+                  </label>
+                  <input
+                  {...register('logo')}
+                  name="logo"
+                  type="file"
+                  accept="image/*"
+                  className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                  />
+                </div>
+
+                    {/* Email */}
                   <div className="mb-3">
                     <label className="mb-2 block text-xs font-semibold">
                       Email
@@ -114,7 +153,8 @@ const JoinManager = () => {
                       <p className="text-red-600">Email is required</p>
                     )}
                   </div>
-  
+
+                    {/* Password */}
                   <div className="mb-3 relative ">
                     <label className="mb-2 block text-xs font-semibold">
                       Password
@@ -159,6 +199,33 @@ const JoinManager = () => {
                       </p>
                     )}
                   </div>
+
+                  {/* date of birth */}
+                <div className="mb-3">
+                  <label className="mb-2 block text-xs font-semibold">
+                    Date Of Birth
+                  </label>
+                  <input
+                    {...register("date", { required: true })}
+                    type="date"
+                    name="date"
+                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                  />
+                </div>
+
+                  {/* Packages Selection */}
+                <div className="mb-3">
+                  <label className="mb-2 block text-xs font-semibold">
+                    Select Member
+                  </label>
+                  <select className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" {...register('member')} name="" id="">
+                    <option value="member3"> 5 Members for $5 </option>
+                    <option value="member10">10 Members for $8</option>
+                    <option value="member20">20 Members for $15</option>
+                  </select>
+                </div>
+
+                  {/* Submit */}
                   <div className="mb-3">
                     <input
                       className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}

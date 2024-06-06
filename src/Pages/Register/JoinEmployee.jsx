@@ -7,8 +7,14 @@ import { useState } from "react";
 import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 import JoinEmployeeImg from "../../assets/join-employee-register.jpg";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
+const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
+// console.log(imgBB_api_Key)
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
 
 const JoinEmployee = () => {
+  const axiosPublic = useAxiosPublic() ;
   const { createUser, updateProfileUser } = useAuth();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
@@ -17,16 +23,27 @@ const JoinEmployee = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const photoURL =
-    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
     const birthDate = data.date ;
-    const logo = data.logo ;
-    console.log(name, email, password, birthDate, logo[0] )
+    // const image = {data.logo[0]};
+    
+
+    const imageFile = { image: data.logo[0] }
+
+        const res = await axiosPublic.post(img_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+
+    const photoURL = res.data.data.display_url;
+    // const photoURL =
+    // "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
+
 
     // sign up
     createUser(email, password)
@@ -34,14 +51,27 @@ const JoinEmployee = () => {
         // console.log(result.user);
 
         updateProfileUser(name, photoURL).then(() => {
-          console.log("update profile");
           const userInfo = {
             name: name,
             email: email,
+            birthDate : birthDate ,
+            companyLogo : photoURL,
+            status : 'employee'
           };
-          console.log(userInfo, "user info");
-          navigate("/", { replace: true });
-          toast.success('log in successfully')
+
+          // data send to database 
+          axiosPublic.post('/users', userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              toast.success('log in successfully')
+              navigate("/", { replace: true });
+            }
+          })
+          .catch(err => {
+            console.log('err ',err)
+          })
+
+
         });
       })
       .catch((err) => {
