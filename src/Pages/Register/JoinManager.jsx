@@ -6,37 +6,78 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
+const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
 
 const JoinManager = () => {
+  const axiosPublic = useAxiosPublic() ;
   const { createUser, updateProfileUser } = useAuth();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(true);
+  const [value, setValue] = useState('');
+
+  const handleSelectChange = (e) => {
+    setValue(e.target.value);
+  };
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const photoURL =
-    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
-
-  const onSubmit = (data) => {
+  
+  const onSubmit = async (data) => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
+    const birthDate = data.date;
+    const companyName = data.companyName;
+    const member = data.member;
+    const imageFile = { image: data.logo[0] };
+
+    console.log(
+      member,
+      name,
+      email,
+      password,
+      birthDate,
+      companyName,
+      imageFile,
+      value     
+    );
+
+    const res = await axiosPublic.post(img_hosting_api, imageFile, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    });
+    const photoURL = res.data.data.display_url;
 
     // sign up
     createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-
+      .then(() => {
         updateProfileUser(name, photoURL).then(() => {
-          console.log("update profile");
           const userInfo = {
             name: name,
             email: email,
+            birthDate : birthDate ,
+            companyLogo : photoURL,
+            status : 'manager'
           };
-          console.log(userInfo, "user info");
-          navigate("/", { replace: true });
+
+          // data send to database
+          axiosPublic.post('/users', userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              toast.success('log in successfully as a manager')
+              navigate("/", { replace: true });
+            }
+          })
+          .catch(err => {
+            console.log('err ',err)
+          })
+
         });
       })
       .catch((err) => {
@@ -170,14 +211,14 @@ const JoinManager = () => {
                       Company Name
                     </label>
                     <input
-                      {...register("name", { required: true, maxLength: 20 })}
+                      {...register("companyName", { required: true })}
                       type="text"
-                      name="name"
-                      placeholder="Enter your name"
+                      name="companyName"
+                      placeholder="Enter Company name"
                       className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                     />
-                    {errors.name?.type === "required" && (
-                      <p className="text-red-600">Name is required</p>
+                    {errors.companyName?.type === "required" && (
+                      <p className="text-red-600">Company Name is required</p>
                     )}
                     {errors.name?.type === "maxLength" && (
                       <p className="text-red-600">
@@ -208,15 +249,15 @@ const JoinManager = () => {
                 {/* Packages Selection */}
                 <div className="mb-3">
                   <label className="mb-2 block text-xs font-semibold">
-                    Select Member
+                    Select Member {value}
                   </label>
                   <select
+                    value={value}
+                    onChange={handleSelectChange}
                     className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                    {...register("member")}
-                    name=""
-                    id=""
                   >
-                    <option value="member3"> 5 Members for $5 </option>
+                    <option value="">Select a Package </option>
+                    <option value="member3">5 Members for $5</option>
                     <option value="member10">10 Members for $8</option>
                     <option value="member20">20 Members for $15</option>
                   </select>
@@ -231,10 +272,10 @@ const JoinManager = () => {
                   />
                   <div className="md:flex gap-4 items-center">
                     <div className="md:w-1/2">
-                    <GoogleLogin></GoogleLogin>
+                      <GoogleLogin></GoogleLogin>
                     </div>
                     <div className="md:w-1/2">
-                    <FacebookLogin> </FacebookLogin>
+                      <FacebookLogin> </FacebookLogin>
                     </div>
                   </div>
                 </div>

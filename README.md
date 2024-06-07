@@ -38,3 +38,4 @@
 - [React-Hook-From](https://react-hook-form.com/)
 - [React-Tooltip](https://react-tooltip.com/)
 - [Axios](https://axios-http.com/)
+- [Tan-Stack-Query](https://tanstack.com/)

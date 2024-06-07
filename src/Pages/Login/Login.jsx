@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import { IoEyeOff } from "react-icons/io5";
 import { IoMdEye } from "react-icons/io";
@@ -6,11 +6,31 @@ import { useState } from "react";
 import loginImage from "../../assets/login-to-access.jpg";
 import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const handleLogin = () => {
-    console.log("hello");
+  const {loginWithEmailPass} = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const notifyLogin = () => toast.success("Login successfully");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const value = e.target ;
+    const email = value.email.value;
+    const password = value.password.value;
+    
+    loginWithEmailPass(email, password)
+    .then((result) => {
+      console.log(result.user);
+      notifyLogin()
+      navigate( location.state ? location.state : '/')
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
   return (
     <div>

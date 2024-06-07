@@ -8,10 +8,23 @@ import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user,logOut } = useAuth();
+  const axiosPublic = useAxiosPublic() ;
+
+  const {query} = useQuery({
+    queryKey:['user'],
+    queryFn: async () => {
+      const res = axiosPublic.get('/users')
+      return res.data
+    }
+  })
+  console.log(query)
+  console.log('status', user?.status)
   
   const handleLogOut = () =>{
     logOut()

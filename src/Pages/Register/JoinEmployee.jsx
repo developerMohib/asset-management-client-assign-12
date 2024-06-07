@@ -10,7 +10,6 @@ import JoinEmployeeImg from "../../assets/join-employee-register.jpg";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
-// console.log(imgBB_api_Key)
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
 
 const JoinEmployee = () => {
@@ -28,10 +27,7 @@ const JoinEmployee = () => {
     const name = data.name;
     const email = data.email;
     const password = data.password;
-    const birthDate = data.date ;
-    // const image = {data.logo[0]};
-    
-
+    const birthDate = data.date ; 
     const imageFile = { image: data.logo[0] }
 
         const res = await axiosPublic.post(img_hosting_api, imageFile, {
@@ -39,17 +35,11 @@ const JoinEmployee = () => {
                 'content-type': 'multipart/form-data'
             }
         });
-
     const photoURL = res.data.data.display_url;
-    // const photoURL =
-    // "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg";
-
 
     // sign up
     createUser(email, password)
-      .then((result) => {
-        // console.log(result.user);
-
+      .then(() => {
         updateProfileUser(name, photoURL).then(() => {
           const userInfo = {
             name: name,
@@ -63,7 +53,7 @@ const JoinEmployee = () => {
           axiosPublic.post('/users', userInfo)
           .then(res => {
             if(res.data.insertedId){
-              toast.success('log in successfully')
+              toast.success('log in successfully as a employee')
               navigate("/", { replace: true });
             }
           })
