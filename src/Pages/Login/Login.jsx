@@ -11,26 +11,26 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const {loginWithEmailPass} = useAuth();
+  const { loginWithEmailPass } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const notifyLogin = () => toast.success("Login successfully");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const value = e.target ;
+    const value = e.target;
     const email = value.email.value;
     const password = value.password.value;
-    
+
     loginWithEmailPass(email, password)
-    .then((result) => {
-      console.log(result.user);
-      notifyLogin()
-      navigate( location.state ? location.state : '/')
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((result) => {
+        console.log(result.user);
+        notifyLogin();
+        navigate(location.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div>
@@ -87,11 +87,11 @@ const Login = () => {
                 </div>
                 {/* Third Party Login  */}
                 <div className="mb-3">
-                <input
-                      className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
-                      type="submit"
-                      value="Sign in"
-                    />
+                  <input
+                    className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
+                    type="submit"
+                    value="Sign in"
+                  />
                   <GoogleLogin></GoogleLogin>
                   <FacebookLogin></FacebookLogin>
                 </div>
@@ -99,15 +99,32 @@ const Login = () => {
 
               <div className="text-center">
                 <span className="text-xs text-gray-400 font-semibold">
-                  Dont have account?
+                  Dont have account? {"  "}
                 </span>
-                <Link
-                  className="text-xs font-semibold text-purple-700"
-                  to="/register"
+
+                {/* go to sign up */}
+
+                <button
+                  onClick={() => document.getElementById("signUp").showModal()}
                 >
                   {" "}
-                  Sign up{" "}
-                </Link>
+                  sign up{" "}
+                </button>
+                <dialog className="modal" id="signUp">
+                  <div className="modal-box">
+                    <form method="dialog">
+                      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                        ✕
+                      </button>
+                    </form>
+                    <h3 className="text-lg my-5"> COOL! Which one you prefer! </h3>
+                    <div>
+                      <Link to='/join-employee' > <button className="btn btn-outline">As an Employee</button> </Link>
+                      <Link to='/join-manager' > <button className="btn btn-outline">As a Manager</button></Link>
+                    </div>
+                  </div>
+                </dialog>
+
               </div>
             </div>
           </div>

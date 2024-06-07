@@ -1,5 +1,5 @@
 import MenuIcon from "@mui/icons-material/Menu";
-import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import logo from "../../assets/corporate-solution.png";
 import "./Navbar.css";
 import { useState } from "react";
@@ -8,30 +8,28 @@ import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useUser from "../../Hooks/useUser";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { user,logOut } = useAuth();
-  const axiosPublic = useAxiosPublic() ;
+  const { user, logOut } = useAuth();
+  // const axiosPublic =
+// console.log('log in user',user?.email)
+  const [users] = useUser();
 
-  const {query} = useQuery({
-    queryKey:['user'],
-    queryFn: async () => {
-      const res = axiosPublic.get('/users')
-      return res.data
-    }
-  })
-  console.log(query)
-  console.log('status', user?.status)
+  // todo : have to find user email then his status
+
   
-  const handleLogOut = () =>{
-    logOut()
-    .then(() => {
-      toast.success('log out successfully')
-    })
-  }
+  // const forEmployee = users.filter((item) => item.status === "manager");
+  // const loginUser = forEmployee.filter(me => me?.email === user?.email)
+  // console.log("manager", loginUser);
+  
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.success("log out successfully");
+    });
+  };
 
   const navLinks = (
     <>
@@ -69,19 +67,26 @@ const Navbar = () => {
     <div className="navbar bg-base-100 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
-          <div onClick={() => setOpen(!open)} tabIndex={0} role="button" className=" mx-1 p-1 lg:hidden">
-            {
-              open === true ? <RestaurantMenuIcon></RestaurantMenuIcon> : <MenuIcon></MenuIcon>
-            }
-          </div>
-          {
-            open && <ul
+          <div
+            onClick={() => setOpen(!open)}
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            role="button"
+            className=" mx-1 p-1 lg:hidden"
           >
-            {navLinks}
-          </ul>
-          }
+            {open === true ? (
+              <RestaurantMenuIcon></RestaurantMenuIcon>
+            ) : (
+              <MenuIcon></MenuIcon>
+            )}
+          </div>
+          {open && (
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {navLinks}
+            </ul>
+          )}
         </div>
         <div>
           {" "}
@@ -114,7 +119,8 @@ const Navbar = () => {
                     src={user?.photoURL}
                     alt=""
                   />
-                  <button onClick={handleLogOut}
+                  <button
+                    onClick={handleLogOut}
                     data-tooltip-id="my-tooltip"
                     data-tooltip-content="Log Out"
                     data-tooltip-place="left"

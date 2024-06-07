@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
-import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
@@ -34,35 +32,39 @@ const JoinManager = () => {
     const birthDate = data.date;
     const companyName = data.companyName;
     const member = data.member;
-    const imageFile = { image: data.logo[0] };
+    // user
+    const userPhotoFile = { image: data.photo[0] };
+    // company
+    const companyImgFile = { image: data.logo[0] };
 
-    console.log(
-      member,
-      name,
-      email,
-      password,
-      birthDate,
-      companyName,
-      imageFile,
-      value     
-    );
-
-    const res = await axiosPublic.post(img_hosting_api, imageFile, {
-        headers: {
-            'content-type': 'multipart/form-data'
-        }
+    // user photo upload
+    const res = await axiosPublic.post(img_hosting_api, userPhotoFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
     });
-    const photoURL = res.data.data.display_url;
+    const userURL = res.data.data.display_url;
 
-    // sign up
+    // Company logo upload
+    const res2 = await axiosPublic.post(img_hosting_api, companyImgFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const photoURL = res2.data.data.display_url;
+
+    // sign up 
     createUser(email, password)
       .then(() => {
-        updateProfileUser(name, photoURL).then(() => {
+        updateProfileUser(name, userURL).then(() => {
           const userInfo = {
             name: name,
             email: email,
+            companyName : companyName,
+            member : member,
             birthDate : birthDate ,
-            companyLogo : photoURL,
+            userPhoto: userURL,
+            companyLogo: photoURL,
             status : 'manager'
           };
 
@@ -226,7 +228,39 @@ const JoinManager = () => {
                       </p>
                     )}
                   </div>
+                  {/* Packages Selection */}
+                <div className="mb-3 md:w-1/2 ">
+                  <label className="mb-2 block text-xs font-semibold">
+                    Select Member {value}
+                  </label>
+                  <select
+                    value={value}
+                    onChange={handleSelectChange}
+                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                  >
+                    <option value="">Select a Package </option>
+                    <option value="member3">5 Members for $5</option>
+                    <option value="member10">10 Members for $8</option>
+                    <option value="member20">20 Members for $15</option>
+                  </select>
+                </div>
+                </div>
 
+                    {/* company logo and manager photo */}
+                <div className="md:flex gap-4" >
+                  {/* Manager photo */}
+                  <div className="mb-3 md:w-1/2">
+                    <label className="mb-2 block text-xs font-semibold">
+                    Manager Photo
+                    </label>
+                    <input
+                      {...register("photo")}
+                      name="photo"
+                      type="file"
+                      accept="image/*"
+                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                    />
+                  </div>
                   {/* Company logo */}
                   <div className="mb-3 md:w-1/2">
                     <label className="mb-2 block text-xs font-semibold">
@@ -246,23 +280,6 @@ const JoinManager = () => {
                   </div>
                 </div>
 
-                {/* Packages Selection */}
-                <div className="mb-3">
-                  <label className="mb-2 block text-xs font-semibold">
-                    Select Member {value}
-                  </label>
-                  <select
-                    value={value}
-                    onChange={handleSelectChange}
-                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                  >
-                    <option value="">Select a Package </option>
-                    <option value="member3">5 Members for $5</option>
-                    <option value="member10">10 Members for $8</option>
-                    <option value="member20">20 Members for $15</option>
-                  </select>
-                </div>
-
                 {/* Submit */}
                 <div className="mb-3">
                   <input
@@ -270,14 +287,6 @@ const JoinManager = () => {
                     type="submit"
                     value="Sign up"
                   />
-                  <div className="md:flex gap-4 items-center">
-                    <div className="md:w-1/2">
-                      <GoogleLogin></GoogleLogin>
-                    </div>
-                    <div className="md:w-1/2">
-                      <FacebookLogin> </FacebookLogin>
-                    </div>
-                  </div>
                 </div>
               </form>
 
@@ -295,7 +304,7 @@ const JoinManager = () => {
               </div>
               <div className="text-center">
                 <span className="text-xs text-gray-600 font-semibold">
-                  Don't want to join as a Manager?
+                  Want to be an Employee ?
                 </span>
                 <Link
                   className="text-xs font-semibold text-purple-700"
