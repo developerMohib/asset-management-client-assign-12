@@ -8,23 +8,23 @@ import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
-import useUser from "../../Hooks/useUser";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useAuth();
-  // const axiosPublic =
-// console.log('log in user',user?.email)
-  const [users] = useUser();
-
-  // todo : have to find user email then his status
-
-  
-  // const forEmployee = users.filter((item) => item.status === "manager");
-  // const loginUser = forEmployee.filter(me => me?.email === user?.email)
-  // console.log("manager", loginUser);
-  
-
+  const axiosPublic = useAxiosPublic();
+  const email = user?.email ;
+  // todo : find user status 
+  // todo : conditionaly show
+  const { data : loginUser = [] } = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/users/${email}`)
+      return res.data
+    }
+  });
   const handleLogOut = () => {
     logOut().then(() => {
       toast.success("log out successfully");
@@ -33,33 +33,73 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-xl isActive" : "text-xl notActive"
-        }
-        to="/"
-      >
-        {" "}
-        Home{" "}
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-xl isActive" : "text-xl notActive"
-        }
-        to="/join-employee"
-      >
-        {" "}
-        Join As Employee{" "}
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-xl isActive" : "text-xl notActive"
-        }
-        to="/join-manager"
-      >
-        {" "}
-        Join As Manager{" "}
-      </NavLink>
+      {loginUser ? (
+        loginUser.status === 'manager' ? (
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-xl isActive" : "text-xl notActive"
+            }
+            to="/add-asset"
+          >
+            Add Asset
+          </NavLink>
+        ) : loginUser.status === 'employee' ? (
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-xl isActive" : "text-xl notActive"
+            }
+            to="/my-assets"
+          >
+            My Asset
+          </NavLink>
+        ) : (
+          <>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-xl isActive" : "text-xl notActive"
+              }
+              to="/"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-xl isActive" : "text-xl notActive"
+              }
+              to="/join-employee"
+            >
+              Join As Employee
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-xl isActive" : "text-xl notActive"
+              }
+              to="/join-manager"
+            >
+              Join As Manager
+            </NavLink>
+          </>
+        )
+      ) : (
+        <>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-xl isActive" : "text-xl notActive"
+            }
+            to="/"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-xl isActive" : "text-xl notActive"
+            }
+            to="/login"
+          >
+            Login
+          </NavLink>
+        </>
+      )}
     </>
   );
 
