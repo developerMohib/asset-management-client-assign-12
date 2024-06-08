@@ -8,23 +8,26 @@ import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import useUser from "../../Hooks/useUser";
+// import useAxiosPublic from "../../Hooks/useAxiosPublic";
+// import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useAuth();
-  const axiosPublic = useAxiosPublic();
-  const email = user?.email ;
-  // todo : find user status 
+  const [loginUser] = useUser() ;
+  // const axiosPublic = useAxiosPublic();
+  // const email = user?.email;
+  // todo : find user status
   // todo : conditionaly show
-  const { data : loginUser = [] } = useQuery({
-    queryKey: ['user'],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${email}`)
-      return res.data
-    }
-  });
+  // const { data: loginUser = [], refetch } = useQuery({
+  //   queryKey: ["user"],
+  //   queryFn: async () => {
+  //     const res = await axiosPublic.get(`/users/${email}`);
+  //     return res.data;
+  //   },
+  // });
+  console.log(loginUser.status, "status");
   const handleLogOut = () => {
     logOut().then(() => {
       toast.success("log out successfully");
@@ -34,24 +37,116 @@ const Navbar = () => {
   const navLinks = (
     <>
       {loginUser ? (
-        loginUser.status === 'manager' ? (
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-xl isActive" : "text-xl notActive"
-            }
-            to="/add-asset"
-          >
-            Add Asset
-          </NavLink>
-        ) : loginUser.status === 'employee' ? (
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "text-xl isActive" : "text-xl notActive"
-            }
-            to="/my-assets"
-          >
-            My Asset
-          </NavLink>
+        loginUser?.status === "manager" ? (
+          <>
+           <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/add-asset"
+            >
+              Add Asset
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : " text-lg notActive"
+              }
+              to="/add-employee"
+            >
+              Add Employee
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/all-request"
+            >
+              All Requ
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/asset-list"
+            >
+              All Asset
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/custom-request"
+            >
+              Custom Requ
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/my-employee"
+            >
+              My Employee
+            </NavLink>
+           <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/profile"
+            >
+              Profile
+            </NavLink>
+          </>
+        ) : loginUser?.status === "employee" ? (
+          <>
+           <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-xl isActive" : "text-xl notActive"
+              }
+              to="/"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/my-assets"
+            >
+              My Asset
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/request-assets"
+            >
+              Request Assets
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/my-team"
+            >
+              My Team
+            </NavLink>
+           <NavLink
+              className={({ isActive }) =>
+                isActive ? "text-lg isActive" : "text-lg notActive"
+              }
+              to="/profile"
+            >
+              My Profile
+            </NavLink>
+          </>
         ) : (
           <>
             <NavLink
@@ -64,7 +159,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "text-xl isActive" : "text-xl notActive"
+                isActive ? "text-lg isActive" : "text-lg notActive"
               }
               to="/join-employee"
             >
@@ -72,7 +167,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink
               className={({ isActive }) =>
-                isActive ? "text-xl isActive" : "text-xl notActive"
+                isActive ? "text-lg isActive" : "text-lg notActive"
               }
               to="/join-manager"
             >
@@ -84,7 +179,7 @@ const Navbar = () => {
         <>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-xl isActive" : "text-xl notActive"
+              isActive ? "text-lg isActive" : "text-lg notActive"
             }
             to="/"
           >
@@ -92,11 +187,19 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive ? "text-xl isActive" : "text-xl notActive"
+              isActive ? "text-lg isActive" : "text-lg notActive"
             }
-            to="/login"
+            to="/join-employee"
           >
-            Login
+            Join As Employee
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? "text-lg isActive" : "text-lg notActive"
+            }
+            to="/join-manager"
+          >
+            Join As Manager
           </NavLink>
         </>
       )}
@@ -131,7 +234,7 @@ const Navbar = () => {
         <div>
           {" "}
           <Link to="/">
-            <div className="flex text-xl leading-none">
+            <div className="flex md:text-xl leading-none items-center">
               <img className="w-10 mr-2" src={logo} alt="" />
               <h1 className="font-extrabold">
                 <span className="text-blue-600">CORPORATE</span>
@@ -142,7 +245,7 @@ const Navbar = () => {
           </Link>{" "}
         </div>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end md:w-[105%]">
         <div className=" md:visible md:block hidden">
           <ul className="menu menu-horizontal px-1"> {navLinks} </ul>
         </div>

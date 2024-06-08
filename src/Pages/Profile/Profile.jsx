@@ -1,5 +1,5 @@
 
-import HelmetTitle from '../HelmetTitle/HelmetTitle';
+import HelmetTitle from '../../Component/HelmetTitle/HelmetTitle';
 
 
 const Profile = () => {

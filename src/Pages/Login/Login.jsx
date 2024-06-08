@@ -8,10 +8,12 @@ import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+// import { AuthCustomContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const { loginWithEmailPass } = useAuth();
+  // const { loginWithEmailPass} = useContext(AuthCustomContext)
   const navigate = useNavigate();
   const location = useLocation();
   const notifyLogin = () => toast.success("Login successfully");
@@ -21,6 +23,7 @@ const Login = () => {
     const value = e.target;
     const email = value.email.value;
     const password = value.password.value;
+    // console.log(email, password, loginWithEmailPass)
 
     loginWithEmailPass(email, password)
       .then((result) => {
