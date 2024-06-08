@@ -2,32 +2,30 @@ import MenuIcon from "@mui/icons-material/Menu";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import logo from "../../assets/corporate-solution.png";
 import "./Navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
-import toast from "react-hot-toast";
-import useUser from "../../Hooks/useUser";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
-// import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";;
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, logOut } = useAuth();
-  const [loginUser] = useUser() ;
-  // const axiosPublic = useAxiosPublic();
-  // const email = user?.email;
-  // todo : find user status
-  // todo : conditionaly show
-  // const { data: loginUser = [], refetch } = useQuery({
-  //   queryKey: ["user"],
-  //   queryFn: async () => {
-  //     const res = await axiosPublic.get(`/users/${email}`);
-  //     return res.data;
-  //   },
-  // });
+  const [loginUser, setLoginUser] = useState({})
+  const email = user?.email;
+
+  useEffect(()=>{
+    fetch(`http://localhost:9000/users/${email}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log(data,' fetch data')
+      setLoginUser(data)
+    })
+  },[email])
+
   console.log(loginUser.status, "status");
+
   const handleLogOut = () => {
     logOut().then(() => {
       toast.success("log out successfully");
