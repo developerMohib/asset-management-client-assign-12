@@ -7,7 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
-import toast from "react-hot-toast";;
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
