@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Profile from "../Pages/Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Payment from "../Pages/Payment/Payment";
 import MyTeam from "../Pages/Employee/MyTeam/MyTeam";
 import JoinManager from "../Pages/Register/JoinManager";
 import JoinEmployee from "../Pages/Register/JoinEmployee";
@@ -15,7 +16,6 @@ import MyEmployee from "../Pages/Manager/MyEmployee/MyEmployee";
 import AddEmployee from "../Pages/Manager/AddEmployee/AddEmployee";
 import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 import CustomRequest from "../Pages/Manager/CustomRequest/CustomRequest";
-
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +81,10 @@ export const router = createBrowserRouter([
         {
           path : '/my-employee',
           element: <MyEmployee></MyEmployee>,
+        },
+        {
+          path : '/payment',
+          element: <Payment></Payment>,
         },
       ],
     },

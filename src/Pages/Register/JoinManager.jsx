@@ -10,11 +10,12 @@ const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
 
 const JoinManager = () => {
-  const axiosPublic = useAxiosPublic() ;
-  const { createUser, updateProfileUser } = useAuth();
+
   const navigate = useNavigate();
-  const [showPass, setShowPass] = useState(true);
+  const axiosPublic = useAxiosPublic();
   const [value, setValue] = useState('');
+  const [showPass, setShowPass] = useState(true);
+  const { createUser, updateProfileUser } = useAuth();
 
   const handleSelectChange = (e) => {
     setValue(e.target.value);
@@ -31,7 +32,8 @@ const JoinManager = () => {
     const password = data.password;
     const birthDate = data.date;
     const companyName = data.companyName;
-    const member = data.member;
+    
+    console.log(value, 'manager regi page')
     // user
     const userPhotoFile = { image: data.photo[0] };
     // company
@@ -61,7 +63,7 @@ const JoinManager = () => {
             name: name,
             email: email,
             companyName : companyName,
-            member : member,
+            member : value,
             birthDate : birthDate ,
             userPhoto: userURL,
             companyLogo: photoURL,
@@ -73,7 +75,7 @@ const JoinManager = () => {
           .then(res => {
             if(res.data.insertedId){
               toast.success('log in successfully as a manager')
-              navigate("/", { replace: true });
+              navigate("/payment", { replace: true });
             }
           })
           .catch(err => {
@@ -239,9 +241,9 @@ const JoinManager = () => {
                     className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                   >
                     <option value="">Select a Package </option>
-                    <option value="member3">5 Members for $5</option>
-                    <option value="member10">10 Members for $8</option>
-                    <option value="member20">20 Members for $15</option>
+                    <option value="5">5 Members for $5</option>
+                    <option value="10">10 Members for $8</option>
+                    <option value="20">20 Members for $15</option>
                   </select>
                 </div>
                 </div>

@@ -11,18 +11,15 @@
 ## About this application 
 ## Main Features
 - Any company can use this web application to manage their corporate business.
-
-
-
-
-
-
-
-
-
-
-
-
+-
+-
+-
+-
+-
+-
+-
+-
+-
 
 
 ## Usage Packages 
@@ -39,3 +36,6 @@
 - [React-Tooltip](https://react-tooltip.com/)
 - [Axios](https://axios-http.com/)
 - [Tan-Stack-Query](https://tanstack.com/)
+
+## Payment Method
+- [react-stripe-js](https://stripe.com/)
