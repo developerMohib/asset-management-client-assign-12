@@ -19,7 +19,7 @@ const Navbar = () => {
     fetch(`http://localhost:9000/users/${email}`)
     .then(res => res.json())
     .then(data => {
-      console.log(data,' fetch data')
+      // console.log(data,' fetch data')
       setLoginUser(data)
     })
   },[email])

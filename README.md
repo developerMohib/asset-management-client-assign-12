@@ -36,6 +36,7 @@
 - [React-Tooltip](https://react-tooltip.com/)
 - [Axios](https://axios-http.com/)
 - [Tan-Stack-Query](https://tanstack.com/)
+- [PropTypes](https://www.npmjs.com/package/prop-types)
 
 ## Payment Method
 - [react-stripe-js](https://stripe.com/)

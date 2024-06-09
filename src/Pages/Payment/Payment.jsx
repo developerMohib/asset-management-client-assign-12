@@ -12,16 +12,16 @@ const stripePromise = loadStripe(import.meta.env.VITE_stripe_Pk);
 // console.log('pk', import.meta.env.VITE_stripe_Pk)
 const Payment = () => {
   const [loginUser] = useUser();
-  const [value, setValue] = useState("");
-  const [price, setPrice] = useState(0)
-  const [clientSecret, setClientSecret] =useState('') ;
   const axiosSecure = useAxiosSecure();
+  const [price, setPrice] = useState(0);
+  const [value, setValue] = useState("");
+  const [clientSecret, setClientSecret] = useState();
 
   const handleSelectChange = (e) => {
     const newValue = e.target.value;
     setValue(newValue);
     const charge = parseInt(newValue);
-    
+
     let newPrice;
     if (charge === 5) {
       newPrice = 5;
@@ -30,24 +30,23 @@ const Payment = () => {
     } else if (charge === 20) {
       newPrice = 15;
     } else {
-      newPrice = ' ';
+      newPrice = " ";
     }
-    
+
     if (price !== newPrice) {
       setPrice(newPrice);
     }
   };
-console.log('price', price)
+  console.log("price", price);
 
-// to do : payment pass to server
+  // to do : payment pass to server
 
-// useEffect(()=>{
-//     axiosSecure.post()
-//     .then(res =>{
-//         console.log('payment page',res.data)
-//     })
-//     .then()
-// },[axiosSecure])
+  useEffect(() => {
+    axiosSecure.post("/payment-intent", { price }).then((res) => {
+      console.log("payment page", res.data);
+      setClientSecret(res.data.clientSecret);
+    });
+  }, [axiosSecure, price]);
 
   return (
     <div>
@@ -56,6 +55,7 @@ console.log('price', price)
         {" "}
         Your employee {loginUser?.member}{" "}
       </p>
+      <p>clientSecret : {clientSecret}</p>
       <p> Select Member {value} </p>
       {/* Packages Selection */}
       <div className="md:flex items-end gap-5">
@@ -79,12 +79,15 @@ console.log('price', price)
         </div>
       </div>
 
-
       {/* Payment Check-out */}
-        <Elements stripe={stripePromise} >
-            <CheckOut></CheckOut>
-        </Elements>
-
+      <Elements stripe={stripePromise}>
+        <div disabled={!clientSecret}>
+          {/* <CheckOut></CheckOut> */}
+        </div>
+        {
+          clientSecret && (<CheckOut clientSecret={clientSecret} ></CheckOut>)
+        }
+      </Elements>
     </div>
   );
 };
