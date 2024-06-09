@@ -1,19 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import useUser from "../../Hooks/useUser";
 // checkout
 import { loadStripe } from "@stripe/stripe-js";
+import CheckOut from "./CheckOut";
 import { Elements } from "@stripe/react-stripe-js";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-const stripePromise = loadStripe('')
+const stripePromise = loadStripe(import.meta.env.VITE_stripe_Pk);
+
+// console.log('pk', import.meta.env.VITE_stripe_Pk)
 const Payment = () => {
   const [loginUser] = useUser();
   const [value, setValue] = useState("");
+  const [price, setPrice] = useState(0)
+  const [clientSecret, setClientSecret] =useState('') ;
+  const axiosSecure = useAxiosSecure();
 
   const handleSelectChange = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
+    const charge = parseInt(newValue);
+    
+    let newPrice;
+    if (charge === 5) {
+      newPrice = 5;
+    } else if (charge === 10) {
+      newPrice = 8;
+    } else if (charge === 20) {
+      newPrice = 15;
+    } else {
+      newPrice = ' ';
+    }
+    
+    if (price !== newPrice) {
+      setPrice(newPrice);
+    }
   };
-  console.log(value, "'jon'");
+console.log('price', price)
+
+// to do : payment pass to server
+
+// useEffect(()=>{
+//     axiosSecure.post()
+//     .then(res =>{
+//         console.log('payment page',res.data)
+//     })
+//     .then()
+// },[axiosSecure])
+
   return (
     <div>
       <HelmetTitle routeName={"Payment"}></HelmetTitle>
@@ -44,12 +79,11 @@ const Payment = () => {
         </div>
       </div>
 
+
       {/* Payment Check-out */}
         <Elements stripe={stripePromise} >
-
+            <CheckOut></CheckOut>
         </Elements>
-
-
 
     </div>
   );
