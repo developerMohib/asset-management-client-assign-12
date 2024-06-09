@@ -43,7 +43,6 @@ const Payment = () => {
 
   useEffect(() => {
     axiosSecure.post("/payment-intent", { price }).then((res) => {
-      console.log("payment page", res.data);
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosSecure, price]);
@@ -55,7 +54,6 @@ const Payment = () => {
         {" "}
         Your employee {loginUser?.member}{" "}
       </p>
-      <p>clientSecret : {clientSecret}</p>
       <p> Select Member {value} </p>
       {/* Packages Selection */}
       <div className="md:flex items-end gap-5">

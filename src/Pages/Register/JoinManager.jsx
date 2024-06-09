@@ -3,7 +3,7 @@ import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
@@ -14,12 +14,32 @@ const JoinManager = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const [value, setValue] = useState('');
+  const [price, setPrice] = useState(0);
   const [showPass, setShowPass] = useState(true);
   const { createUser, updateProfileUser } = useAuth();
 
+
   const handleSelectChange = (e) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
+    const charge = parseInt(newValue);
+
+    let newPrice;
+    if (charge === 5) {
+      newPrice = 5;
+    } else if (charge === 10) {
+      newPrice = 8;
+    } else if (charge === 20) {
+      newPrice = 15;
+    } else {
+      newPrice = " ";
+    }
+
+    if (price !== newPrice) {
+      setPrice(newPrice);
+    }
   };
+  console.log("price", price);
   const {
     register,
     formState: { errors },
@@ -64,6 +84,7 @@ const JoinManager = () => {
             email: email,
             companyName : companyName,
             member : value,
+            price : price,
             birthDate : birthDate ,
             userPhoto: userURL,
             companyLogo: photoURL,

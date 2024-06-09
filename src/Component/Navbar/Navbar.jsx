@@ -16,12 +16,27 @@ const Navbar = () => {
   const email = user?.email;
 
   useEffect(()=>{
-    fetch(`http://localhost:9000/users/${email}`)
-    .then(res => res.json())
-    .then(data => {
-      // console.log(data,' fetch data')
-      setLoginUser(data)
-    })
+    const fetchUser = async () => {
+      try{
+        // fetch data
+        const res = await fetch(`http://localhost:9000/users/${email}`);
+        // console.log( 'nav bar ', res);
+        if(!res.ok) {
+          // Handle HTTP errors
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setLoginUser(data)
+        console.log('fetch user data',data)
+      }
+      catch (err){
+        console.error('Error fetching user data:', err);
+      }
+    }
+    if(email){
+      fetchUser()
+    }
   },[email])
 
   console.log(loginUser.status, "status");

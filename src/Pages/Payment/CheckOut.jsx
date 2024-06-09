@@ -11,7 +11,7 @@ const CheckOut = ({clientSecret}) => {
   const elements = useElements();
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
-  const [paymentId, setPaymentId] = useState(' ')
+  const [paymentId, setPaymentId] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(" ");
 
@@ -24,8 +24,6 @@ const CheckOut = ({clientSecret}) => {
       return;
     }
   }, [stripe, clientSecret]);
-  
-    // console.log("client secret", clientSecret);
 
   const handleCheckout = async (e) => {
     e.preventDefault();
