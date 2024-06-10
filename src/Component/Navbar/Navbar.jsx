@@ -30,7 +30,6 @@ const Navbar = () => {
 
         const data = await res.json();
         setLoginUser(data);
-        console.log("fetch user data", data);
       } catch (err) {
         console.error("Error fetching user data:", err);
       }
