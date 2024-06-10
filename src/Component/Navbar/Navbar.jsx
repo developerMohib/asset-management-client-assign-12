@@ -23,7 +23,7 @@ const Navbar = () => {
         // console.log( 'nav bar ', res);
         if(!res.ok) {
           // Handle HTTP errors
-          throw new Error(`HTTP error! Status: ${res.status}`);
+          console.log(`HTTP error! Status: ${res.status}`);
         }
 
         const data = await res.json();
@@ -39,11 +39,12 @@ const Navbar = () => {
     }
   },[email])
 
-  console.log(loginUser.status, "status");
+  console.log(loginUser?.status, "status");
 
   const handleLogOut = () => {
     logOut().then(() => {
       toast.success("log out successfully");
+      window.location.reload()
     });
   };
 

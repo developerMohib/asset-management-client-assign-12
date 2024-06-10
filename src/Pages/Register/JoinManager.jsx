@@ -17,6 +17,7 @@ const JoinManager = () => {
   const [price, setPrice] = useState(0);
   const [showPass, setShowPass] = useState(true);
   const { createUser, updateProfileUser } = useAuth();
+  // const [clientSecret, setClientSecret] = useState();
 
 
   const handleSelectChange = (e) => {
@@ -32,7 +33,7 @@ const JoinManager = () => {
     } else if (charge === 20) {
       newPrice = 15;
     } else {
-      newPrice = " ";
+      newPrice = 0;
     }
 
     if (price !== newPrice) {
@@ -40,6 +41,8 @@ const JoinManager = () => {
     }
   };
   console.log("price", price);
+  // console.log("clientSecret", clientSecret);
+
   const {
     register,
     formState: { errors },
@@ -52,8 +55,7 @@ const JoinManager = () => {
     const password = data.password;
     const birthDate = data.date;
     const companyName = data.companyName;
-    
-    console.log(value, 'manager regi page')
+
     // user
     const userPhotoFile = { image: data.photo[0] };
     // company
@@ -96,7 +98,7 @@ const JoinManager = () => {
           .then(res => {
             if(res.data.insertedId){
               toast.success('log in successfully as a manager')
-              navigate("/payment", { replace: true });
+              navigate("/", { replace: true });
             }
           })
           .catch(err => {
@@ -110,6 +112,15 @@ const JoinManager = () => {
         toast.error(err.message);
       });
   };
+
+  // useEffect(() => {
+  //   if(price){
+  //     axiosPublic.post("/payment-intent", { price }).then((res) => {
+  //       setClientSecret(res.data.clientSecret);
+  //     });
+  //   }
+  // }, [axiosPublic, price]);
+
   return (
     <div>
       <HelmetTitle routeName={"Join Manager"}> </HelmetTitle>

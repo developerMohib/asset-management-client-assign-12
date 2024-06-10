@@ -13,7 +13,7 @@ const useUser = () => {
         return res.data;
       },
     });
-    return [loginUser, refetch]
+    return {loginUser, refetch}
 };
 
 export default useUser;

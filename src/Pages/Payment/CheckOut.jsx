@@ -10,7 +10,6 @@ const CheckOut = ({clientSecret}) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const [message, setMessage] = useState(null);
   const [paymentId, setPaymentId] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(" ");
@@ -19,7 +18,7 @@ const CheckOut = ({clientSecret}) => {
     if (!stripe) {
       return;
     }
-    // console.log("client secret", clientSecret);
+    console.log("client secret", clientSecret);
     if (!clientSecret) {
       return;
     }
@@ -27,7 +26,7 @@ const CheckOut = ({clientSecret}) => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements || !clientSecret) {
+    if (!stripe || !elements) {
       return;
     }
     setIsLoading(true);
