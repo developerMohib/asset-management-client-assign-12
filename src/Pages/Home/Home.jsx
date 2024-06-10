@@ -1,3 +1,4 @@
+import BacktoTop from "../../Component/BacktoTop/BacktoTop";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import NotAffaliate from "../../Component/NotAffaliate/NotAffaliate";
 import useAuth from "../../Hooks/useAuth";
@@ -47,6 +48,7 @@ const Home = () => {
           <Subscription> </Subscription>
         </div>
       )}
+      <BacktoTop></BacktoTop>
     </div>
   );
 };
