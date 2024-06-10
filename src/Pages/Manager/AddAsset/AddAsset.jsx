@@ -139,35 +139,10 @@ const AddAsset = () => {
                   <input
                     className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
-                    value="Sign up"
+                    value="Add Product"
                   />
                 </div>
               </form>
-
-              <div className="text-center">
-                <span className="text-xs text-gray-600 font-semibold">
-                  Already have an account?
-                </span>
-                <Link
-                  className="text-xs font-semibold text-purple-700"
-                  to="/login"
-                >
-                  {" "}
-                  Sign in{" "}
-                </Link>
-              </div>
-              <div className="text-center">
-                <span className="text-xs text-gray-600 font-semibold">
-                  Want to be an Employee ?
-                </span>
-                <Link
-                  className="text-xs font-semibold text-purple-700"
-                  to="/join-employee"
-                >
-                  {" "}
-                  Sign up{" "}
-                </Link>
-              </div>
             </div>
           </div>
         </div>
