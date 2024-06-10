@@ -3,7 +3,7 @@ import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
@@ -17,7 +17,7 @@ const JoinManager = () => {
   const [price, setPrice] = useState(0);
   const [showPass, setShowPass] = useState(true);
   const { createUser, updateProfileUser } = useAuth();
-  // const [clientSecret, setClientSecret] = useState();
+  const [clientSecret, setClientSecret] = useState();
 
 
   const handleSelectChange = (e) => {
@@ -41,7 +41,7 @@ const JoinManager = () => {
     }
   };
   console.log("price", price);
-  // console.log("clientSecret", clientSecret);
+  console.log("clientSecret", clientSecret);
 
   const {
     register,
@@ -98,7 +98,7 @@ const JoinManager = () => {
           .then(res => {
             if(res.data.insertedId){
               toast.success('log in successfully as a manager')
-              navigate("/", { replace: true });
+              navigate("/payment", { replace: true });
             }
           })
           .catch(err => {

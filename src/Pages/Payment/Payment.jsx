@@ -9,35 +9,35 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_Pk);
 const Payment = () => {
-  const [loginUser] = useUser();
+  const {loginUser} = useUser();
   const axiosSecure = useAxiosSecure();
-  // const [price, setPrice] = useState(0);
-  // const [value, setValue] = useState("");
+  const [price, setPrice] = useState(5);
+  const [value, setValue] = useState("");
   const [clientSecret, setClientSecret] = useState();
 
-const price = loginUser?.price ;
+// const price = loginUser?.price || 5 ;
 
-  // const handleSelectChange = (e) => {
-  //   const newValue = e.target.value;
-  //   setValue(newValue);
-  //   // const charge = parseInt(newValue);
+  const handleSelectChange = (e) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    // const charge = parseInt(newValue);
 
-  //   // let newPrice;
-  //   // if (charge === 5) {
-  //   //   newPrice = 5;
-  //   // } else if (charge === 10) {
-  //   //   newPrice = 8;
-  //   // } else if (charge === 20) {
-  //   //   newPrice = 15;
-  //   // } else {
-  //   //   newPrice = " ";
-  //   // }
+    // let newPrice;
+    // if (charge === 5) {
+    //   newPrice = 5;
+    // } else if (charge === 10) {
+    //   newPrice = 8;
+    // } else if (charge === 20) {
+    //   newPrice = 15;
+    // } else {
+    //   newPrice = " ";
+    // }
 
-  //   // if (price !== newPrice) {
-  //   //   setPrice(newPrice);
-  //   // }
-  // };
-  // console.log("price", price);
+    // if (price !== newPrice) {
+    //   setPrice(newPrice);
+    // }
+  };
+  console.log("price", price);
 
   // to do : payment pass to server
 
@@ -84,7 +84,7 @@ const price = loginUser?.price ;
           {/* <CheckOut></CheckOut> */}
         </div>
         {
-          (<CheckOut ></CheckOut>)
+          (<CheckOut clientSecret={clientSecret} ></CheckOut>)
         }
       </Elements>
     </div>

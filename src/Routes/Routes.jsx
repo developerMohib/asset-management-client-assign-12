@@ -10,12 +10,13 @@ import JoinManager from "../Pages/Register/JoinManager";
 import JoinEmployee from "../Pages/Register/JoinEmployee";
 import AddAsset from "../Pages/Manager/AddAsset/AddAsset";
 import MyAssets from "../Pages/Employee/MyAssets/MyAssets";
+import AddMore from "../Pages/Manager/AddEmployee/AddMore";
 import AssesList from "../Pages/Manager/AssetList/AssestList";
-import AllRequest from "../Pages/Manager/AllRequest/AllRequest";
 import MyEmployee from "../Pages/Manager/MyEmployee/MyEmployee";
+import AllRequest from "../Pages/Manager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/Manager/AddEmployee/AddEmployee";
-import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 import CustomRequest from "../Pages/Manager/CustomRequest/CustomRequest";
+import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 
 export const router = createBrowserRouter([
     {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
         {
           path : '/payment',
           element: <Payment></Payment>,
+        },
+        {
+          path : '/update/package',
+          element: <AddMore></AddMore>,
         },
       ],
     },
