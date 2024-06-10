@@ -22,7 +22,6 @@ const MyTeam = () => {
         <th>Name</th>
         <th>Job</th>
         <th>Favorite Color</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -44,9 +43,6 @@ const MyTeam = () => {
                 {user.name}
             </td>
             <td>{user.status}</td>
-            <th>
-              <button className="btn btn-ghost btn-xs">details</button>
-            </th>
           </tr>))
     }
     </tbody>

@@ -39,8 +39,6 @@ const Navbar = () => {
     }
   }, [email]);
 
-  console.log(loginUser?.status, "status");
-
   const handleLogOut = () => {
     logOut().then(() => {
       toast.success("log out successfully");

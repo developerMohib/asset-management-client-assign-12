@@ -19,6 +19,56 @@ const AssestList = () => {
           <Sort></Sort>
         </div>
       </div>
+      <div>
+      <div className="overflow-x-auto">
+  <table className="table">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Product Name</th>
+        <th>Product Type</th>
+        <th>Product Quantity</th>
+        <th>Added Date</th>
+        <th>Action</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+      <tr>
+        <th>1</th>
+        <td>Cy Ganderton</td>
+        <td>Quality Control Specialist</td>
+        <td>Blue1</td>
+        <td>Blue2</td>
+        <td>Blue3</td>
+        <td>Blue4</td>
+      </tr>
+      {/* row 2 */}
+      <tr>
+        <th>1</th>
+        <td>Cy Ganderton</td>
+        <td>Quality Control Specialist</td>
+        <td>Blue1</td>
+        <td>Blue2</td>
+        <td>Blue3</td>
+        <td>Blue4</td>
+      </tr>
+      {/* row 3 */}
+      <tr>
+        <th>1</th>
+        <td>Cy Ganderton</td>
+        <td>Quality Control Specialist</td>
+        <td>Blue1</td>
+        <td>Blue2</td>
+        <td>Blue3</td>
+        <td>Blue4</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+      </div>
     </div>
   );
 };
