@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   onAuthStateChanged,
-  GithubAuthProvider
+  GithubAuthProvider,
 } from "firebase/auth";
 import Proptypes from "prop-types";
 import auth from "../Firebase/Firebase.config";
@@ -17,7 +17,6 @@ const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 export const AuthCustomContext = createContext(null);
-
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -48,7 +47,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
-  
+
   // facebook sign in
   const loginWithFacebook = () => {
     setLoading(true);
@@ -56,22 +55,22 @@ const AuthProvider = ({ children }) => {
   };
   // git hub signin
   const loginGithub = () => {
-    setLoading(true) ;
-    return signInWithPopup(auth, githubProvider) ;
-  }
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
   // log out
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
   };
-  // user on change 
-  useEffect(()=>{
-    const unsubscriber = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      setLoading(false)
-    })
-    return () => unsubscriber()
-  },[])
+  // user on change
+  useEffect(() => {
+    const unsubscriber = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscriber();
+  }, []);
 
   const userInfo = {
     user,

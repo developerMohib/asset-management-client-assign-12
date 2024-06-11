@@ -8,6 +8,8 @@ import About from "./HomeComp/About/About";
 import Banner from "./HomeComp/Banner/Banner";
 import Calender from "./HomeComp/Calender/Calender";
 import Event from "./HomeComp/Event/Event";
+import HrPending from "./HomeComp/HrPending/HrPending";
+import HrRequItem from "./HomeComp/HrRequItem/HrRequItem";
 import Notice from "./HomeComp/Notice/Notice";
 import Packages from "./HomeComp/Packages/Packages";
 import MyPieChart from "./HomeComp/PieChart/MyPieChart";
@@ -31,6 +33,8 @@ const Home = () => {
         loginUser.status === "manager" ? (
           <div>
             <MyPieChart></MyPieChart>
+            <HrPending></HrPending>
+            <HrRequItem></HrRequItem>
           </div>
         ) : // after login not manager then show else part here anoter condition if employee
         loginUser.status === "employee" ? (

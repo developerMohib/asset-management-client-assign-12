@@ -9,21 +9,19 @@ import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
 
-
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
   const [loginUser, setLoginUser] = useState({});
-
   const email = user?.email;
+  // console.log(loginUser)
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         // fetch data
         const res = await fetch(`http://localhost:9000/users/${email}`);
-        // console.log( 'nav bar ', res);
         if (!res.ok) {
           // Handle HTTP errors
           console.log(`HTTP error! Status: ${res.status}`);
@@ -44,7 +42,7 @@ const Navbar = () => {
     logOut().then(() => {
       toast.success("log out successfully");
       // window.location.reload()
-      navigate('/', {replace: true })
+      navigate("/", { replace: true });
     });
   };
   const employeeNav = (
@@ -91,7 +89,7 @@ const Navbar = () => {
       </NavLink>
     </>
   );
-  
+
   const managerNav = (
     <>
       <NavLink
@@ -160,7 +158,7 @@ const Navbar = () => {
       </NavLink>
     </>
   );
-  
+
   const normalNav = (
     <>
       <NavLink
@@ -191,18 +189,14 @@ const Navbar = () => {
   );
   const navLinks = (
     <>
-    {user ? (
-      loginUser?.status === "manager" ? (
-        managerNav
-      ) : loginUser?.status === "employee" ? (
-        employeeNav
-      ) : (
-        normalNav
-      )
-    ) : (
-      normalNav
-    )}
-  </>
+      {user
+        ? loginUser?.status === "manager"
+          ? managerNav
+          : loginUser?.status === "employee"
+          ? employeeNav
+          : normalNav
+        : normalNav}
+    </>
   );
 
   return (
@@ -235,7 +229,11 @@ const Navbar = () => {
           {" "}
           <Link to="/">
             <div className="flex md:text-xl leading-none items-center">
-              <img className="w-10 mr-2" src={logo} alt="" />
+              {user && loginUser ? (
+                <img className="w-10 mr-2" src={loginUser.companyLogo} alt="" />
+              ) : (
+                <img className="w-10 mr-2" src={logo} alt="" />
+              )}
               <h1 className="font-extrabold">
                 <span className="text-blue-600">CORPORATE</span>
                 <br />

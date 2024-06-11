@@ -1,8 +1,7 @@
-
 import { useEffect, useState } from "react";
 
 const useAllUser = () => {
-  const [allUser, setAllUser] = useState([ ])
+  const [allUser, setAllUser] = useState([]);
   // const axiosSecure = useAxiosSecure();
   // const { data: allUser = [ ], isLoading, refetch} = useQuery({
   //   queryKey: ["user"],
@@ -14,13 +13,12 @@ const useAllUser = () => {
   // });
   // return [allUser, isLoading, refetch];
 
-  useEffect(()=>{
-    fetch('http://localhost:9000/users')
-    .then(res => res.json())
-    .then(data => setAllUser(data))
-  },[])
-return [allUser]
-
+  useEffect(() => {
+    fetch("http://localhost:9000/users")
+      .then((res) => res.json())
+      .then((data) => setAllUser(data));
+  }, []);
+  return [allUser];
 };
 
 export default useAllUser;

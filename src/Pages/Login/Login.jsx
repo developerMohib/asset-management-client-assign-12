@@ -120,14 +120,26 @@ const Login = () => {
                         ✕
                       </button>
                     </form>
-                    <h3 className="text-lg my-5"> COOL! Which one you prefer! </h3>
+                    <h3 className="text-lg my-5">
+                      {" "}
+                      COOL! Which one you prefer!{" "}
+                    </h3>
                     <div>
-                      <Link to='/join-employee' > <button className="btn btn-outline">As an Employee</button> </Link>
-                      <Link to='/join-manager' > <button className="btn btn-outline">As a Manager</button></Link>
+                      <Link to="/join-employee">
+                        {" "}
+                        <button className="btn btn-outline">
+                          As an Employee
+                        </button>{" "}
+                      </Link>
+                      <Link to="/join-manager">
+                        {" "}
+                        <button className="btn btn-outline">
+                          As a Manager
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </dialog>
-
               </div>
             </div>
           </div>

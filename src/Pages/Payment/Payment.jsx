@@ -1,4 +1,4 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import useUser from "../../Hooks/useUser";
 // checkout
@@ -9,13 +9,13 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const stripePromise = loadStripe(import.meta.env.VITE_stripe_Pk);
 const Payment = () => {
-  const {loginUser} = useUser();
+  const { loginUser } = useUser();
   const axiosSecure = useAxiosSecure();
   const [price, setPrice] = useState(5);
   // const [value, setValue] = useState("");
   const [clientSecret, setClientSecret] = useState();
 
-// const price = loginUser?.price || 5 ;
+  // const price = loginUser?.price || 5 ;
 
   // const handleSelectChange = (e) => {
   //   const newValue = e.target.value;
@@ -46,7 +46,7 @@ const Payment = () => {
       setClientSecret(res.data.clientSecret);
     });
   }, [axiosSecure, price]);
-  console.log(loginUser?.price, 'price after join and ', clientSecret);
+  console.log(loginUser?.price, "price after join and ", clientSecret);
 
   return (
     <div>
@@ -59,16 +59,11 @@ const Payment = () => {
       <p>clientSecret {clientSecret} </p>
       <p> Select Member - value </p>
       {/* Packages Selection */}
-      
 
       {/* Payment Check-out */}
       <Elements stripe={stripePromise}>
-        <div>
-          {/* <CheckOut></CheckOut> */}
-        </div>
-        {
-          (<CheckOut clientSecret={clientSecret} ></CheckOut>)
-        }
+        <div>{/* <CheckOut></CheckOut> */}</div>
+        {<CheckOut clientSecret={clientSecret}></CheckOut>}
       </Elements>
     </div>
   );

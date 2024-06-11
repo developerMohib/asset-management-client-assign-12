@@ -1,7 +1,15 @@
-import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaPhone, FaTwitter, FaYoutube } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaPhone,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
-const date = new Date() ;
-const yyyy = date.getFullYear() ;
+const date = new Date();
+const yyyy = date.getFullYear();
 const Footer = () => {
   return (
     <div className="border-t-4 border-blue-500">
@@ -22,23 +30,27 @@ const Footer = () => {
               </p>
               <div className="mt-[18px] flex gap-4 text-white">
                 <Link>
-                <FaFacebook className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"> </FaFacebook>
+                  <FaFacebook className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all">
+                    {" "}
+                  </FaFacebook>
                 </Link>
 
                 <Link>
-                <FaLinkedin className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaLinkedin>
+                  <FaLinkedin className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaLinkedin>
                 </Link>
-                
+
                 <Link>
-                <FaInstagram className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"> </FaInstagram>
+                  <FaInstagram className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all">
+                    {" "}
+                  </FaInstagram>
                 </Link>
-                
+
                 <Link>
-                <FaTwitter className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaTwitter>
+                  <FaTwitter className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaTwitter>
                 </Link>
-                
+
                 <Link>
-                    <FaYoutube className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaYoutube>
+                  <FaYoutube className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaYoutube>
                 </Link>
               </div>
             </div>
@@ -61,7 +73,7 @@ const Footer = () => {
               </div>
               <div className="mt-[23px] flex">
                 <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                  <FaEnvelope className="hover:text-blue-600 text-xl text-white" ></FaEnvelope>
+                  <FaEnvelope className="hover:text-blue-600 text-xl text-white"></FaEnvelope>
                 </div>
                 <div className="ml-[18px]">
                   <a

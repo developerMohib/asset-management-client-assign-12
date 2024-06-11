@@ -42,8 +42,18 @@ const AssestList = () => {
                   <th> {idx + 1} </th>
                   <td>
                     <div className="flex gap-5 ">
-                      <div> <img className="w-12 h-12 rounded-lg " src={item.productUrl} alt="" /> </div>
-                      <div> <p> {item.productName} </p> </div>
+                      <div>
+                        {" "}
+                        <img
+                          className="w-12 h-12 rounded-lg "
+                          src={item.productUrl}
+                          alt=""
+                        />{" "}
+                      </div>
+                      <div>
+                        {" "}
+                        <p> {item.productName} </p>{" "}
+                      </div>
                     </div>
                   </td>
                   <td> {item.productType} </td>

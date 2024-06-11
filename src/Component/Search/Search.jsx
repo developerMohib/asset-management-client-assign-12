@@ -15,7 +15,11 @@ const Search = () => {
             id=""
             placeholder="Type here.."
           />
-          <input className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg" type="submit" value="Seach" />
+          <input
+            className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg"
+            type="submit"
+            value="Seach"
+          />
         </div>
       </form>
     </div>

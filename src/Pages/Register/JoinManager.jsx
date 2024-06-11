@@ -3,22 +3,20 @@ import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
-const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}`;
 
 const JoinManager = () => {
-
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [price, setPrice] = useState(0);
   const [showPass, setShowPass] = useState(true);
   const { createUser, updateProfileUser } = useAuth();
   const [clientSecret, setClientSecret] = useState();
-
 
   const handleSelectChange = (e) => {
     const newValue = e.target.value;
@@ -48,7 +46,7 @@ const JoinManager = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  
+
   const onSubmit = async (data) => {
     const name = data.name;
     const email = data.email;
@@ -77,34 +75,34 @@ const JoinManager = () => {
     });
     const photoURL = res2.data.data.display_url;
 
-    // sign up 
+    // sign up
     createUser(email, password)
       .then(() => {
         updateProfileUser(name, userURL).then(() => {
           const userInfo = {
             name: name,
             email: email,
-            companyName : companyName,
-            member : value,
-            price : price,
-            birthDate : birthDate ,
+            companyName: companyName,
+            member: value,
+            price: price,
+            birthDate: birthDate,
             userPhoto: userURL,
             companyLogo: photoURL,
-            status : 'manager'
+            status: "manager",
           };
 
           // data send to database
-          axiosPublic.post('/users', userInfo)
-          .then(res => {
-            if(res.data.insertedId){
-              toast.success('log in successfully as a manager')
-              navigate("/payment", { replace: true });
-            }
-          })
-          .catch(err => {
-            console.log('err ',err)
-          })
-
+          axiosPublic
+            .post("/users", userInfo)
+            .then((res) => {
+              if (res.data.insertedId) {
+                toast.success("log in successfully as a manager");
+                navigate("/payment", { replace: true });
+              }
+            })
+            .catch((err) => {
+              console.log("err ", err);
+            });
         });
       })
       .catch((err) => {
@@ -263,29 +261,29 @@ const JoinManager = () => {
                     )}
                   </div>
                   {/* Packages Selection */}
-                <div className="mb-3 md:w-1/2 ">
-                  <label className="mb-2 block text-xs font-semibold">
-                    Select Member {value}
-                  </label>
-                  <select
-                    value={value}
-                    onChange={handleSelectChange}
-                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                  >
-                    <option value="">Select a Package </option>
-                    <option value="5">5 Members for $5</option>
-                    <option value="10">10 Members for $8</option>
-                    <option value="20">20 Members for $15</option>
-                  </select>
-                </div>
+                  <div className="mb-3 md:w-1/2 ">
+                    <label className="mb-2 block text-xs font-semibold">
+                      Select Member {value}
+                    </label>
+                    <select
+                      value={value}
+                      onChange={handleSelectChange}
+                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                    >
+                      <option value="">Select a Package </option>
+                      <option value="5">5 Members for $5</option>
+                      <option value="10">10 Members for $8</option>
+                      <option value="20">20 Members for $15</option>
+                    </select>
+                  </div>
                 </div>
 
-                    {/* company logo and manager photo */}
-                <div className="md:flex gap-4" >
+                {/* company logo and manager photo */}
+                <div className="md:flex gap-4">
                   {/* Manager photo */}
                   <div className="mb-3 md:w-1/2">
                     <label className="mb-2 block text-xs font-semibold">
-                    Manager Photo
+                      Manager Photo
                     </label>
                     <input
                       {...register("photo")}

@@ -1,7 +1,29 @@
+import useAuth from "../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 import Search from "../../../Component/Search/Search";
+import Spinner from "../../../Component/Spinner/Spinner";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 
 const AllRequest = () => {
+  const { loading } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const {
+    data: requestedProduct = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/requ-products`);
+      console.log("requ product ", res.data);
+      return res.data;
+    },
+  });
+  console.log("request data", requestedProduct);
+  if (loading || isLoading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div>
       <HelmetTitle routeName={"All Requests"}></HelmetTitle>
@@ -36,8 +58,8 @@ const AllRequest = () => {
                 <td>Asset Type</td>
                 <td>Purple 2</td>
                 <td>
-                    <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
-                    <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
                 </td>
               </tr>
               <tr className="hover:bg-slate-100">
@@ -50,8 +72,8 @@ const AllRequest = () => {
                 <td>Asset Type</td>
                 <td>Purple 2</td>
                 <td>
-                    <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
-                    <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
                 </td>
               </tr>
               <tr className="hover:bg-slate-100">
@@ -64,8 +86,8 @@ const AllRequest = () => {
                 <td>Asset Type</td>
                 <td>Purple 2</td>
                 <td>
-                    <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
-                    <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
                 </td>
               </tr>
               <tr className="hover:bg-slate-100">
@@ -78,8 +100,8 @@ const AllRequest = () => {
                 <td>Asset Type</td>
                 <td>Purple 2</td>
                 <td>
-                    <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
-                    <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">AC</button>
+                  <button className="mx-1 btn-outline btn-xs btn  ">DC</button>
                 </td>
               </tr>
             </tbody>

@@ -1,4 +1,4 @@
-import { createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Root from "../Root/Root";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -19,78 +19,78 @@ import CustomRequest from "../Pages/Manager/CustomRequest/CustomRequest";
 import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 
 export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Root> </Root>,
-      errorElement: <ErrorPage />,
-      children: [
-        //---------------------------- GENERAL USER  -------------------------      
-        {
-          path: "/",
-          element: <Home></Home>,
-        },
-        {
-          path: "/join-employee",
-          element: <JoinEmployee></JoinEmployee> ,
-        },
-        {
-          path: "/join-manager",
-          element: <JoinManager></JoinManager> ,
-        },
-        {
-          path: '/login',
-          element: <Login> </Login>,
-        },
-        {
-          path: '/profile',
-          element: <Profile></Profile>,
-        },
-        //---------------------------- E M P L O Y E E  -------------------------  
-        {
-          path : '/my-assets',
-          element: <MyAssets></MyAssets>,
-        },
-        {
-          path : '/request-assets',
-          element: <RequestAssets> </RequestAssets>,
-        },
-        {
-          path: '/my-team',
-          element: <MyTeam></MyTeam>,
-        },
-        //---------------------------- M A N A G E R  ------------------------- 
-        {
-          path : '/add-asset',
-          element: <AddAsset></AddAsset>,
-        },
-        {
-          path : '/add-employee',
-          element: <AddEmployee> </AddEmployee>,
-        },
-        {
-          path : '/all-request',
-          element: <AllRequest></AllRequest>,
-        },
-        {
-          path : '/asset-list',
-          element: <AssesList></AssesList>,
-        },
-        {
-          path : '/custom-request',
-          element: <CustomRequest></CustomRequest>,
-        },
-        {
-          path : '/my-employee',
-          element: <MyEmployee></MyEmployee>,
-        },
-        {
-          path : '/payment',
-          element: <Payment></Payment>,
-        },
-        {
-          path : '/update/package',
-          element: <AddMore></AddMore>,
-        },
-      ],
-    },
-  ]);
+  {
+    path: "/",
+    element: <Root> </Root>,
+    errorElement: <ErrorPage />,
+    children: [
+      //---------------------------- GENERAL USER  -------------------------
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/join-employee",
+        element: <JoinEmployee></JoinEmployee>,
+      },
+      {
+        path: "/join-manager",
+        element: <JoinManager></JoinManager>,
+      },
+      {
+        path: "/login",
+        element: <Login> </Login>,
+      },
+      {
+        path: "/profile",
+        element: <Profile></Profile>,
+      },
+      //---------------------------- E M P L O Y E E  -------------------------
+      {
+        path: "/my-assets",
+        element: <MyAssets></MyAssets>,
+      },
+      {
+        path: "/request-assets",
+        element: <RequestAssets> </RequestAssets>,
+      },
+      {
+        path: "/my-team",
+        element: <MyTeam></MyTeam>,
+      },
+      //---------------------------- M A N A G E R  -------------------------
+      {
+        path: "/add-asset",
+        element: <AddAsset></AddAsset>,
+      },
+      {
+        path: "/add-employee",
+        element: <AddEmployee> </AddEmployee>,
+      },
+      {
+        path: "/all-request",
+        element: <AllRequest></AllRequest>,
+      },
+      {
+        path: "/asset-list",
+        element: <AssesList></AssesList>,
+      },
+      {
+        path: "/custom-request",
+        element: <CustomRequest></CustomRequest>,
+      },
+      {
+        path: "/my-employee",
+        element: <MyEmployee></MyEmployee>,
+      },
+      {
+        path: "/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/update/package",
+        element: <AddMore></AddMore>,
+      },
+    ],
+  },
+]);

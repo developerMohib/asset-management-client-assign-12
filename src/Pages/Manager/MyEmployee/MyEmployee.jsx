@@ -4,13 +4,13 @@ import useAuth from "../../../Hooks/useAuth";
 import Spinner from "../../../Component/Spinner/Spinner";
 
 const MyEmployee = () => {
-  const [ allUser, isLoading ] = useAllUser();
-  const {loading} = useAuth() ;
+  const [allUser, isLoading] = useAllUser();
+  const { loading } = useAuth();
 
   if (loading || isLoading) {
-    return <Spinner></Spinner>
+    return <Spinner></Spinner>;
   }
-// console.log('all user' ,  allUser)
+  // console.log('all user' ,  allUser)
   return (
     <div>
       <HelmetTitle routeName={"My Employee"}></HelmetTitle>

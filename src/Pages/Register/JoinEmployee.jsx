@@ -23,7 +23,7 @@ const JoinEmployee = () => {
   const handleCheckboxChange = (e) => {
     setAffaliate(e.target.checked);
   };
-  console.log('true false ',affaliate)
+  console.log("true false ", affaliate);
   const {
     register,
     formState: { errors },
@@ -35,13 +35,13 @@ const JoinEmployee = () => {
     const email = data.email;
     const password = data.password;
     const birthDate = data.date;
-    let companyImgFile ;
+    let companyImgFile;
     // company
-    if(affaliate === "false"){
+    if (affaliate === "false") {
       // let to do
-      companyImgFile = {logo}
-    }else{
-      companyImgFile = { image: data.logo[0] } ;
+      companyImgFile = { logo };
+    } else {
+      companyImgFile = { image: data.logo[0] };
     }
     // user
     const userPhotoFile = { image: data.photo[0] };
@@ -75,7 +75,7 @@ const JoinEmployee = () => {
             userPhoto: userURL,
             companyLogo: photoURL,
             status: "employee",
-            affaliate : affaliate,
+            affaliate: affaliate,
           };
 
           // data send to database
@@ -238,15 +238,19 @@ const JoinEmployee = () => {
                       <label className="mb-2 block text-xs font-semibold">
                         Do you have a company logo?
                       </label>
-                      {
-                        affaliate ? ' ' : <><input
-                        type="checkbox"
-                        checked={affaliate}
-                        onChange={handleCheckboxChange}
-                        className="mr-2"
-                      />
-                      <label>Yes</label></>
-                      }                      
+                      {affaliate ? (
+                        " "
+                      ) : (
+                        <>
+                          <input
+                            type="checkbox"
+                            checked={affaliate}
+                            onChange={handleCheckboxChange}
+                            className="mr-2"
+                          />
+                          <label>Yes</label>
+                        </>
+                      )}
                     </div>
 
                     {affaliate && (

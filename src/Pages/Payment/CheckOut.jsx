@@ -1,16 +1,16 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
-const CheckOut = ({clientSecret}) => {
+const CheckOut = ({ clientSecret }) => {
   const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const [paymentId, setPaymentId] = useState('')
+  const [paymentId, setPaymentId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(" ");
 
@@ -48,23 +48,22 @@ const CheckOut = ({clientSecret}) => {
     }
 
     // confirmed Payment
-    const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: user?.displayName || 'anonymous',
-          email: user?.email || 'anonymous',
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "anonymous",
+            email: user?.email || "anonymous",
+          },
         },
-      },
-    });
-    
-
+      });
 
     if (paymentIntent?.status === "succeeded") {
       console.log("payment intent", paymentIntent);
       toast.success("payment successfully");
-      setPaymentId(paymentIntent.id)
-      navigate('/')
+      setPaymentId(paymentIntent.id);
+      navigate("/");
     } else {
       console.log("confirmed error", confirmError);
     }
@@ -96,15 +95,16 @@ const CheckOut = ({clientSecret}) => {
         {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
       </button>
       <p className="text-red-600"> {errorMessage} </p>
-      {
-        paymentId && 
-      <p className="text-green-600" >Your Payment Transection id : {paymentId}</p>
-      }
+      {paymentId && (
+        <p className="text-green-600">
+          Your Payment Transection id : {paymentId}
+        </p>
+      )}
     </form>
   );
 };
 
-CheckOut.propTypes ={
-  clientSecret : PropTypes.node,
-}
+CheckOut.propTypes = {
+  clientSecret: PropTypes.node,
+};
 export default CheckOut;

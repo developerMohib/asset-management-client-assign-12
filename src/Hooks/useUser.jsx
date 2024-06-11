@@ -12,7 +12,7 @@ const useUser = () => {
     refetch,
   } = useQuery({
     queryKey: ["user"],
-    enabled : !!user ,
+    enabled: !!user,
     queryFn: async () => {
       const res = await axiosPublic.get(`/users/${user?.email}`);
       return res.data;
