@@ -15,7 +15,7 @@ import Subscription from "./HomeComp/Sebscription/Subscription";
 const Home = () => {
   const { user } = useAuth();
   const { loginUser } = useUser();
-    console.log(loginUser.status, "just for testing");
+  console.log(loginUser.status, "just for testing");
   return (
     <div>
       <HelmetTitle routeName={"Home"}> </HelmetTitle>

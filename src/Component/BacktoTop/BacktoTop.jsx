@@ -7,12 +7,11 @@ const BacktoTop = () => {
     if (window.pageYOffset > 300) {
       // show button
       setIsVisible(true);
-    }
-    else{
-        setIsVisible(false)
+    } else {
+      setIsVisible(false);
     }
   };
-  
+
   const scrollTop = () => {
     // go top
     window.scrollTo({
