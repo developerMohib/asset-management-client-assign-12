@@ -1,27 +1,61 @@
+import Swal from 'sweetalert2';
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
+const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}` ;
+
 
 const AddAsset = () => {
-  const [value, setValue] = useState("");
+  const [productType, setProductType] = useState('')
+  const axiosPublic = useAxiosPublic();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const handleSelectChange = (e) => {
+    const newValue = e.target.value;
+    setProductType(newValue)
+  };
+
   const onSubmit = async (data) => {
     const productName = data.productName;
     const productQuantity = data.productQuantity;
-    const companyName = data.companyName;
-    console.log(productName, productQuantity, companyName);
-  };
+    const productImg ={ image : data.productPhoto[0] } ;
 
-  const handleSelectChange = (e) => {
-    const newValue = e.target.value;
-    setValue(newValue);
-    console.log(newValue, "Product Type");
+    // send photo to imgbb
+    const response = await axiosPublic.post(img_hosting_api,productImg,{
+      headers: {
+        "content-type": "multipart/form-data",
+      }
+    });
+    const productUrl = response.data.data.display_url;
+    
+    const product = {productName, productQuantity,productType,productUrl };
+    
+    // send data to server 
+    axiosPublic.post('/products',product)
+    .then( res => {
+      console.log(res);
+      if(res.data.insertedId){
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your product has been added",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }
+    })
+    .catch(err=>{
+      console.log('add product',err)
+    })
+
   };
 
   return (
@@ -78,35 +112,14 @@ const AddAsset = () => {
                     )}
                   </div>
                 </div>
-                <div className="md:flex gap-4">
-                  {/* Company Name */}
-                  <div className="mb-3 md:w-1/2">
-                    <label className="mb-2 block text-xs font-semibold">
-                      Company Name
-                    </label>
-                    <input
-                      {...register("companyName", { required: true })}
-                      type="text"
-                      name="companyName"
-                      placeholder="Enter Company name"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                    />
-                    {errors.companyName?.type === "required" && (
-                      <p className="text-red-600">Company Name is required</p>
-                    )}
-                    {errors.name?.type === "maxLength" && (
-                      <p className="text-red-600">
-                        Name should not be lenght 20 char
-                      </p>
-                    )}
-                  </div>
+                <div className="md:flex gap-4">                  
                   {/* Packages Selection */}
                   <div className="mb-3 md:w-1/2 ">
                     <label className="mb-2 block text-xs font-semibold">
-                      Product Type {value}
+                      Product Type {productType}
                     </label>
                     <select
-                      value={value}
+                      value={productType}
                       onChange={handleSelectChange}
                       className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                     >
@@ -115,12 +128,7 @@ const AddAsset = () => {
                       <option value="Non-Returnable">Non-Returnable</option>
                     </select>
                   </div>
-                </div>
-
-                {/* Product logo*/}
-                <div className="">
-                  {/* Product photo */}
-                  <div className="mb-3">
+                  <div className="mb-3 md:w-1/2" >
                     <label className="mb-2 block text-xs font-semibold">
                       Product Photo
                     </label>
@@ -133,7 +141,7 @@ const AddAsset = () => {
                     />
                   </div>
                 </div>
-
+                
                 {/* Submit */}
                 <div className="mb-3">
                   <input
