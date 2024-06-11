@@ -1,9 +1,10 @@
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../assets/corporate-solution.png";
+import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 import JoinEmployeeImg from "../../assets/join-employee-register.jpg";
@@ -13,10 +14,16 @@ const imgBB_api_Key = import.meta.env.VITE_imgbb_key;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${imgBB_api_Key}`;
 
 const JoinEmployee = () => {
-  const axiosPublic = useAxiosPublic();
-  const { createUser, updateProfileUser } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const [showPass, setShowPass] = useState(true);
+  const [affaliate, setAffaliate] = useState(false);
+  const { createUser, updateProfileUser } = useAuth();
+
+  const handleCheckboxChange = (e) => {
+    setAffaliate(e.target.checked);
+  };
+  console.log('true false ',affaliate)
   const {
     register,
     formState: { errors },
@@ -28,8 +35,14 @@ const JoinEmployee = () => {
     const email = data.email;
     const password = data.password;
     const birthDate = data.date;
+    let companyImgFile ;
     // company
-    const companyImgFile = { image: data.logo[0] };
+    if(affaliate === "false"){
+      // let to do
+      companyImgFile = {logo}
+    }else{
+      companyImgFile = { image: data.logo[0] } ;
+    }
     // user
     const userPhotoFile = { image: data.photo[0] };
 
@@ -62,6 +75,7 @@ const JoinEmployee = () => {
             userPhoto: userURL,
             companyLogo: photoURL,
             status: "employee",
+            affaliate : affaliate,
           };
 
           // data send to database
@@ -203,7 +217,7 @@ const JoinEmployee = () => {
                   </div>
                 </div>
                 {/*User photo and company logo  */}
-                <div className="md:flex gap-5">
+                <div className="md:flex items-center gap-5">
                   {/*User Photo logo */}
                   <div className="mb-3 md:w-1/2">
                     <label className="mb-2 block text-xs font-semibold">
@@ -218,21 +232,34 @@ const JoinEmployee = () => {
                     />
                   </div>
                   {/*Company logo */}
-                  <div className="mb-3 md:w-1/2">
-                    <label className="mb-2 block text-xs font-semibold">
-                      Company Logo{" "}
-                      <span className="font-semibold text-sm text-gray-400">
-                        {" "}
-                        (if you have){" "}
-                      </span>
-                    </label>
-                    <input
-                      {...register("logo")}
-                      name="logo"
-                      type="file"
-                      accept="image/*"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                    />
+
+                  <div>
+                    <div className="mb-3 w-full ">
+                      <label className="mb-2 block text-xs font-semibold">
+                        Do you have a company logo?
+                      </label>
+                      {
+                        affaliate ? ' ' : <><input
+                        type="checkbox"
+                        checked={affaliate}
+                        onChange={handleCheckboxChange}
+                        className="mr-2"
+                      />
+                      <label>Yes</label></>
+                      }                      
+                    </div>
+
+                    {affaliate && (
+                      <div className="mb-3 ">
+                        <input
+                          {...register("logo")}
+                          name="logo"
+                          type="file"
+                          accept="image/*"
+                          className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 {/* Submit button */}

@@ -37,6 +37,8 @@
 - [Axios](https://axios-http.com/)
 - [Tan-Stack-Query](https://tanstack.com/)
 - [PropTypes](https://www.npmjs.com/package/prop-types)
+- [React-Spinner](https://github.com/davidhu2000/react-spinners)
+- [Recharts](https://recharts.org/en-US)
 
 ## Payment Method
 - [react-stripe-js](https://stripe.com/)

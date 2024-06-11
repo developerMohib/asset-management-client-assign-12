@@ -1,6 +1,7 @@
 import BacktoTop from "../../Component/BacktoTop/BacktoTop";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import NotAffaliate from "../../Component/NotAffaliate/NotAffaliate";
+import Spinner from "../../Component/Spinner/Spinner";
 import useAuth from "../../Hooks/useAuth";
 import useUser from "../../Hooks/useUser";
 import About from "./HomeComp/About/About";
@@ -9,13 +10,18 @@ import Calender from "./HomeComp/Calender/Calender";
 import Event from "./HomeComp/Event/Event";
 import Notice from "./HomeComp/Notice/Notice";
 import Packages from "./HomeComp/Packages/Packages";
-import PieChart from "./HomeComp/PieChart/PieChart";
+import MyPieChart from "./HomeComp/PieChart/MyPieChart";
 import Subscription from "./HomeComp/Sebscription/Subscription";
 
 const Home = () => {
-  const { user } = useAuth();
-  const { loginUser } = useUser();
-  console.log(loginUser.status, "just for testing");
+  const { user, loading } = useAuth();
+  const { loginUser, isLoading } = useUser();
+
+  console.log(loginUser?.status, "just for testing");
+
+  if (loading || isLoading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div>
       <HelmetTitle routeName={"Home"}> </HelmetTitle>
@@ -24,7 +30,7 @@ const Home = () => {
         // after login if manager
         loginUser.status === "manager" ? (
           <div>
-            <PieChart></PieChart>
+            <MyPieChart></MyPieChart>
           </div>
         ) : // after login not manager then show else part here anoter condition if employee
         loginUser.status === "employee" ? (

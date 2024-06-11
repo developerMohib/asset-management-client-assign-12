@@ -14,7 +14,6 @@ const AddAsset = () => {
   const navigate = useNavigate();
   const date = new Date();
   const addedDate = date.toLocaleDateString();
-  console.log(addedDate, "date");
 
   const {
     register,

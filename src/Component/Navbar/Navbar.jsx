@@ -3,7 +3,7 @@ import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import logo from "../../assets/corporate-solution.png";
 import "./Navbar.css";
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { Tooltip } from "react-tooltip";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const { user, logOut } = useAuth();
   const [loginUser, setLoginUser] = useState({});
 
@@ -43,6 +44,7 @@ const Navbar = () => {
     logOut().then(() => {
       toast.success("log out successfully");
       // window.location.reload()
+      navigate('/', {replace: true })
     });
   };
   const employeeNav = (

@@ -1,10 +1,14 @@
+import { useState } from 'react';
+import Calendar from 'react-calendar';
 
 const Calender = () => {
-    return (
-        <div>
-            <h1> Hi, i am calender </h1>
-        </div>
-    );
+    const [value, setValue] = useState(new Date());
+
+  return (
+    <div>
+    <Calendar onChange={setValue} value={value} />
+  </div>
+  );
 };
 
 export default Calender;

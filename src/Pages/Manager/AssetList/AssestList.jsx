@@ -6,7 +6,6 @@ import useAllProducts from "../../../Hooks/useAllProducts";
 
 const AssestList = () => {
   const { products } = useAllProducts();
-  console.log("products ", products);
   return (
     <div>
       <HelmetTitle routeName={"Assets List"}></HelmetTitle>
@@ -38,36 +37,22 @@ const AssestList = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue1</td>
-                <td>Blue2</td>
-                <td>update</td>
-                <td>delete</td>
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue1</td>
-                <td>Blue2</td>
-                <td>update</td>
-                <td>delete</td>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue1</td>
-                <td>Blue2</td>
-                <td>update</td>
-                <td>delete</td>
-              </tr>
+              {products.map((item, idx) => (
+                <tr key={item._id}>
+                  <th> {idx + 1} </th>
+                  <td>
+                    <div className="flex gap-5 ">
+                      <div> <img className="w-12 h-12 rounded-lg " src={item.productUrl} alt="" /> </div>
+                      <div> <p> {item.productName} </p> </div>
+                    </div>
+                  </td>
+                  <td> {item.productType} </td>
+                  <td> {item.productQuantity} </td>
+                  <td> {item.addedDate} </td>
+                  <td>update</td>
+                  <td>delete</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
