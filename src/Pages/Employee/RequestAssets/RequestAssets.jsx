@@ -1,10 +1,10 @@
-import { useState } from "react";
 import useUser from "../../../Hooks/useUser";
 import Search from "../../../Component/Search/Search";
 import Filter from "../../../Component/Filter/Filter";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 import useAllProducts from "../../../Hooks/useAllProducts";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 const RequestAssets = () => {
   const date = new Date();
   const { loginUser } = useUser();
@@ -38,7 +38,9 @@ const RequestAssets = () => {
       .post("/requ-product", assetDetails)
       .then((res) => {
         const data = res.data;
-        console.log("post data", data);
+        if(data.insertedId){
+          toast.success('Your request send succesfully');
+        }
       })
       .catch((err) => {
         console.log(err);
