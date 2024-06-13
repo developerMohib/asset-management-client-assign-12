@@ -47,6 +47,10 @@ const RequestAssets = () => {
       });
   };
 
+  const handleDecres = () => {
+    console.log('to do update to decrease')
+  }
+
   return (
     <div>
       <HelmetTitle routeName={"Request for an Asset"}> </HelmetTitle>
@@ -69,7 +73,11 @@ const RequestAssets = () => {
               <th> Product Name</th>
               <th>Product Type</th>
               <th>Product Availability</th>
-              <th>Request Button</th>
+              {/* Here will be update function button, 
+              to do : if click request then app.put call and refetch call
+              beck end : if beck end quantity is > 0 then increse once
+              */}
+              <th> <button onClick={handleDecres} className="btn btn-xs">Request Button</button> </th>
             </tr>
           </thead>
           <tbody>

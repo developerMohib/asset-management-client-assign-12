@@ -1,9 +1,16 @@
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
-import useAllProducts from "../../../Hooks/useAllProducts";
+import Spinner from "../../../Component/Spinner/Spinner";
+import useAuth from "../../../Hooks/useAuth";
+import useRequAssets from "../../../Hooks/useRequAssets";
 
 const MyAssets = () => {
-  const { products } = useAllProducts();
-  console.log(products, "products my asses page");
+  const {loading} = useAuth();
+  const [requProducts, isLoading] = useRequAssets();
+
+  console.log(requProducts, "products my asses page");
+  if(loading || isLoading){
+    return <Spinner></Spinner>
+  }
   return (
     <div>
       <HelmetTitle routeName={"My Assets"}> </HelmetTitle>
@@ -27,7 +34,7 @@ const MyAssets = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {products.map((item) => (
+            {requProducts?.map((item) => (
               <tr key={item._id}>
                 <th>
                   <label>
