@@ -8,7 +8,7 @@ const useRequAssets = () => {
         queryKey: ['products'],
         queryFn: async () => {
             const res = await axiosSecure.get('/requ-product');
-            console.log(res.data);
+            // console.log(res.data);
             return res.data ;
         }
     })
