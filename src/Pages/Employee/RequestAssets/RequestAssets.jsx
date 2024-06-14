@@ -49,11 +49,11 @@ const RequestAssets = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
 
-  const handleDecres = () => {
-    console.log("to do update to decrease");
+      // can i update the api also?
+      console.log('can i update the api')
   };
+  
 if(isLoading || loading){
   return <Spinner></Spinner>
 }
@@ -85,7 +85,7 @@ if(isLoading || loading){
               */}
               <th>
                 {" "}
-                <button onClick={handleDecres} className="btn btn-xs">
+                <button className="btn btn-xs">
                   Request Button
                 </button>{" "}
               </th>
