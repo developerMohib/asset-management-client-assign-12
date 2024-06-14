@@ -5,15 +5,19 @@ import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 import useAllProducts from "../../../Hooks/useAllProducts";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "../../../Hooks/useAuth";
+import Spinner from "../../../Component/Spinner/Spinner";
+
 const RequestAssets = () => {
   const date = new Date();
+  const {loading}=useAuth();
   const { loginUser } = useUser();
-  const { products } = useAllProducts();
+  const { products,isLoading, refetch } = useAllProducts();
   const requDate = date.toLocaleDateString();
 
   const requesterName = loginUser.name;
   const requesterEmail = loginUser.email;
-  const additionalNote = "Hey this is test";
+  const additionalNote = "Hey this is the additional test";
   const requestStatus = "pending";
   const requestDate = requDate;
   const axiosSecure = useAxiosSecure();
@@ -38,8 +42,8 @@ const RequestAssets = () => {
       .post("/requ-product", assetDetails)
       .then((res) => {
         const data = res.data;
-        if(data.insertedId){
-          toast.success('Your request send succesfully');
+        if (data.insertedId) {
+          toast.success("Your request send succesfully");
         }
       })
       .catch((err) => {
@@ -48,9 +52,11 @@ const RequestAssets = () => {
   };
 
   const handleDecres = () => {
-    console.log('to do update to decrease')
-  }
-
+    console.log("to do update to decrease");
+  };
+if(isLoading || loading){
+  return <Spinner></Spinner>
+}
   return (
     <div>
       <HelmetTitle routeName={"Request for an Asset"}> </HelmetTitle>
@@ -77,7 +83,12 @@ const RequestAssets = () => {
               to do : if click request then app.put call and refetch call
               beck end : if beck end quantity is > 0 then increse once
               */}
-              <th> <button onClick={handleDecres} className="btn btn-xs">Request Button</button> </th>
+              <th>
+                {" "}
+                <button onClick={handleDecres} className="btn btn-xs">
+                  Request Button
+                </button>{" "}
+              </th>
             </tr>
           </thead>
           <tbody>

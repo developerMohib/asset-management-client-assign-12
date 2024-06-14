@@ -1,4 +1,3 @@
-import axios from "axios";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useAuth from "../../../Hooks/useAuth";
