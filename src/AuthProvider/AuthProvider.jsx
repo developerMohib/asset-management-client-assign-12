@@ -12,6 +12,8 @@ import {
 } from "firebase/auth";
 import Proptypes from "prop-types";
 import auth from "../Firebase/Firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -21,6 +23,8 @@ export const AuthCustomContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
+  // const navigate = useNavigate();
 
   // sign up
   const createUser = (email, password) => {
@@ -66,11 +70,12 @@ const AuthProvider = ({ children }) => {
   // user on change
   useEffect(() => {
     const unsubscriber = onAuthStateChanged(auth, (currentUser) => {
+      console.log(currentUser, 'authprovider');
       setUser(currentUser);
       setLoading(false);
     });
     return () => unsubscriber();
-  }, []);
+  }, [axiosPublic]);
 
   const userInfo = {
     user,

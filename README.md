@@ -39,6 +39,7 @@
 - [PropTypes](https://www.npmjs.com/package/prop-types)
 - [React-Spinner](https://github.com/davidhu2000/react-spinners)
 - [Recharts](https://recharts.org/en-US)
+- [Sweetalert2](https://sweetalert2.github.io/)
 
 ## Payment Method
 - [react-stripe-js](https://stripe.com/)

@@ -15,7 +15,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [loginUser, setLoginUser] = useState({});
   const email = user?.email;
-  // console.log(loginUser)
+  console.log(loginUser)
 
   useEffect(() => {
     const fetchUser = async () => {

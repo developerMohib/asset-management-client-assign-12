@@ -1,26 +1,52 @@
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
   const { loginWithGoogle } = useAuth();
-  //   const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
   const handleGoogleLogin = () => {
     loginWithGoogle().then((res) => {
-      //   const userInfo = {
-      //     name : res.user?.displayName ,
-      //     email : res.user?.email ,
-      //   }
-      //   axiosPublic.post('/users',userInfo)
-      //   .then((res)=> {
-      console.log(res);
-      //   })
-      toast.success("login successfully");
-      navigate(from, { replace: true });
+
+      const userInfo = {
+        name: res.user?.displayName,
+        email: res.user?.email,
+        birthDate: 'birthDate',
+        userPhoto: res.user?.photoURL,
+        companyLogo: 'company logoURL',
+        status: "employee",
+        affaliate: false,
+      };
+
+      // data send to database
+      axiosPublic
+        .post(`/users`, userInfo)
+        .then((res) => {
+          if (res?.data?.insertedId) {
+            // toast.success("log in successfully as a employee");
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "log in successfully as a employee",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate(from, { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log("err ", err);
+        });
+
+      // toast.success("login successfully");
+      // navigate(from, { replace: true });
     });
   };
   return (
