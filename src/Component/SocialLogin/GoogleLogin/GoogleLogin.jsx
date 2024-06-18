@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+
 import useAuth from "../../../Hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
@@ -10,7 +10,6 @@ const GoogleLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-
   const handleGoogleLogin = () => {
     loginWithGoogle().then((res) => {
 

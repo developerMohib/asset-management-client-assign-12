@@ -4,35 +4,43 @@ import useAuth from "../../../Hooks/useAuth";
 import useRequAssets from "../../../Hooks/useRequAssets";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useState } from "react";
 
 const MyAssets = () => {
   const { loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [requProducts, isLoading, refetch] = useRequAssets();
+  const [isReturn, setIsReturn] = useState(false);
 
   // console.log(requProducts, "products my asses page");
   if (loading || isLoading) {
     return <Spinner></Spinner>;
   }
-  const handleCancel = async (id)=>{
-    console.log('paici from cancel',id);
-    try{
+  if (requProducts < 0) {
+    return (
+      <p className="flex min-h-screen justify-center items-center">
+        {" "}
+        Please request for asset{" "}
+      </p>
+    );
+  }
+  const handleCancel = async (id) => {
+    console.log("paici from cancel", id);
+    try {
       const res = await axiosSecure.delete(`/requ-product/${id}`);
-      console.log('Cancel response:', res.data);
-      if(res.data.deletedCount > 0){
-        toast.success('Your rquested product is deleted !');
+      console.log("Cancel response:", res.data);
+      if (res.data.deletedCount > 0) {
+        toast.success("Your rquested product is deleted !");
         refetch();
       }
-    }
-    catch (err){
+    } catch (err) {
       //hello
-    console.log('paici from cancel',err)
+      console.log("paici from cancel", err);
     }
-
-  }
-  const handlePrint = (id)=>{
-    console.log('paici from cancel',id)
-  }
+  };
+  const handlePrint = (id) => {
+    console.log("paici from cancel", id);
+  };
   return (
     <div>
       <HelmetTitle routeName={"My Assets"}> </HelmetTitle>
@@ -90,12 +98,23 @@ const MyAssets = () => {
                 <td> {item.requestStatus} </td>
                 {/*  */}
                 <td>
-                  {item.requestStatus === "pending" && (
-                    <button onClick={ ()=> handleCancel(item._id)} className="btn btn-ghost btn-xs">Cancel</button>
-                  )}
-                  {item.requestStatus === "approved" && (
-                    <button onClick={ ()=> handlePrint(item._id)} className="btn btn-ghost btn-xs">Print</button>
-                  )}
+                  {item.requestStatus === "pending" ? (
+                    <button onClick={() => handleCancel(item._id)} className="btn btn-ghost btn-xs"> Cancel </button>
+                  ) : item.requestStatus === "approved" &&
+                  item.assetType === "Returnable" ? (
+                    <button
+                      onClick={() => handlePrint(item._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      {isReturn ? 'Returned' : 'Return'}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handlePrint(item._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      Print
+                    </button>)}
                 </td>
                 {/* <td>
                   {item.requestStatus === 'pending' ? <button className="btn btn-ghost btn-xs"> Cancel </button> : <button className="btn btn-ghost btn-xs"> Print </button>}
