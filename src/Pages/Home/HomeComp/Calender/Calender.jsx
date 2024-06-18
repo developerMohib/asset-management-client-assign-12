@@ -7,6 +7,9 @@ const Calender = () => {
   return (
     <div>
       <Calendar onChange={setValue} value={value} />
+
+  
+
     </div>
   );
 };

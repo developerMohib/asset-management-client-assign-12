@@ -4,13 +4,11 @@ import useAuth from "../../../Hooks/useAuth";
 import useRequAssets from "../../../Hooks/useRequAssets";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useState } from "react";
 
 const MyAssets = () => {
   const { loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [requProducts, isLoading, refetch] = useRequAssets();
-  const [isReturn, setIsReturn] = useState(false);
 
   // console.log(requProducts, "products my asses page");
   if (loading || isLoading) {
@@ -38,9 +36,15 @@ const MyAssets = () => {
       console.log("paici from cancel", err);
     }
   };
+
+  const handleReturn = (id) => {
+    console.log("paici from update", id);
+    // axiosSecure.patch()
+  }
   const handlePrint = (id) => {
-    console.log("paici from cancel", id);
+    console.log("paici from print", id);
   };
+
   return (
     <div>
       <HelmetTitle routeName={"My Assets"}> </HelmetTitle>
@@ -62,7 +66,7 @@ const MyAssets = () => {
               <th>Request Date</th>
               <th>Approval Date</th>
               <th>Request Status</th>
-              <th> Action </th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -103,10 +107,10 @@ const MyAssets = () => {
                   ) : item.requestStatus === "approved" &&
                   item.assetType === "Returnable" ? (
                     <button
-                      onClick={() => handlePrint(item._id)}
+                      onClick={() => handleReturn(item._id)}
                       className="btn btn-ghost btn-xs"
-                    >
-                      {isReturn ? 'Returned' : 'Return'}
+                      >
+                      Return
                     </button>
                   ) : (
                     <button

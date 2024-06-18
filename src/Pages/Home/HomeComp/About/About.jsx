@@ -5,6 +5,7 @@ import {
   TbHexagonNumber3,
   TbHexagonNumber4,
 } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -24,10 +25,13 @@ const About = () => {
               About <span className="text-indigo-600">Our Company</span>
             </h2>
             <p className="text-gray-700">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-              commodi doloremque, fugiat illum magni minus nisi nulla numquam
-              obcaecati placeat quia, repellat tempore voluptatum.
+            An asset management web application is designed to help businesses efficiently manage their assets, both tangible and intangible. These applications are especially useful for managers and employees in tracking, maintaining, and optimizing the use of company assets.
             </p>
+          </div>
+          <div className="my-4">
+            <Link to='/about-us'>
+            <button className="btn btn-outline border-none bg-green-600"> About Us </button>
+            </Link>
           </div>
         </div>
       </div>

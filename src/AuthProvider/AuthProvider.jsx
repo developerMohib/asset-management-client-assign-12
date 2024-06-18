@@ -52,16 +52,20 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+
+  // optional social ------ facebook and github -----
   // facebook sign in
   const loginWithFacebook = () => {
     setLoading(true);
     return signInWithPopup(auth, facebookProvider);
   };
-  // git hub signin
+  // git-hub signin
   const loginGithub = () => {
     setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
+
+  
   // log out
   const logOut = () => {
     setLoading(true);
@@ -70,7 +74,6 @@ const AuthProvider = ({ children }) => {
   // user on change
   useEffect(() => {
     const unsubscriber = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser, 'authprovider');
       setUser(currentUser);
       setLoading(false);
     });
