@@ -194,7 +194,7 @@ const Navbar = () => {
           ? managerNav
           : loginUser?.status === "employee"
           ? employeeNav
-          : normalNav
+          : employeeNav
         : normalNav}
     </>
   );
