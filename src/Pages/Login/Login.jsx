@@ -26,8 +26,7 @@ const Login = () => {
     // console.log(email, password, loginWithEmailPass)
 
     loginWithEmailPass(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
         notifyLogin();
         navigate(location.state ? location.state : "/");
       })

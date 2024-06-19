@@ -6,7 +6,6 @@ import useUser from "./useUser";
 const useRequAssets = () => {
     const axiosSecure = useAxiosSecure();
     const {loginUser} = useUser();
-    console.log(loginUser.email,'login user')
     const {data : requProducts = [], isLoading, refetch} = useQuery({
         queryKey: ['products'],
         queryFn: async () => {

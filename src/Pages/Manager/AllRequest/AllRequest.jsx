@@ -4,6 +4,8 @@ import Search from "../../../Component/Search/Search";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+import DoneIcon from '@mui/icons-material/Done';
 
 const AllRequest = () => {
   const { loading } = useAuth();
@@ -11,11 +13,12 @@ const AllRequest = () => {
   const { data: requestedProduct = [], isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/requ-products`);
+      const res = await axiosSecure.get(`/requ-product`);
       return res.data;
     },
   });
-  console.log("request data", requestedProduct);
+  // console.log("request data", requestedProduct);
+
   if (loading || isLoading) {
     return <Spinner></Spinner>;
   }
@@ -44,7 +47,7 @@ const AllRequest = () => {
             </thead>
             <tbody>
               {requestedProduct.map((item, idx) => (
-                <tr key={item._id} className="hover:bg-slate-100">
+                <tr key={item._id} className="hover:bg-slate-50">
                   <th> {idx + 1} </th>
                   <td> {item.assetName} </td>
                   <td> {item.requesterName} </td>
@@ -54,11 +57,11 @@ const AllRequest = () => {
                   <td> {item.assetType} </td>
                   <td> {item.requestStatus} </td>
                   <td>
-                    <button className="mx-1 btn-outline btn-xs btn  ">
-                      AC
+                    <button className="mx-1 p-1 border rounded-2xl hover:bg-green-500">
+                    <DoneIcon></DoneIcon>
                     </button>
-                    <button className="mx-1 btn-outline btn-xs btn  ">
-                      DC
+                    <button className="mx-1 p-1 border rounded-2xl hover:bg-green-500">
+                      <DoNotDisturbAltIcon></DoNotDisturbAltIcon>
                     </button>
                   </td>
                 </tr>

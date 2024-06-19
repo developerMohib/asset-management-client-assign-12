@@ -1,56 +1,25 @@
-import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
-import Spinner from "../../../Component/Spinner/Spinner";
-import useAuth from "../../../Hooks/useAuth";
-import useRequAssets from "../../../Hooks/useRequAssets";
-import toast from "react-hot-toast";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Spinner from "../../../../Component/Spinner/Spinner";
+import useAuth from "../../../../Hooks/useAuth";
+import useRequAssets from "../../../../Hooks/useRequAssets";
 
-const MyAssets = () => {
-  const { loading } = useAuth();
-  const axiosSecure = useAxiosSecure();
-  const [requProducts, isLoading, refetch] = useRequAssets();
+const EmRequPen = () => {
+    const { loading } = useAuth();
+    const [requProducts, isLoading] = useRequAssets();
 
-  if (loading || isLoading) {
-    return <Spinner></Spinner>;
-  }
-  if (requProducts < 0) {
-    return (
-      <p className="flex min-h-screen justify-center items-center">
-        {" "}
-        Please request for asset{" "}
-      </p>
-    );
-  }
-  const handleCancel = async (id) => {
-    console.log("paici from cancel", id);
-    try {
-      const res = await axiosSecure.delete(`/requ-product/${id}`);
-      console.log("Cancel response:", res.data);
-      if (res.data.deletedCount > 0) {
-        toast.success("Your rquested product is deleted !");
-        refetch();
+    if (loading || isLoading) {
+        return <Spinner></Spinner>;
       }
-    } catch (err) {
-      //hello
-      console.log("paici from cancel", err);
-    }
-  };
-
-  const handleReturn = (id) => {
-    console.log("paici from update", id);
-    // axiosSecure.patch()
-  }
-  const handlePrint = (id) => {
-    console.log("paici from print", id);
-  };
-
-  return (
-    <div>
-      <HelmetTitle routeName={"My Assets"}> </HelmetTitle>
-      <div>
-        <p> My requestwd products : {requProducts.length} </p>
-      </div>
-      <div className="overflow-x-auto">
+      if (requProducts < 0) {
+        return (
+          <p className="flex min-h-screen justify-center items-center">
+            {" "}
+            Please request for asset{" "}
+          </p>
+        );
+      }
+    return (
+        <div>
+            <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
@@ -102,18 +71,18 @@ const MyAssets = () => {
                 {/*  */}
                 <td>
                   {item.requestStatus === "pending" ? (
-                    <button onClick={() => handleCancel(item._id)} className="btn btn-ghost btn-xs"> Cancel </button>
+                    <button className="btn btn-ghost btn-xs"> Cancel </button>
                   ) : item.requestStatus === "approved" &&
                   item.assetType === "Returnable" ? (
                     <button
-                      onClick={() => handleReturn(item._id)}
+                      
                       className="btn btn-ghost btn-xs"
                       >
                       Return
                     </button>
                   ) : (
                     <button
-                      onClick={() => handlePrint(item._id)}
+                      
                       className="btn btn-ghost btn-xs"
                     >
                       Print
@@ -127,8 +96,8 @@ const MyAssets = () => {
           </tbody>
         </table>
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default MyAssets;
+export default EmRequPen;

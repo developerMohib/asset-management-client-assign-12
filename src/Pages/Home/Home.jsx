@@ -7,6 +7,7 @@ import useUser from "../../Hooks/useUser";
 import About from "./HomeComp/About/About";
 import Banner from "./HomeComp/Banner/Banner";
 import Calender from "./HomeComp/Calender/Calender";
+import EmRequPen from "./HomeComp/EmRequPen/EmRequPen";
 import Event from "./HomeComp/Event/Event";
 import HrPending from "./HomeComp/HrPending/HrPending";
 import HrRequItem from "./HomeComp/HrRequItem/HrRequItem";
@@ -32,13 +33,14 @@ const Home = () => {
         // after login if manager
         loginUser.status === "manager" ? (
           <div>
-            <MyPieChart></MyPieChart>
             <HrPending></HrPending>
             <HrRequItem></HrRequItem>
+            <MyPieChart></MyPieChart>
           </div>
         ) : // after login not manager then show else part here anoter condition if employee
         loginUser.status === "employee" ? (
           <div>
+            <EmRequPen> </EmRequPen>
             <Calender></Calender>
             <Event></Event>
             <Notice> </Notice>
