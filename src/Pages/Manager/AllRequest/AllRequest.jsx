@@ -4,13 +4,23 @@ import Search from "../../../Component/Search/Search";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
-import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
-import DoneIcon from '@mui/icons-material/Done';
+import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
+import DoneIcon from "@mui/icons-material/Done";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const AllRequest = () => {
+  const date = new Date() ;
   const { loading } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: requestedProduct = [], isLoading } = useQuery({
+  const approDate = date.toLocaleDateString() ;
+  const approveDate = { approDate : approDate} ;
+
+  const {
+    data: requestedProduct = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/requ-product`);
@@ -22,6 +32,59 @@ const AllRequest = () => {
   if (loading || isLoading) {
     return <Spinner></Spinner>;
   }
+
+  const handleUpdate = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to approve this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, approve it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        toast.success("id paici");
+        axiosSecure.patch(`/requ-product/${id}`)
+        .then((res) => {
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              title: "Updated!",
+              text: "Your product has been Updated.",
+              icon: "success",
+            });
+          }
+          refetch();
+        });
+      }
+    });
+  };
+  const handleReject = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to Rejected this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Rejected it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        toast.success("id paici");
+        axiosSecure.patch(`/requ-product/rejected/${id}`).then((res) => {
+          if (res.data.modifiedCount) {
+            Swal.fire({
+              title: "Rejected!",
+              text: "Your product has been Rejected.",
+              icon: "success",
+            });
+          }
+          refetch();
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <HelmetTitle routeName={"All Requests"}></HelmetTitle>
@@ -52,17 +115,26 @@ const AllRequest = () => {
                   <td> {item.assetName} </td>
                   <td> {item.requesterName} </td>
                   <td> {item.requesterEmail} </td>
-                  <td>{item.additionalNote}</td>
+                  <td> {item.additionalNote} </td>
                   <td> {item.requestDate} </td>
                   <td> {item.assetType} </td>
                   <td> {item.requestStatus} </td>
                   <td>
-                    <button className="mx-1 p-1 border rounded-2xl hover:bg-green-500">
-                    <DoneIcon></DoneIcon>
+                    {item.requestStatus === 'approved' || item.requestStatus === 'rejected' ? ' disbaled' : <><button
+                      onClick={() => handleUpdate(item._id)}
+                      title="Approve"
+                      className="mx-1 p-1 border rounded-2xl hover:bg-green-500"
+                    >
+                      <DoneIcon></DoneIcon>
                     </button>
-                    <button className="mx-1 p-1 border rounded-2xl hover:bg-green-500">
+                    <button
+                      onClick={() => handleReject(item._id)}
+                      title="Reject"
+                      className="mx-1 p-1 border rounded-2xl hover:bg-green-500"
+                    >
                       <DoNotDisturbAltIcon></DoNotDisturbAltIcon>
-                    </button>
+                    </button></> }
+                    
                   </td>
                 </tr>
               ))}

@@ -51,6 +51,10 @@ const AssestList = () => {
     }
   };
 
+  const handleUpdate = (id) => {
+    console.log('id paici', id) ;
+  }
+
   return (
     <div>
       <HelmetTitle routeName={"Assets List"}></HelmetTitle>
@@ -106,7 +110,7 @@ const AssestList = () => {
                   <td> {item.addedDate} </td>
                   <td>
                     {" "}
-                    <button className="btn btn-xs">update</button>{" "}
+                    <button onClick={() => handleUpdate(item._id)} className="btn btn-xs">update</button>{" "}
                   </td>
                   <td>
                     {" "}
