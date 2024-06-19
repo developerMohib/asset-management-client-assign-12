@@ -26,7 +26,7 @@ const Packages = () => {
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center w-full mb-2 ml-3 font-semibold border-solid">
                 <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
-                1 Website
+                5 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
@@ -50,13 +50,13 @@ const Packages = () => {
               Basic
             </h3>
             <div className="flex items-end mt-6 text-gray-900 border-0 border-gray-200">
-              <p className="box-border m-0 text-6xl font-semibold">$29</p>
+              <p className="box-border m-0 text-6xl font-semibold">$8</p>
               <p className="box-border m-0 border-solid">/ month</p>
             </div>
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
                 <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
-                15 Websites
+                10 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
@@ -81,18 +81,18 @@ const Packages = () => {
           {/* Price 3 */}
           <div className="relative z-10 flex flex-col items-center max-w-md p-4 mx-auto my-0 border border-solid rounded-lg sm:my-0 sm:p-6 md:my-8 md:p-8 hover:-translate-y-2 transition-all hover:bg-blue-50">
             <h3 className="m-0 text-2xl font-semibold leading-tight tracking-tight text-black border-0 border-gray-200 sm:text-3xl md:text-4xl">
-              Starter
+              Advanced
             </h3>
             <div className="flex items-end mt-6 text-gray-900 border-0 border-gray-200">
               <p className="box-border m-0 text-6xl font-semibold leading-none border-solid">
-                $5
+                $15
               </p>
               <p className="box-border m-0 border-solid">/ month</p>
             </div>
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center w-full mb-2 ml-3 font-semibold border-solid">
                 <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
-                1 Website
+                20 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">

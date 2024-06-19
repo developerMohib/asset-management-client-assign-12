@@ -13,7 +13,6 @@ import {
 import Proptypes from "prop-types";
 import auth from "../Firebase/Firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import Swal from "sweetalert2";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -65,7 +64,7 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, githubProvider);
   };
 
-  
+
   // log out
   const logOut = () => {
     setLoading(true);
