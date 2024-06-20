@@ -15,6 +15,7 @@ import Notice from "./HomeComp/Notice/Notice";
 import Packages from "./HomeComp/Packages/Packages";
 import MyPieChart from "./HomeComp/PieChart/MyPieChart";
 import Subscription from "./HomeComp/Sebscription/Subscription";
+import Testominal from "./HomeComp/Testominal/Testominal";
 
 const Home = () => {
   const { user, loading } = useAuth();
@@ -36,6 +37,7 @@ const Home = () => {
             <HrPending></HrPending>
             <HrRequItem></HrRequItem>
             <MyPieChart></MyPieChart>
+            <Testominal></Testominal>
           </div>
         ) : // after login not manager then show else part here anoter condition if employee
         loginUser.status === "employee" ? (
