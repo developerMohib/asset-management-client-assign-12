@@ -8,14 +8,12 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   onAuthStateChanged,
-  GithubAuthProvider,
 } from "firebase/auth";
 import Proptypes from "prop-types";
 import auth from "../Firebase/Firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
-const githubProvider = new GithubAuthProvider();
 
 export const AuthCustomContext = createContext(null);
 
@@ -51,19 +49,12 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-
   // optional social ------ facebook and github -----
   // facebook sign in
   const loginWithFacebook = () => {
     setLoading(true);
     return signInWithPopup(auth, facebookProvider);
   };
-  // git-hub signin
-  const loginGithub = () => {
-    setLoading(true);
-    return signInWithPopup(auth, githubProvider);
-  };
-
 
   // log out
   const logOut = () => {
@@ -86,7 +77,6 @@ const AuthProvider = ({ children }) => {
     loginWithEmailPass,
     loginWithGoogle,
     loginWithFacebook,
-    loginGithub,
     createUser,
     updateProfileUser,
     logOut,

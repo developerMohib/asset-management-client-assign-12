@@ -13,7 +13,6 @@ const useRequAssets = () => {
             return res.data ;
         }
     })
-    console.log( 'requProducts produtc', requProducts)
     return [requProducts, isLoading, refetch]
 };
 

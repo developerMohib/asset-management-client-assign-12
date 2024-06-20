@@ -5,13 +5,9 @@ import {
   Legend,
 } from "recharts";
 import useAuth from "../../../../Hooks/useAuth";
-import useRequAssets from "../../../../Hooks/useRequAssets";
 import Spinner from "../../../../Component/Spinner/Spinner" ;
-
-const data = [
-  { name: "Group A", value: 250 },
-  { name: "Group B", value: 300 },
-];
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const COLORS = ["#0088FE", "#00C49F", ];
 
@@ -44,11 +40,23 @@ const renderCustomizedLabel = ({
 
 const MyPieChart = () => {
   const {loading} = useAuth();
-  const [requProducts, isLoading] = useRequAssets();
+  const axiosSecure = useAxiosSecure();
+  const {data: requestData = [], isLoading} = useQuery({
+    queryKey: ['product'],
+    queryFn: async ()=>{
+      const res = await axiosSecure.get(`/requ-product`);
+            return res.data ;
+    }
+  })
+  const nonReturnable = requestData.filter(item => item.assetType === 'Non-Returnable');
+  const returnable = requestData.filter(item => item.assetType === 'Returnable');
 
-  console.log('requProducts product', requProducts);
-  const nonReturn = requProducts.filter(item => item.assetType === 'Non-Returnable');
-  console.log('nonReturn product', nonReturn);
+  const data = [
+  { name: "Non Returnable", value: nonReturnable.length },
+  { name: "Returnable", value: returnable.length },
+];
+
+  
   if (loading || isLoading) {
     return <Spinner></Spinner>;
   }

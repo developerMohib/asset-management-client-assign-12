@@ -17,7 +17,7 @@ const MyEmployee = () => {
       <div className="my-3 flex justify-around overflow-x-auto ">
         <p> </p>
         <p> My Team Member </p>
-        <p> Total : {allUser?.length} </p>
+        <p> <b>Total</b> : {allUser?.length} </p>
       </div>
       <div className="overflow-x-auto">
         <table className="table">
