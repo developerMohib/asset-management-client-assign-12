@@ -15,6 +15,8 @@ const AllRequest = () => {
   const axiosSecure = useAxiosSecure();
   const approDate = date.toLocaleDateString() ;
   const approveDate = { approDate : approDate} ;
+  console.log(approveDate, 'approve date');
+  // const isDisabled = item.requestStatus === 'approved' || item.requestStatus === 'rejected';
 
   const {
     data: requestedProduct = [],
@@ -120,21 +122,20 @@ const AllRequest = () => {
                   <td> {item.assetType} </td>
                   <td> {item.requestStatus} </td>
                   <td>
-                    {item.requestStatus === 'approved' || item.requestStatus === 'rejected' ? ' disbaled' : <><button
+                  <button disabled={item.requestStatus === "approved" || item.requestStatus === "rejected"}
                       onClick={() => handleUpdate(item._id)}
                       title="Approve"
-                      className="mx-1 p-1 border rounded-2xl hover:bg-green-500"
+                      className={`mx-1 p-1 border rounded-2xl ${item.requestStatus === "approved" || item.requestStatus === "rejected" ? 'bg-gray-300' : 'hover:bg-green-500'}`}
                     >
                       <DoneIcon></DoneIcon>
                     </button>
-                    <button
+                    <button disabled={item.requestStatus === "approved" || item.requestStatus === "rejected"}
                       onClick={() => handleReject(item._id)}
                       title="Reject"
-                      className="mx-1 p-1 border rounded-2xl hover:bg-green-500"
+                      className={`mx-1 p-1 border rounded-2xl ${item.requestStatus === "approved" || item.requestStatus === "rejected" ? 'bg-gray-300' : 'hover:bg-green-500'}`}
                     >
                       <DoNotDisturbAltIcon></DoNotDisturbAltIcon>
-                    </button></> }
-                    
+                    </button>
                   </td>
                 </tr>
               ))}

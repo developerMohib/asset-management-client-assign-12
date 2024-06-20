@@ -1,19 +1,19 @@
-
 import {
   PieChart,
   Pie,
   Cell,
   Legend,
 } from "recharts";
+import useAuth from "../../../../Hooks/useAuth";
+import useRequAssets from "../../../../Hooks/useRequAssets";
+import Spinner from "../../../../Component/Spinner/Spinner" ;
 
 const data = [
-  { name: "Group A", value: 400 },
+  { name: "Group A", value: 250 },
   { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#0088FE", "#00C49F", ];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -40,7 +40,18 @@ const renderCustomizedLabel = ({
     </text>
   );
 };
+
+
 const MyPieChart = () => {
+  const {loading} = useAuth();
+  const [requProducts, isLoading] = useRequAssets();
+
+  console.log('requProducts product', requProducts);
+  const nonReturn = requProducts.filter(item => item.assetType === 'Non-Returnable');
+  console.log('nonReturn product', nonReturn);
+  if (loading || isLoading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <PieChart width={400} height={400}>
       <Pie
