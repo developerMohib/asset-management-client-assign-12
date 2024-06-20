@@ -1,5 +1,5 @@
 import useAuth from "../../../Hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import Search from "../../../Component/Search/Search";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
@@ -8,28 +8,16 @@ import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 import DoneIcon from "@mui/icons-material/Done";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import useAllRequestProducts from "../../../Hooks/useAllRequestProducts";
 
 const AllRequest = () => {
-  const date = new Date() ;
+  const date = new Date();
   const { loading } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const approDate = date.toLocaleDateString() ;
-  const approveDate = { approDate : approDate} ;
-  console.log(approveDate, 'approve date');
-  // const isDisabled = item.requestStatus === 'approved' || item.requestStatus === 'rejected';
-
-  const {
-    data: requestedProduct = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["products"],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/requ-product`);
-      return res.data;
-    },
-  });
-  // console.log("request data", requestedProduct);
+  const approDate = date.toLocaleDateString();
+  const approveDate = { approDate: approDate };
+  console.log(approveDate, "approve date");
+  const [requestedProduct, isLoading, refetch] = useAllRequestProducts();
 
   if (loading || isLoading) {
     return <Spinner></Spinner>;
@@ -47,8 +35,7 @@ const AllRequest = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         toast.success("id paici");
-        axiosSecure.patch(`/requ-product/${id}`)
-        .then((res) => {
+        axiosSecure.patch(`/requ-product/${id}`).then((res) => {
           if (res.data.modifiedCount) {
             Swal.fire({
               title: "Updated!",
@@ -122,17 +109,35 @@ const AllRequest = () => {
                   <td> {item.assetType} </td>
                   <td> {item.requestStatus} </td>
                   <td>
-                  <button disabled={item.requestStatus === "approved" || item.requestStatus === "rejected"}
+                    <button
+                      disabled={
+                        item.requestStatus === "approved" ||
+                        item.requestStatus === "rejected"
+                      }
                       onClick={() => handleUpdate(item._id)}
                       title="Approve"
-                      className={`mx-1 p-1 border rounded-2xl ${item.requestStatus === "approved" || item.requestStatus === "rejected" ? 'bg-gray-300' : 'hover:bg-green-500'}`}
+                      className={`mx-1 p-1 border rounded-2xl ${
+                        item.requestStatus === "approved" ||
+                        item.requestStatus === "rejected"
+                          ? "bg-gray-300"
+                          : "hover:bg-green-500"
+                      }`}
                     >
                       <DoneIcon></DoneIcon>
                     </button>
-                    <button disabled={item.requestStatus === "approved" || item.requestStatus === "rejected"}
+                    <button
+                      disabled={
+                        item.requestStatus === "approved" ||
+                        item.requestStatus === "rejected"
+                      }
                       onClick={() => handleReject(item._id)}
                       title="Reject"
-                      className={`mx-1 p-1 border rounded-2xl ${item.requestStatus === "approved" || item.requestStatus === "rejected" ? 'bg-gray-300' : 'hover:bg-green-500'}`}
+                      className={`mx-1 p-1 border rounded-2xl ${
+                        item.requestStatus === "approved" ||
+                        item.requestStatus === "rejected"
+                          ? "bg-gray-300"
+                          : "hover:bg-green-500"
+                      }`}
                     >
                       <DoNotDisturbAltIcon></DoNotDisturbAltIcon>
                     </button>

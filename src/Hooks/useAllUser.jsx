@@ -14,6 +14,7 @@ const useAllUser = () => {
   // return [allUser, isLoading, refetch];
 
   useEffect(() => {
+    // fetch("https://asset-management-server-brown.vercel.app/users")
     fetch("http://localhost:9000/users")
       .then((res) => res.json())
       .then((data) => setAllUser(data));

@@ -3,24 +3,31 @@ import useAuth from "../../../../Hooks/useAuth";
 import useRequAssets from "../../../../Hooks/useRequAssets";
 
 const EmRequPen = () => {
-    const { loading } = useAuth();
-    const [requProducts, isLoading] = useRequAssets();
+  const { loading } = useAuth();
+  const [requProducts, isLoading] = useRequAssets();
 
-    if (loading || isLoading) {
-        return <Spinner></Spinner>;
-      }
-      if (requProducts < 0) {
-        return (
-          <p className="flex min-h-screen justify-center items-center">
-            {" "}
-            Please request for asset{" "}
-          </p>
-        );
-      }
+  if (loading || isLoading) {
+    return <Spinner></Spinner>;
+  }
+  if (requProducts < 0) {
     return (
-        <div>
-            <div className="overflow-x-auto">
-        <table className="table">
+      <p className="flex min-h-screen justify-center items-center">
+        {" "}
+        Please request for asset{" "}
+      </p>
+    );
+  }
+
+  // only pending product are here
+  const pendingProd = requProducts.filter(
+    (item) => item.requestStatus === "pending"
+  );
+
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <h1 className="font-semibold text-center my-5">My request pending products </h1>
+        <table className="table my-5">
           {/* head */}
           <thead>
             <tr>
@@ -39,25 +46,14 @@ const EmRequPen = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {requProducts?.map((item) => (
+            {pendingProd?.map((item) => (
               <tr key={item._id}>
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
                   </label>
                 </th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="hello" alt="Avatar Tailwind CSS Component" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold"> {item.assetName} </div>
-                    </div>
-                  </div>
-                </td>
+                <td className="font-bold"> {item.assetName}</td>
                 <td> {item.assetType} </td>
                 <td>{item.requestDate}</td>
                 {/* Approval Date */}
@@ -73,20 +69,11 @@ const EmRequPen = () => {
                   {item.requestStatus === "pending" ? (
                     <button className="btn btn-ghost btn-xs"> Cancel </button>
                   ) : item.requestStatus === "approved" &&
-                  item.assetType === "Returnable" ? (
-                    <button
-                      
-                      className="btn btn-ghost btn-xs"
-                      >
-                      Return
-                    </button>
+                    item.assetType === "Returnable" ? (
+                    <button className="btn btn-ghost btn-xs">Return</button>
                   ) : (
-                    <button
-                      
-                      className="btn btn-ghost btn-xs"
-                    >
-                      Print
-                    </button>)}
+                    <button className="btn btn-ghost btn-xs">Print</button>
+                  )}
                 </td>
                 {/* <td>
                   {item.requestStatus === 'pending' ? <button className="btn btn-ghost btn-xs"> Cancel </button> : <button className="btn btn-ghost btn-xs"> Print </button>}
@@ -96,8 +83,8 @@ const EmRequPen = () => {
           </tbody>
         </table>
       </div>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default EmRequPen;
