@@ -1,9 +1,18 @@
+import { useState } from "react";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 const Search = () => {
-  const handleSeach = (e) => {
+  const axiosPublic = useAxiosPublic();
+  const [result, setResults] = useState('')
+
+  const handleSeach = async (e) => {
     e.preventDefault();
     const itemName = e.target.name.value;
     console.log(itemName, "search comp");
+    const res = await axiosPublic.get(`/search?name=${itemName}`);
+    setResults(res.data)
   };
+console.log('result after search',result)
   return (
     <div>
       <form onSubmit={handleSeach}>
@@ -18,7 +27,7 @@ const Search = () => {
           <input
             className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg"
             type="submit"
-            value="Seach"
+            value="Search"
           />
         </div>
       </form>

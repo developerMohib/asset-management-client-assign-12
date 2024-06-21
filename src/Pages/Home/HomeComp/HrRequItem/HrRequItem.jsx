@@ -12,7 +12,7 @@ const HrRequItem = () => {
   const limitedProd = products.filter((item) => item.productQuantity <= 10);
   return (
     <div>
-      <h1>hello this hr requrest item </h1>
+      <h1>hello this is most requrest item </h1>
       <h1 className="font-semibold text-center my-5">
         limited stock item {limitedProd?.length}
       </h1>

@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useRequAssets from "../../../Hooks/useRequAssets";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Search from "../../../Component/Search/Search";
 
 const MyAssets = () => {
   const { loading } = useAuth();
@@ -50,6 +51,9 @@ const MyAssets = () => {
       <div>
         <p> My requestwd products : {requProducts.length} </p>
       </div>
+      <div>
+      <Search></Search>
+      </div>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -77,18 +81,7 @@ const MyAssets = () => {
                     <input type="checkbox" className="checkbox" />
                   </label>
                 </th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="hello" alt="Avatar Tailwind CSS Component" />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold"> {item.assetName} </div>
-                    </div>
-                  </div>
-                </td>
+                <td className="font-bold"> {item.assetName}</td>
                 <td> {item.assetType} </td>
                 <td>{item.requestDate}</td>
                 {/* Approval Date */}
