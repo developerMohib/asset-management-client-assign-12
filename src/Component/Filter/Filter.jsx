@@ -1,7 +1,7 @@
 const Filter = () => {
   return (
     <div>
-      <h1>Hi i am filter </h1>
+ <h1> hi i am filter </h1>
     </div>
   );
 };

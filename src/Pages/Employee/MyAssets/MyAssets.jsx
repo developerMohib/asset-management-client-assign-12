@@ -14,6 +14,7 @@ const MyAssets = () => {
   const [result, setResults] = useState([]);
   const [allResults, setAllResults] = useState([]);
   const [noResults, setNoResults] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState('');
   const [requProducts, isLoading, refetch] = useRequAssets();
 
   // set initial all data for no data
@@ -85,45 +86,79 @@ const MyAssets = () => {
       setNoResults(true);
     }
   };
- 
-    // handle input change
-    const handleInputChange = (e) => {
-      const itemName = e.target.value.trim();
-      if (itemName === "") {
-        setResults(allResults);
-        setNoResults(false);
-      }
-    };
+
+  // handle input change
+  const handleInputChange = (e) => {
+    const itemName = e.target.value.trim();
+    if (itemName === "") {
+      setResults(allResults);
+      setNoResults(false);
+    }
+  };
+
+  // filter data 
+  const handleFilterData = async (e) => {
+    const selectedFilter = e.target.value;
+    setSelectedFilter(selectedFilter);
+    console.log(selectedFilter)
+    try{
+      // good but justify with email
+      const res = await axiosPublic.get(`/filter?assetType=${selectedFilter}`);
+      console.log(res.data)
+    }
+    catch (error) {
+      console.error("Error searching items:", error);
+    }
+  };
 
   return (
     <div>
       <HelmetTitle routeName={"My Assets"}> </HelmetTitle>
-      <div >
+      <div>
         <p> My requested products : {requProducts.length} </p>
       </div>
 
-      {/* Search function start */}
-      <div>
-        <form onSubmit={handleSearch}>
-          <div className="flex relative">
-            <input
-              className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 text-gray-500"
-              type="text"
-              name="name"
-              placeholder="Type here.."
-              onChange={handleInputChange}
-            />
-            <input
-              className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg"
-              type="submit"
-              value="Search"
-            />
+      <div className="flex gap-5 items-center w-full">
+        {/* Search function start */}
+        <div className="w-1/2">
+          <form onSubmit={handleSearch}>
+            <div className="flex relative">
+              <input
+                className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 text-gray-500"
+                type="text"
+                name="name"
+                placeholder="Type here.."
+                onChange={handleInputChange}
+              />
+              <input
+                className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg"
+                type="submit"
+                value="Search"
+              />
+            </div>
+          </form>
+        </div>
+        {/* Search function end */}
+
+        {/* Filter Function start */}
+        <div className="w-1/2">
+          <div>
+            <label className="form-control w-full">
+              <select onChange={handleFilterData} value={selectedFilter} className="select select-bordered">
+              <option  value="">Filter Products</option>
+          <option value="Returnable">Returnable</option>
+          <option value="Non-Returnable">Non-Returnable</option>
+              </select>
+            </label>
           </div>
-        </form>
+        </div>
+        {/* Filter Function end */}
       </div>
-      {/* Search function start */}
+
       {noResults ? (
-        <div className="flex items-center justify-center h-screen"><p> No Product Found according to your search </p></div>
+        <div className="flex items-center justify-center h-screen">
+          <p> No Product Found according to your search </p>
+        </div>
       ) : (
         <>
           <div className="overflow-x-auto">

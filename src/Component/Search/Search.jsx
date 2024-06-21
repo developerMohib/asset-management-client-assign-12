@@ -4,6 +4,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const Search = () => {
   const axiosPublic = useAxiosPublic();
   const [result, setResults] = useState('')
+  console.log(result)
 
   const handleSeach = async (e) => {
     e.preventDefault();
