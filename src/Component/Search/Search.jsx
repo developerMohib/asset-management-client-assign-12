@@ -12,7 +12,15 @@ const Search = () => {
     const res = await axiosPublic.get(`/search?name=${itemName}`);
     setResults(res.data)
   };
-console.log('result after search',result)
+
+      // handle input change
+      const handleInputChange = (e) => {
+        const itemName = e.target.value.trim();
+        if (itemName === "") {
+          // setResults(allResults);
+          // setNoResults(false);
+        }
+      };
   return (
     <div>
       <form onSubmit={handleSeach}>
@@ -21,8 +29,8 @@ console.log('result after search',result)
             className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 text-gray-500"
             type="text"
             name="name"
-            id=""
             placeholder="Type here.."
+              onChange={handleInputChange}
           />
           <input
             className="bg-green-400 cursor-pointer absolute right-0 top-0 py-1 px-2 rounded-lg"
