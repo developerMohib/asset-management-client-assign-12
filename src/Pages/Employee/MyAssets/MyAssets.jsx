@@ -8,7 +8,8 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 
 const MyAssets = () => {
-  const { loading } = useAuth();
+  const { user, loading } = useAuth();
+  console.log('log in user',user?.email)
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [result, setResults] = useState([]);
@@ -103,8 +104,9 @@ const MyAssets = () => {
     console.log(selectedFilter)
     try{
       // good but justify with email
-      const res = await axiosPublic.get(`/filter?assetType=${selectedFilter}`);
-      console.log(res.data)
+      const res = await axiosPublic.get(`/filter?assetType=${selectedFilter}&requesterEmail=${user?.email}`);
+      console.log(res.data);
+      setResults(res.data);
     }
     catch (error) {
       console.error("Error searching items:", error);
