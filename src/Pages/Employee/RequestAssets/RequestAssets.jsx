@@ -3,14 +3,12 @@ import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 import useAllProducts from "../../../Hooks/useAllProducts";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-import useAuth from "../../../Hooks/useAuth";
 import Spinner from "../../../Component/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const RequestAssets = () => {
   const date = new Date();
-  const { user, loading } = useAuth();
   const { loginUser } = useUser();
   const axiosPublic = useAxiosPublic();
 
@@ -48,8 +46,8 @@ const RequestAssets = () => {
       return;
     }
     try {
-      // search products query by name with condition
-      const res = await axiosPublic.get(`/search?name=${itemName}`);
+      // search products query by name with condition .. have to change
+      const res = await axiosPublic.get(`/search-products?name=${itemName}`);
       if (res.data.length > 0) {
         setResults(res.data);
         setNoResults(false);
@@ -84,9 +82,9 @@ const RequestAssets = () => {
       return;
     }
     try {
-      // good but justify with email
+      // good but justify with email ... have to change
       const res = await axiosPublic.get(
-        `/filter?assetType=${selectedFilter}&requesterEmail=${user?.email}`
+        `/filter-products?productType=${selectedFilter}`
       );
       setResults(res.data);
       console.log(res.data);
@@ -146,8 +144,8 @@ const RequestAssets = () => {
   return (
     <div>
       <HelmetTitle routeName={"Request for an Asset"}> </HelmetTitle>
-      <h1> hi i am RequestAssets employee </h1>
-
+      <h1> Request Assets from total {result.length} </h1>
+      {/* search and filter products */}
       <div className="flex gap-5 items-center w-full">
         {/* Search function start */}
         <div className="w-1/2">
@@ -172,7 +170,7 @@ const RequestAssets = () => {
 
         {/* Filter Function asset type and status start */}
         <div className="w-1/2 flex gap-3">
-          {/* filter asset type */}
+          {/* Filter Products Type */}
           <div className="w-1/2">
             <div>
               <label className="form-control w-full">
@@ -188,7 +186,7 @@ const RequestAssets = () => {
               </label>
             </div>
           </div>
-          {/* filter asset status */}
+          {/* Filter items by availability  */}
           <div className="w-1/2">
             <div>
               <label className="form-control w-full">
@@ -196,10 +194,9 @@ const RequestAssets = () => {
                   value={selectedFilter}
                   className="select select-bordered"
                 >
-                  <option value="">Filter Products Status </option>
-                  <option value="pending">pending</option>
-                  <option value="approved">approved</option>
-                  <option value="rejected">rejected</option>
+                  <option value="">Filter items by availability </option>
+                  <option value="available">available</option>
+                  <option value="out-of-stock">out-of-stock</option>
                 </select>
               </label>
             </div>
