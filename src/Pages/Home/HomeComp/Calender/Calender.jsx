@@ -1,15 +1,20 @@
-import { useState } from "react";
-import Calendar from "react-calendar";
+import { Calendar, theme } from "antd";
+const onPanelChange = (value, mode) => {
+  console.log(value.format("YYYY-MM-DD"), mode);
+};
 
 const Calender = () => {
-  const [value, setValue] = useState(new Date());
-
+  const { token } = theme.useToken();
+  const wrapperStyle = {
+    width: 300,
+    border: `1px solid ${token.colorBorderSecondary}`,
+    borderRadius: token.borderRadiusLG,
+  };
   return (
     <div>
-      <Calendar onChange={setValue} value={value} />
-
-  
-
+      <div style={wrapperStyle}>
+        <Calendar fullscreen={false} onPanelChange={onPanelChange} />
+      </div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import useAllUser from "../../../Hooks/useAllUser";
 
 const MyTeam = () => {
   const [allUser] = useAllUser();
-  console.log("all user", allUser);
   return (
     <div>
       <HelmetTitle routeName={"My Team"}> </HelmetTitle>

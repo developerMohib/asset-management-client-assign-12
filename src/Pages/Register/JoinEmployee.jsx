@@ -271,7 +271,7 @@ const JoinEmployee = () => {
                   <input
                     className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
-                    value="Sign up"
+                    value="Sign up as an employee"
                   />
                   <GoogleLogin></GoogleLogin>
                   <FacebookLogin> </FacebookLogin>

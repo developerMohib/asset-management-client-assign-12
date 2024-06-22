@@ -26,62 +26,73 @@ const EmRequPen = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <h1 className="font-semibold text-center my-5">My request pending products </h1>
-        <table className="table my-5">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
-              <th>Assets Name</th>
-              <th>Assets Type</th>
-              <th>Request Date</th>
-              <th>Approval Date</th>
-              <th>Request Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {pendingProd?.map((item) => (
-              <tr key={item._id}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
-                <td className="font-bold"> {item.assetName}</td>
-                <td> {item.assetType} </td>
-                <td>{item.requestDate}</td>
-                {/* Approval Date */}
-                <td>
-                  {" "}
-                  {item.requestStatus === "pending"
-                    ? "Not Approve yet"
-                    : " date here "}{" "}
-                </td>
-                <td> {item.requestStatus} </td>
-                {/*  */}
-                <td>
-                  {item.requestStatus === "pending" ? (
-                    <button className="btn btn-ghost btn-xs"> Cancel </button>
-                  ) : item.requestStatus === "approved" &&
-                    item.assetType === "Returnable" ? (
-                    <button className="btn btn-ghost btn-xs">Return</button>
-                  ) : (
-                    <button className="btn btn-ghost btn-xs">Print</button>
-                  )}
-                </td>
-                {/* <td>
+        <h1 className="font-semibold text-center my-5">
+          My request pending products{" "}
+        </h1>
+        {pendingProd.length === 0 ? (
+          <p className="my-3 text-center"> Please Request assets </p>
+        ) : (
+          <>
+            <table className="table my-5">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>
+                    <label>
+                      <input type="checkbox" className="checkbox" />
+                    </label>
+                  </th>
+                  <th>Assets Name</th>
+                  <th>Assets Type</th>
+                  <th>Request Date</th>
+                  <th>Approval Date</th>
+                  <th>Request Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {pendingProd?.map((item) => (
+                  <tr key={item._id}>
+                    <th>
+                      <label>
+                        <input type="checkbox" className="checkbox" />
+                      </label>
+                    </th>
+                    <td className="font-bold"> {item.assetName}</td>
+                    <td> {item.assetType} </td>
+                    <td>{item.requestDate}</td>
+                    {/* Approval Date */}
+                    <td>
+                      {" "}
+                      {item.requestStatus === "pending"
+                        ? "Not Approve yet"
+                        : " date here "}{" "}
+                    </td>
+                    <td> {item.requestStatus} </td>
+                    {/*  */}
+                    <td>
+                      {item.requestStatus === "pending" ? (
+                        <button className="btn btn-ghost btn-xs">
+                          {" "}
+                          Cancel{" "}
+                        </button>
+                      ) : item.requestStatus === "approved" &&
+                        item.assetType === "Returnable" ? (
+                        <button className="btn btn-ghost btn-xs">Return</button>
+                      ) : (
+                        <button className="btn btn-ghost btn-xs">Print</button>
+                      )}
+                    </td>
+                    {/* <td>
                   {item.requestStatus === 'pending' ? <button className="btn btn-ghost btn-xs"> Cancel </button> : <button className="btn btn-ghost btn-xs"> Print </button>}
                 </td> */}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  </tr>
+                ))}
+              </tbody>
+            </table>{" "}
+          </>
+        )}
       </div>
     </div>
   );

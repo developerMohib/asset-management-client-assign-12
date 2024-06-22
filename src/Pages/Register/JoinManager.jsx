@@ -98,6 +98,7 @@ const JoinManager = () => {
               if (res.data.insertedId) {
                 toast.success("log in successfully as a manager");
                 navigate("/payment", { replace: true });
+                window.location.reload();
               }
             })
             .catch((err) => {
@@ -317,7 +318,7 @@ const JoinManager = () => {
                   <input
                     className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
-                    value="Sign up"
+                    value="Sign up as a manager"
                   />
                 </div>
               </form>

@@ -16,6 +16,7 @@ const MyAssets = () => {
   const [allResults, setAllResults] = useState([]);
   const [noResults, setNoResults] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("");
+  const [isReturn, setIsReturn] = useState();
 
   const [requProducts, isLoading, refetch] = useRequAssets();
 
@@ -53,6 +54,7 @@ const MyAssets = () => {
 
   const handleReturn = async (id) => {
     console.log("paici from update", id);
+    setIsReturn(id)
     // try {
     //   const res = await axiosSecure.delete(`/requ-product/${id}`);
     //   if (res.data.deletedCount > 0) {
@@ -252,7 +254,7 @@ const MyAssets = () => {
                       {" "}
                       {item.requestStatus === "pending"
                         ? "Not Approve yet"
-                        : " date here "}{" "}
+                        : item.approveDate }{" "}
                     </td>
                     <td> {item.requestStatus} </td>
                     <td>
@@ -273,7 +275,7 @@ const MyAssets = () => {
                           >
                             Print
                           </button>
-                          <button
+                          <button disabled={isReturn === item._id}
                             onClick={() => handleReturn(item._id)}
                             className="btn btn-ghost btn-xs"
                           >
@@ -281,7 +283,7 @@ const MyAssets = () => {
                           </button>
                         </>
                       ) : (
-                        <button
+                        <button 
                           onClick={() => handlePrint(item._id)}
                           className="btn btn-ghost btn-xs"
                         >
