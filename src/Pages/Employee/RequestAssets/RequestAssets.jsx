@@ -21,7 +21,7 @@ const RequestAssets = () => {
 
   const requDate = date.toLocaleDateString();
   const { products, isLoading, refetch } = useAllProducts();
-  // console.log('product', products)
+
   // set initial all data for no data
   useEffect(() => {
     if (products.length > 0) {
