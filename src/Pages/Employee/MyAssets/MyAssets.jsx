@@ -9,13 +9,12 @@ import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 
 const MyAssets = () => {
   const { user, loading } = useAuth();
-  console.log('log in user',user?.email)
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [result, setResults] = useState([]);
   const [allResults, setAllResults] = useState([]);
   const [noResults, setNoResults] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState("");
   const [requProducts, isLoading, refetch] = useRequAssets();
 
   // set initial all data for no data
@@ -97,18 +96,42 @@ const MyAssets = () => {
     }
   };
 
-  // filter data 
+  // filter data with type
   const handleFilterData = async (e) => {
     const selectedFilter = e.target.value;
     setSelectedFilter(selectedFilter);
-    console.log(selectedFilter)
-    try{
-      // good but justify with email
-      const res = await axiosPublic.get(`/filter?assetType=${selectedFilter}&requesterEmail=${user?.email}`);
-      console.log(res.data);
-      setResults(res.data);
+    console.log(selectedFilter);
+    // select filter data empty
+    if (selectedFilter === "") {
+      setResults(allResults);
+      return;
     }
-    catch (error) {
+    try {
+      // good but justify with email
+      const res = await axiosPublic.get(
+        `/filter?assetType=${selectedFilter}&requesterEmail=${user?.email}`
+      );
+      setResults(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.error("Error searching items:", error);
+    }
+  };
+  // filter data with status
+  const handlePendingData = async (e) => {
+    const selectedFilter = e.target.value;
+    setSelectedFilter(selectedFilter);
+    if (selectedFilter === "") {
+      setResults(allResults);
+      return;
+    }
+    try {
+      // good but justify with email
+      const res = await axiosPublic.get(
+        `/filter-status?requestStatus=${selectedFilter}&requesterEmail=${user?.email}`
+      );
+      setResults(res.data);
+    } catch (error) {
       console.error("Error searching items:", error);
     }
   };
@@ -142,19 +165,43 @@ const MyAssets = () => {
         </div>
         {/* Search function end */}
 
-        {/* Filter Function start */}
-        <div className="w-1/2">
-          <div>
-            <label className="form-control w-full">
-              <select onChange={handleFilterData} value={selectedFilter} className="select select-bordered">
-              <option  value="">Filter Products</option>
-          <option value="Returnable">Returnable</option>
-          <option value="Non-Returnable">Non-Returnable</option>
-              </select>
-            </label>
+        {/* Filter Function asset type and status start */}
+        <div className="w-1/2 flex gap-3">
+          {/* filter asset type */}
+          <div className="w-1/2">
+            <div>
+              <label className="form-control w-full">
+                <select
+                  onChange={handleFilterData}
+                  value={selectedFilter}
+                  className="select select-bordered"
+                >
+                  <option value="">Filter Products Type </option>
+                  <option value="Returnable">Returnable</option>
+                  <option value="Non-Returnable">Non-Returnable</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          {/* filter asset status */}
+          <div className="w-1/2">
+            <div>
+              <label className="form-control w-full">
+                <select
+                  onChange={handlePendingData}
+                  value={selectedFilter}
+                  className="select select-bordered"
+                >
+                  <option value="">Filter Products Status </option>
+                  <option value="pending">pending</option>
+                  <option value="approved">approved</option>
+                  <option value="rejected">rejected</option>
+                </select>
+              </label>
+            </div>
           </div>
         </div>
-        {/* Filter Function end */}
+        {/* Filter Function asset type and status end */}
       </div>
 
       {noResults ? (
