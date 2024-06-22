@@ -11,17 +11,19 @@ const MyAssets = () => {
   const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
+
   const [result, setResults] = useState([]);
   const [allResults, setAllResults] = useState([]);
   const [noResults, setNoResults] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("");
+
   const [requProducts, isLoading, refetch] = useRequAssets();
 
   // set initial all data for no data
   useEffect(() => {
     if (requProducts.length > 0) {
-      setAllResults(requProducts);
       setResults(requProducts);
+      setAllResults(requProducts);
     }
   }, [requProducts]);
 
@@ -38,12 +40,10 @@ const MyAssets = () => {
   }
 
   const handleCancel = async (id) => {
-    console.log("paici from cancel", id);
     try {
       const res = await axiosSecure.delete(`/requ-product/${id}`);
-      console.log("Cancel response:", res.data);
       if (res.data.deletedCount > 0) {
-        toast.success("Your rquested product is deleted !");
+        toast.success("Your rquested product is canceled !");        
         refetch();
       }
     } catch (err) {
@@ -51,9 +51,16 @@ const MyAssets = () => {
     }
   };
 
-  const handleReturn = (id) => {
+  const handleReturn = async (id) => {
     console.log("paici from update", id);
-    // axiosSecure.patch()
+    // try {
+    //   const res = await axiosSecure.delete(`/requ-product/${id}`);
+    //   if (res.data.deletedCount > 0) {
+    //     toast.success("Thank you for your feedbeck !");
+    //   }
+    // } catch (err) {
+    //   console.log("paici from cancel", err);
+    // }
   };
 
   const handlePrint = (id) => {
@@ -248,7 +255,6 @@ const MyAssets = () => {
                         : " date here "}{" "}
                     </td>
                     <td> {item.requestStatus} </td>
-                    {/*  */}
                     <td>
                       {item.requestStatus === "pending" ? (
                         <button
@@ -260,12 +266,20 @@ const MyAssets = () => {
                         </button>
                       ) : item.requestStatus === "approved" &&
                         item.assetType === "Returnable" ? (
-                        <button
-                          onClick={() => handleReturn(item._id)}
-                          className="btn btn-ghost btn-xs"
-                        >
-                          Return
-                        </button>
+                        <>
+                          <button
+                            onClick={() => handlePrint(item._id)}
+                            className="btn btn-ghost btn-xs"
+                          >
+                            Print
+                          </button>
+                          <button
+                            onClick={() => handleReturn(item._id)}
+                            className="btn btn-ghost btn-xs"
+                          >
+                            Return
+                          </button>
+                        </>
                       ) : (
                         <button
                           onClick={() => handlePrint(item._id)}
