@@ -2,8 +2,8 @@
 ## Corporate Management System
 
 ## Web application admin
-- admin-user-name : mohibullah mohim 
-- admin-password : 
+- admin-user-name : mohibullah mohim
+- admin-password : Abc@12345
 
 ## [Live Link this application](https://manage-asset-b4cd2.web.app/)
 [click-here](https://manage-asset-b4cd2.web.app/) or [https://manage-asset-b4cd2.web.app/]
@@ -11,15 +11,12 @@
 ## About this application 
 ## Main Features
 - Any company can use this web application to manage their corporate business.
--
--
--
--
--
--
--
--
--
+- Allows users to request assets with features to approve, cancel, and track the status of their requests.
+- Manages both returnable and non-returnable asset types, ensuring proper categorization and handling.
+- Tracks the quantity of assets, updating stock levels in real-time as requests are made and assets are returned.
+- Uses MongoDB for storing and managing asset data, ensuring scalable and reliable data handling.
+- Express to create a RESTful API for managing asset requests, inventory updates, and user interactions.
+- Toast notifications to inform users of successful requests, errors, and other important actions.
 
 
 ## Usage Packages 

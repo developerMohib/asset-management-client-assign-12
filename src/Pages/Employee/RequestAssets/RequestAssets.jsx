@@ -3,12 +3,14 @@ import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 import useAllProducts from "../../../Hooks/useAllProducts";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "../../../Hooks/useAuth";
 import Spinner from "../../../Component/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const RequestAssets = () => {
   const date = new Date();
+  const { loading } = useAuth();
   const { loginUser } = useUser();
   const axiosPublic = useAxiosPublic();
 
