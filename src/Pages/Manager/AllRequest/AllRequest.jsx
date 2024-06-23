@@ -124,7 +124,7 @@ const AllRequest = () => {
   return (
     <div>
       <HelmetTitle routeName={"All Requests"}></HelmetTitle>
-      <div className="my-10">
+      <div className="my-10 mx-3 ">
         <form onSubmit={handleSearch}>
           <div className="flex relative">
             <input
@@ -175,7 +175,7 @@ const AllRequest = () => {
                       <td> {item.requestDate} </td>
                       <td> {item.assetType} </td>
                       <td> {item.requestStatus} </td>
-                      <td>
+                      <td className="flex">
                         <button
                           disabled={
                             item.requestStatus === "approved" ||

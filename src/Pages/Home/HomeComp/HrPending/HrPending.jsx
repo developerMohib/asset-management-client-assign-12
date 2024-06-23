@@ -100,7 +100,7 @@ const HrPending = () => {
                   <td> {item.requestDate} </td>
                   <td> {item.assetType} </td>
                   <td> {item.requestStatus} </td>
-                  <td>
+                  <td className="flex">
                     <button
                       disabled={
                         item.requestStatus === "approved" ||
