@@ -152,9 +152,9 @@ const MyAssets = () => {
         <p> My requested products : {requProducts.length} </p>
       </div>
 
-      <div className="flex gap-5 items-center w-full">
+      <div className="md:flex gap-5 items-center w-full md:mx-0 mx-2 ">
         {/* Search function start */}
-        <div className="w-1/2">
+        <div className="md:w-1/2 md:my-0 my-3 ">
           <form onSubmit={handleSearch}>
             <div className="flex relative">
               <input
@@ -175,7 +175,7 @@ const MyAssets = () => {
         {/* Search function end */}
 
         {/* Filter Function asset type and status start */}
-        <div className="w-1/2 flex gap-3">
+        <div className="md:w-1/2 flex gap-3">
           {/* filter asset type */}
           <div className="w-1/2">
             <div>

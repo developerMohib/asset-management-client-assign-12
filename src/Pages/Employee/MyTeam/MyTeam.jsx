@@ -6,7 +6,6 @@ const MyTeam = () => {
   return (
     <div>
       <HelmetTitle routeName={"My Team"}> </HelmetTitle>
-      <h1> hi i am my team employee </h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

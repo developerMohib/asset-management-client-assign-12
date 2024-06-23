@@ -148,9 +148,9 @@ const RequestAssets = () => {
       <HelmetTitle routeName={"Request for an Asset"}> </HelmetTitle>
       <h1> Request Assets from total {result.length} </h1>
       {/* search and filter products */}
-      <div className="flex gap-5 items-center w-full">
+      <div className="md:flex gap-5 items-center w-full md:mx-0 mx-2 ">
         {/* Search function start */}
-        <div className="w-1/2">
+        <div className="md:w-1/2 ">
           <form onSubmit={handleSearch}>
             <div className="flex relative">
               <input
@@ -171,7 +171,7 @@ const RequestAssets = () => {
         {/* Search function end */}
 
         {/* Filter Function asset type and status start */}
-        <div className="w-1/2 flex gap-3">
+        <div className="md:w-1/2 flex gap-3 md:my-0 my-2">
           {/* Filter Products Type */}
           <div className="w-1/2">
             <div>
