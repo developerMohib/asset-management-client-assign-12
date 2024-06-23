@@ -14,7 +14,7 @@ const useAllUser = () => {
   // return [allUser, isLoading, refetch];
 
   useEffect(() => {
-    fetch("https://asset-management-server-brown.vercel.app/users")
+    fetch("https://asset-management-server-brown.vercel.app/employees")
       .then((res) => res.json())
       .then((data) => setAllUser(data));
   }, []);

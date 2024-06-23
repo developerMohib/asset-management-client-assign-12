@@ -16,13 +16,14 @@ const MyTeam = () => {
                   <input type="checkbox" className="checkbox" />
                 </label>
               </th>
+              <th>Profile Picture</th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Email</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {allUser.map((user) => (
+            {allUser?.map((user) => (
               <tr key={user._id}>
                 <th>
                   <label>
@@ -40,6 +41,7 @@ const MyTeam = () => {
                   </div>
                 </td>
                 <td>{user.name}</td>
+                <td>{user.email}</td>
                 <td>{user.status}</td>
               </tr>
             ))}

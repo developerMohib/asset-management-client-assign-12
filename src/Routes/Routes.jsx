@@ -7,6 +7,7 @@ import Profile from "../Pages/Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Payment from "../Pages/Payment/Payment";
 import MyTeam from "../Pages/Employee/MyTeam/MyTeam";
+import AddTeam from "../Pages/Manager/AddTeam/AddTeam";
 import JoinManager from "../Pages/Register/JoinManager";
 import JoinEmployee from "../Pages/Register/JoinEmployee";
 import AddAsset from "../Pages/Manager/AddAsset/AddAsset";
@@ -16,7 +17,6 @@ import AssesList from "../Pages/Manager/AssetList/AssestList";
 import MyEmployee from "../Pages/Manager/MyEmployee/MyEmployee";
 import AllRequest from "../Pages/Manager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/Manager/AddEmployee/AddEmployee";
-import CustomRequest from "../Pages/Manager/CustomRequest/CustomRequest";
 import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 
 export const router = createBrowserRouter([
@@ -81,8 +81,8 @@ export const router = createBrowserRouter([
         element: <AssesList></AssesList>,
       },
       {
-        path: "/custom-request",
-        element: <CustomRequest></CustomRequest>,
+        path: "/add-team",
+        element: <AddTeam></AddTeam>,
       },
       {
         path: "/my-employee",

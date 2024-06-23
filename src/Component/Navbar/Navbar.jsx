@@ -1,13 +1,13 @@
-import MenuIcon from "@mui/icons-material/Menu";
-import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
-import logo from "../../assets/corporate-solution.png";
 import "./Navbar.css";
-import { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import { Tooltip } from "react-tooltip";
-import { AiOutlineLogout } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { Tooltip } from "react-tooltip";
+import useAuth from "../../Hooks/useAuth";
+import { useEffect, useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AiOutlineLogout } from "react-icons/ai";
+import logo from "../../assets/corporate-solution.png";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -121,7 +121,7 @@ const Navbar = () => {
         }
         to="/all-request"
       >
-        All Requ
+        All Requests
       </NavLink>
       <NavLink
         className={({ isActive }) =>
@@ -130,14 +130,6 @@ const Navbar = () => {
         to="/asset-list"
       >
         All Asset
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-lg isActive" : "text-lg notActive"
-        }
-        to="/custom-request"
-      >
-        Custom Requ
       </NavLink>
       <NavLink
         className={({ isActive }) =>

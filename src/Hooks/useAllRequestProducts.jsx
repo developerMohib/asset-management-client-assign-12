@@ -4,7 +4,7 @@ import useAxiosSecure from "./useAxiosSecure";
 const useAllRequestProducts = () => {
   const axiosSecure = useAxiosSecure();
   const {
-    data: requestedProduct = [], isLoading,refetch,} = useQuery({
+    data: requestedProduct = [], isLoading, refetch,} = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/requ-product`);

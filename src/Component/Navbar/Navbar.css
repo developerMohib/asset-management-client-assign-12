@@ -8,3 +8,16 @@
   margin: 0px 6px;
   border-bottom: 2px solid rgba(0, 0, 255, 0.712);
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Ensure the dropdown menu is initially hidden */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: red;
+}

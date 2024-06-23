@@ -1,5 +1,4 @@
 import useAuth from "../../../Hooks/useAuth";
-// import { useQuery } from "@tanstack/react-query";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";

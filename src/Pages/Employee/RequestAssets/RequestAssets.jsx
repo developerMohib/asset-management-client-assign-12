@@ -113,12 +113,7 @@ const RequestAssets = () => {
     // call server link / api
     axiosSecure
       .post("/requ-product", assetDetails)
-      .then((res) => {
-        const data = res.data;
-        if (data.insertedId) {
-          toast.success("Your request send succesfully");
-        }
-      })
+      .then(() => {})
       .catch((err) => {
         console.log(err);
       });
