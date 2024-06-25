@@ -182,7 +182,7 @@ const MyAssets = () => {
               <label className="form-control w-full">
                 <select
                   onChange={handleFilterData}
-                  value={selectedFilter}
+                  defaultValue={selectedFilter}
                   className="select select-bordered"
                 >
                   <option value="">Filter Products Type </option>

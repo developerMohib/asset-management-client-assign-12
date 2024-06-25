@@ -3,6 +3,7 @@ import Root from "../Root/Root";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import About from "../Pages/About/About";
+import Admin from "../Pages/Admin/Admin"; 
 import Profile from "../Pages/Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Payment from "../Pages/Payment/Payment";
@@ -97,5 +98,9 @@ export const router = createBrowserRouter([
         element: <AddMore></AddMore>,
       },
     ],
+  },
+  {
+    path: 'dashboard',
+    element: <Admin></Admin> ,
   },
 ]);

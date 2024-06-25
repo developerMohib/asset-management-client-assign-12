@@ -173,7 +173,7 @@ const RequestAssets = () => {
               <label className="form-control w-full">
                 <select
                   onChange={handleFilterData}
-                  value={selectedFilter}
+                  defaultValue={selectedFilter}
                   className="select select-bordered"
                 >
                   <option value="">Filter Products Type </option>
@@ -188,7 +188,7 @@ const RequestAssets = () => {
             <div>
               <label className="form-control w-full">
                 <select
-                  value={selectedFilter}
+                  defaultValue={selectedFilter}
                   className="select select-bordered"
                 >
                   <option value="">Filter items by availability </option>
@@ -217,11 +217,7 @@ const RequestAssets = () => {
                   <th>#</th>
                   <th> Product Name</th>
                   <th>Product Type</th>
-                  <th>Product Availability</th>
-                  {/* Here will be update function button, 
-              to do : if click request then app.put call and refetch call
-              beck end : if beck end quantity is > 0 then increse once
-              */}
+                  <th>Product Availability</th>                  
                   <th>
                     {" "}
                     <button className="btn btn-xs">Request Assets</button>{" "}

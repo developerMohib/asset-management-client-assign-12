@@ -236,7 +236,7 @@ const JoinEmployee = () => {
                   <div>
                     <div className="mb-3 w-full ">
                       <label className="mb-2 block text-xs font-semibold">
-                        Do you have a company logo?
+                        Are you affaliate or Do you have a company logo?
                       </label>
                       {affaliate ? (
                         " "

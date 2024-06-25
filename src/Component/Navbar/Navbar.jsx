@@ -20,7 +20,7 @@ const Navbar = () => {
     const fetchUser = async () => {
       try {
         // fetch data
-        const res = await fetch(`https://asset-management-server-brown.vercel.app/users/${email}`);
+        const res = await fetch(`http://localhost:9000/users/${email}`);
         if (!res.ok) {
           // Handle HTTP errors
           console.log(`HTTP error! Status: ${res.status}`);
