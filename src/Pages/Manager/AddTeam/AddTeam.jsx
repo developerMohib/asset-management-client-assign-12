@@ -1,18 +1,19 @@
 import Swal from "sweetalert2";
-import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
-import Spinner from "../../../Component/Spinner/Spinner";
-import useAllUser from "../../../Hooks/useAllUser";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useUser from "../../../Hooks/useUser";
 import useEmployee from "../../../Hooks/useEmployee";
+import Spinner from "../../../Component/Spinner/Spinner";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAllEmployees from "../../../Hooks/useAllEmployees";
+import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
 
 const AddTeam = () => {
   const { loading } = useAuth();
   const {loginUser} = useUser();
   const [employee] = useEmployee();
   const axiosPublic = useAxiosPublic();
-  const [allUser, isLoading] = useAllUser();
+  // const [allUser, isLoading] = useAllUser();
+  const [allEmployees, isLoading, ] = useAllEmployees();
 
   const employeesArray = employee[0]?.employeesArray || [];
 
@@ -59,7 +60,7 @@ const AddTeam = () => {
         <p> My Team Member </p>
         <p>
           {" "}
-          <b>Total</b> : {allUser?.length}{" "}
+          <b>Total</b> : {allEmployees?.length}{" "}
         </p>
       </div>
       <div className="overflow-x-auto">
@@ -80,7 +81,7 @@ const AddTeam = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {allUser.map((user) => (
+            {allEmployees.map((user) => (
               <tr key={user._id}>
                 <th>
                   <label>

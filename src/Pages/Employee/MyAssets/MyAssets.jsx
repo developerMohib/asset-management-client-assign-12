@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+import useUser from "../../../Hooks/useUser";
 import useAuth from "../../../Hooks/useAuth";
 import Spinner from "../../../Component/Spinner/Spinner";
 import useRequAssets from "../../../Hooks/useRequAssets";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
+import NotAffaliate from "../../../Component/NotAffaliate/NotAffaliate";
 
 const MyAssets = () => {
-  const { user, loading } = useAuth();
+  const {loginUser} = useUser();
+  const {user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
 
@@ -28,6 +31,11 @@ const MyAssets = () => {
     }
   }, [requProducts]);
 
+if(loginUser.status !== 'employee'){
+  return (<div>
+    <NotAffaliate> </NotAffaliate>
+  </div>)
+}
   if (loading || isLoading) {
     return <Spinner></Spinner>;
   }

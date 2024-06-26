@@ -1,8 +1,17 @@
 import HelmetTitle from "../../../Component/HelmetTitle/HelmetTitle";
+import NotAffaliate from "../../../Component/NotAffaliate/NotAffaliate";
 import useAllUser from "../../../Hooks/useAllUser";
+import useUser from "../../../Hooks/useUser";
 
 const MyTeam = () => {
+  const {loginUser} = useUser();
   const [allUser] = useAllUser();
+
+  if(loginUser.status !== 'employee'){
+    return (<div>
+      <NotAffaliate> </NotAffaliate>
+    </div>)
+  }
   return (
     <div>
       <HelmetTitle routeName={"My Team"}> </HelmetTitle>

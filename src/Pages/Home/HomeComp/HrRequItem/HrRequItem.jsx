@@ -28,7 +28,7 @@ const HrRequItem = () => {
                 />
               </figure>
               <div className="card-body items-center text-center">
-                <h2 className="card-title">Product Name {item?.productName}</h2>
+                <h2 className="card-title">{item?.productName}</h2>
                 <p>This is the most choiceable product</p>
                 <p> <b>Product Quantity</b> : {item?.productQuantity} </p>
               </div>

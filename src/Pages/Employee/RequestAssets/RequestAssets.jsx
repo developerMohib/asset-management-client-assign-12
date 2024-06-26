@@ -7,6 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 import Spinner from "../../../Component/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import NotAffaliate from "../../../Component/NotAffaliate/NotAffaliate";
 
 const RequestAssets = () => {
   const date = new Date();
@@ -134,7 +135,11 @@ const RequestAssets = () => {
         console.log(err);
       });
   };
-
+  if(loginUser.status !== 'employee'){
+    return (<div>
+      <NotAffaliate> </NotAffaliate>
+    </div>)
+  }
   if (isLoading || loading) {
     return <Spinner></Spinner>;
   }
