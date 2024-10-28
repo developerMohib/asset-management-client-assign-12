@@ -1,0 +1,9 @@
+VITE_apiKey=AIzaSyDPX4QwD6e3dk80vikLi-qXVIFlqPB4xF8
+VITE_authDomain=manage-asset-b4cd2.firebaseapp.com
+VITE_projectId=manage-asset-b4cd2
+VITE_storageBucket=manage-asset-b4cd2.appspot.com
+VITE_messagingSenderId=590428782988
+VITE_appId=1:590428782988:web:485143342baae70cc096a9
+
+VITE_imgbb_key=1d799c3323cf67dfcdac97f18faa774a
+VITE_stripe_Pk=pk_test_51PME4q00KTgNuCfQ9SGagHSjeyFC4rgB8CIfRZlFO20mwHDs0hHd451jUpsIQHyB5noqmnPSvU2KZvo1NqhF0uQH00ZyLJktxl
