@@ -6,6 +6,7 @@ import useAuth from "../../Hooks/useAuth";
 import useUser from "../../Hooks/useUser";
 import About from "./HomeComp/About/About";
 import Banner from "./HomeComp/Banner/Banner";
+import Blog from "./HomeComp/Blog/Blog";
 import Calender from "./HomeComp/Calender/Calender";
 import EmRequPen from "./HomeComp/EmRequPen/EmRequPen";
 import Event from "./HomeComp/Event/Event";
@@ -24,45 +25,46 @@ const Home = () => {
   console.log(loginUser?.status, "just for testing");
 
   if (loading || isLoading) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
   return (
     <div>
-      <HelmetTitle routeName={"Home"}> </HelmetTitle>
+      <HelmetTitle routeName={"Home"} />
 
       {user ? (
         // after login if manager
         loginUser.status === "manager" ? (
           <div>
-            <HrPending></HrPending>
-            <HrRequItem></HrRequItem>
-            <MyPieChart></MyPieChart>
-            <Testominal></Testominal>
+            <HrPending />
+            <HrRequItem />
+            <MyPieChart />
+            <Testominal />
           </div>
         ) : // after login not manager then show else part here anoter condition if employee
-        loginUser.status === "employee" ? (
-          <div>
-            <EmRequPen> </EmRequPen>
-            <Calender></Calender>
-            <Event></Event>
-            <Notice> </Notice>
-          </div>
-        ) : (
-          // agter login but not manager then else here not employee then show not affaliate message
-          <div>
-            <NotAffaliate> </NotAffaliate>
-          </div>
-        )
+          loginUser.status === "employee" ? (
+            <div>
+              <EmRequPen />
+              <Calender />
+              <Event />
+              <Notice />
+            </div>
+          ) : (
+            // agter login but not manager then else here not employee then show not affaliate message
+            <div>
+              <NotAffaliate />
+            </div>
+          )
       ) : (
         // if user not login
         <div>
-          <Banner> </Banner>
-          <About></About>
-          <Packages></Packages>
-          <Subscription> </Subscription>
+          <Banner />
+          <About />
+          <Packages />
+          <Blog />
+          <Subscription />
         </div>
       )}
-      <BacktoTop></BacktoTop>
+      <BacktoTop />
     </div>
   );
 };
