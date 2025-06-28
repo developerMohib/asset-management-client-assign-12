@@ -19,7 +19,7 @@ const Footer = () => {
             <div className="md:w-[316px]">
               <h1 className="text-[18px] font-medium text-white">
                 <p className="text-white font-extrabold">
-                  <span className="text-blue-600">CORPORATE </span>SOLUTION
+                  <span className="text-primary">CORPORATE </span>SOLUTION
                 </p>
               </h1>
               <p className="mt-[18px] text-[15px] font-normal text-white/[80%]">
@@ -30,34 +30,34 @@ const Footer = () => {
               </p>
               <div className="mt-[18px] flex gap-4 text-white">
                 <Link>
-                  <FaFacebook className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all">
+                  <FaFacebook className="hover:text-primary text-2xl hover:-translate-y-1 transition-all">
                     {" "}
                   </FaFacebook>
                 </Link>
 
                 <Link>
-                  <FaLinkedin className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaLinkedin>
+                  <FaLinkedin className="hover:text-primary text-2xl hover:-translate-y-1 transition-all"></FaLinkedin>
                 </Link>
 
                 <Link>
-                  <FaInstagram className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all">
+                  <FaInstagram className="hover:text-primary text-2xl hover:-translate-y-1 transition-all">
                     {" "}
                   </FaInstagram>
                 </Link>
 
                 <Link>
-                  <FaTwitter className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaTwitter>
+                  <FaTwitter className="hover:text-primary text-2xl hover:-translate-y-1 transition-all"></FaTwitter>
                 </Link>
 
                 <Link>
-                  <FaYoutube className="hover:text-blue-600 text-2xl hover:-translate-y-1 transition-all"></FaYoutube>
+                  <FaYoutube className="hover:text-primary text-2xl hover:-translate-y-1 transition-all"></FaYoutube>
                 </Link>
               </div>
             </div>
             <div className="md:w-[316px]">
               <div className="mt-[23px] flex">
                 <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                  <FaPhone className="hover:text-blue-600 text-xl text-white"></FaPhone>
+                  <FaPhone className="hover:text-primary text-xl text-white"></FaPhone>
                 </div>
                 <div className="ml-[18px]">
                   <a
@@ -66,14 +66,14 @@ const Footer = () => {
                   >
                     +8801706439736
                   </a>
-                  <p className="font-Inter text-[12px] font-medium text-blue-600">
+                  <p className="font-Inter text-[12px] font-medium text-primary">
                     Support Number
                   </p>
                 </div>
               </div>
               <div className="mt-[23px] flex">
                 <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[75%]">
-                  <FaEnvelope className="hover:text-blue-600 text-xl text-white"></FaEnvelope>
+                  <FaEnvelope className="hover:text-primary text-xl text-white"></FaEnvelope>
                 </div>
                 <div className="ml-[18px]">
                   <a
@@ -82,7 +82,7 @@ const Footer = () => {
                   >
                     mohibullahmohim2020@gmail.com
                   </a>
-                  <p className="font-Inter text-[12px] font-medium text-blue-600">
+                  <p className="font-Inter text-[12px] font-medium text-primary">
                     Support Email
                   </p>
                 </div>

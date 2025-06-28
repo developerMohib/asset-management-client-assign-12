@@ -25,21 +25,21 @@ const Packages = () => {
             </div>
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 5 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SSL (HTTPS)
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SiteFast Domain
               </li>
             </ul>
-            <Link className="inline-flex justify-center w-full px-4 py-3 mt-8 font-sans text-sm leading-none text-center text-blue-600 no-underline bg-transparent border border-blue-600 rounded-md cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg">
+            <Link className="inline-flex justify-center w-full px-4 py-3 mt-8 font-sans text-sm leading-none text-center text-primary no-underline bg-transparent border border-blue-600 rounded-md cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg">
               Start Now
             </Link>
           </div>
@@ -55,22 +55,22 @@ const Packages = () => {
             </div>
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 10 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SSL (HTTPS)
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 Custom Domain
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold  border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SiteFast Branding Removal
               </li>
             </ul>
@@ -91,21 +91,21 @@ const Packages = () => {
             </div>
             <ul className="flex-1 p-0 mt-4 ml-5 text-gray-900 border-0 border-gray-200">
               <li className="inline-flex items-center w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 20 Employees
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SSL (HTTPS)
               </li>
 
               <li className="inline-flex items-center block w-full mb-2 ml-3 font-semibold border-solid">
-                <IoCheckmark className="w-5 h-5 mr-2 font-light text-blue-600 sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
+                <IoCheckmark className="w-5 h-5 mr-2 font-light text-primary sm:h-5 sm:w-5 md:h-6 md:w-6"></IoCheckmark>
                 SiteFast Domain
               </li>
             </ul>
-            <Link className="inline-flex justify-center w-full px-4 py-3 mt-8 font-sans text-sm leading-none text-center text-blue-600 no-underline bg-transparent border border-blue-600 rounded-md cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg">
+            <Link className="inline-flex justify-center w-full px-4 py-3 mt-8 font-sans text-sm leading-none text-center text-primary no-underline bg-transparent border border-blue-600 rounded-md cursor-pointer hover:bg-blue-700 hover:border-blue-700 hover:text-white focus-within:bg-blue-700 focus-within:border-blue-700 focus-within:text-white sm:text-base md:text-lg">
               Start Now
             </Link>
           </div>

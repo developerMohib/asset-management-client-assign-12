@@ -8,6 +8,7 @@ import About from "./HomeComp/About/About";
 import Banner from "./HomeComp/Banner/Banner";
 import Blog from "./HomeComp/Blog/Blog";
 import Calender from "./HomeComp/Calender/Calender";
+import Categories from "./HomeComp/categories/Categories";
 import EmRequPen from "./HomeComp/EmRequPen/EmRequPen";
 import Event from "./HomeComp/Event/Event";
 import HrPending from "./HomeComp/HrPending/HrPending";
@@ -58,6 +59,7 @@ const Home = () => {
         // if user not login
         <div>
           <Banner />
+          <Categories/>
           <About />
           <Packages />
           <Blog />

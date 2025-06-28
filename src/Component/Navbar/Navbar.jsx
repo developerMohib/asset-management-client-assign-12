@@ -201,9 +201,9 @@ const Navbar = () => {
             className=" mx-1 p-1 lg:hidden"
           >
             {open === true ? (
-              <RestaurantMenuIcon></RestaurantMenuIcon>
+              <RestaurantMenuIcon/>
             ) : (
-              <MenuIcon></MenuIcon>
+              <MenuIcon/>
             )}
           </div>
           {open && (
@@ -226,7 +226,7 @@ const Navbar = () => {
                 <img className="w-10 mr-2" src={logo} alt="" />
               )}
               <h1 className="font-extrabold">
-                <span className="text-blue-600">CORPORATE</span>
+                <span className="text-primary">CORPORATE</span>
                 <br />
                 SOLUTION
               </h1>
