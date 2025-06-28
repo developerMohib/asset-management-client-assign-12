@@ -192,7 +192,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-50">
+    <div className="navbar sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -224,7 +224,7 @@ const Navbar = () => {
               {user && loginUser ? (
                 <img className="w-10 mr-2" src={loginUser.companyLogo} alt="" />
               ) : (
-                <img className="w-10 mr-2" src={logo} alt="" />
+                <img className="w-10 mr-2" src={logo} alt="logo" />
               )}
               <h1 className="font-extrabold">
                 <span className="text-primary">CORPORATE</span>

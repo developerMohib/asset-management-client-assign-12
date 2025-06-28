@@ -9,13 +9,20 @@
     font-family: "Bai Jamjuree", sans-serif;
   }
   :root {
-    --logo-primary-color: rgb(37, 99, 235); /* logo text color -- text-primary */
+    --logo-primary-color: rgb(37, 99, 235); /* logo text color -- blue-800 */
     --text-primary-color:rgb(17, 24, 39);  /* text color -- black*/
-    --text-secondary-color:rgb(0,0,0);  /* text color -- black*/
-    --bg-color : rgb();
-    --border-color: rgb();
+    --text-secondary-color:rgb(222, 222, 222);  /* text color -- black*/
+    --text-ternary-color: rgb(97, 97, 97);
+    --bg-color : rgb(31,41,55); /* bg color -- gray-800*/
+    --bg-secondary-color : rgb(229, 57, 53); 
+    --border-color: rgb(158, 158, 158);  /*border color -- gray-500 */
+    --border-second-color: rgb(25, 118, 210);  /*border color -- gray-500 */
   }
   [data-theme="dark"] {
     --logo-primary-color: rgb(37, 99, 235); /* logo text color -- text-primary */ 
+    --text-primary-color:rgb(237, 237, 237);  /* text color -- gray-200*/
+    --text-secondary-color : rgb(17, 24, 39);
+    --text-ternary-color: rgb(196, 196, 196);
+    --bg-color : rgb(220, 220, 220);
   }
 }
