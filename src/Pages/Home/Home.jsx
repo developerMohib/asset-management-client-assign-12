@@ -14,6 +14,7 @@ import Event from "./HomeComp/Event/Event";
 import HrPending from "./HomeComp/HrPending/HrPending";
 import HrRequItem from "./HomeComp/HrRequItem/HrRequItem";
 import Notice from "./HomeComp/Notice/Notice";
+import OfferSection from "./HomeComp/offerSection/OfferSection";
 import Packages from "./HomeComp/Packages/Packages";
 import MyPieChart from "./HomeComp/PieChart/MyPieChart";
 import Subscription from "./HomeComp/Sebscription/Subscription";
@@ -60,6 +61,7 @@ const Home = () => {
         <div>
           <Banner />
           <Categories/>
+          <OfferSection />
           <About />
           <Packages />
           <Blog />

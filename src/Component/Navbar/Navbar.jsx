@@ -161,6 +161,7 @@ const Navbar = () => {
       >
         Home
       </NavLink>
+      {/* Can i add here the maga menu */}
       <NavLink
         className={({ isActive }) =>
           isActive ? "text-lg isActive" : "text-lg notActive"
