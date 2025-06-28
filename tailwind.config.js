@@ -10,7 +10,8 @@ export default {
         'roboto': ['Roboto', 'sans-serif'],
       },
       colors: {
-        primary : 'var(--logo-primary-color)'
+        primary : 'var(--logo-primary-color)',  // blue-600
+        textPri : 'var(--text-primary-color)', // black
       }
     },
   },

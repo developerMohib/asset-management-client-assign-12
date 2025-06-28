@@ -10,7 +10,7 @@
   }
   :root {
     --logo-primary-color: rgb(37, 99, 235); /* logo text color -- text-primary */
-    --text-primary-color:rgb(0,0,0);  /* text color -- black*/
+    --text-primary-color:rgb(17, 24, 39);  /* text color -- black*/
     --text-secondary-color:rgb(0,0,0);  /* text color -- black*/
     --bg-color : rgb();
     --border-color: rgb();

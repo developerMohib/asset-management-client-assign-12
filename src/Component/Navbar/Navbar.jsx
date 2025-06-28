@@ -8,6 +8,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import logo from "../../assets/corporate-solution.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import ThemeController from "../themeController/ThemeController";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -277,6 +278,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <ThemeController />
       <Tooltip id="my-tooltip" />
     </div>
   );

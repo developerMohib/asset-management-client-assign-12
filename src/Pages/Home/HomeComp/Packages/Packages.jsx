@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const Packages = () => {
   return (
-    <section className="py-6 text-gray-900 bg-white sm:py-12 md:py-16">
+    <section className="py-6 text-textPri bg-white sm:py-12 md:py-16">
       <div className="box-border px-4 mx-auto border-solid sm:px-6 md:px-6 lg:px-0 max-w-7xl">
-        <div className="flex flex-col items-center text-center text-gray-900 border-0 border-gray-200">
-          <h2 className="box-border m-0 text-3xl font-semibold leading-tight tracking-tight text-black border-solid sm:text-4xl md:text-5xl mb-3">
+        <div className="flex flex-col items-center text-center text-textPri border-0 border-gray-200">
+          <h2 className="box-border m-0 text-3xl font-semibold leading-tight tracking-tight text-textPri border-solid sm:text-4xl md:text-5xl mb-3">
             Simple, Transparent Pricing
           </h2>
         </div>
