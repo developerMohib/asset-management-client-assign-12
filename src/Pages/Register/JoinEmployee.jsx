@@ -23,7 +23,7 @@ const JoinEmployee = () => {
   const handleCheckboxChange = (e) => {
     setAffaliate(e.target.checked);
   };
-  console.log("true false ", affaliate);
+  
   const {
     register,
     formState: { errors },
@@ -100,17 +100,17 @@ const JoinEmployee = () => {
   return (
     <div>
       <HelmetTitle routeName={"Join Employee"}> </HelmetTitle>
-      <div className="md:flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 md:py-10">
+      <div className="md:flex flex-wrap min-h-screen w-full content-center justify-center md:py-10">
         <div className="mt-3 w-full">
-          <p className="text-center font-bold text-3xl mb-10 ">
+          <p className="text-center font-bold text-3xl mb-10 text-textPri">
             Please Register as an Employee{" "}
           </p>
         </div>
         <div className="md:flex shadow-md w-full">
-          <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white md:w-2/3 md:h-full md:p-5 px-10">
+          <div className="flex flex-wrap content-center justify-center rounded-l-md md:w-2/3 md:h-full md:p-5 px-10">
             <div className="">
               <h1 className="text-xl font-semibold">Welcome back</h1>
-              <small className="text-gray-400">
+              <small className="text-textPri">
                 Welcome back! Please enter your details
               </small>
 
@@ -127,7 +127,7 @@ const JoinEmployee = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your name"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     {errors.name?.type === "required" && (
                       <p className="text-red-600">Name is required</p>
@@ -148,7 +148,7 @@ const JoinEmployee = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     {errors.email?.type === "required" && (
                       <p className="text-red-600">Email is required</p>
@@ -174,7 +174,7 @@ const JoinEmployee = () => {
                       type={showPass ? "password" : "text"}
                       name="password"
                       placeholder="*****"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     <span
                       onClick={() => setShowPass(!showPass)}
@@ -212,7 +212,7 @@ const JoinEmployee = () => {
                       {...register("date", { required: true })}
                       type="date"
                       name="date"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                   </div>
                 </div>
@@ -228,7 +228,7 @@ const JoinEmployee = () => {
                       name="photo"
                       type="file"
                       accept="image/*"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                   </div>
                   {/*Company logo */}
@@ -260,7 +260,7 @@ const JoinEmployee = () => {
                           name="logo"
                           type="file"
                           accept="image/*"
-                          className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                          className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                         />
                       </div>
                     )}
@@ -269,12 +269,12 @@ const JoinEmployee = () => {
                 {/* Submit button */}
                 <div className="mb-3">
                   <input
-                    className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
+                    className={`mb-1.5 block w-full text-center text-white bg-primary hover:bg-btnHover px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
                     value="Sign up as an employee"
                   />
-                  <GoogleLogin></GoogleLogin>
-                  <FacebookLogin> </FacebookLogin>
+                  <GoogleLogin />
+                  <FacebookLogin />
                 </div>
               </form>
 

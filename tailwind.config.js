@@ -18,6 +18,7 @@ export default {
         bgSec : 'var(--bg-secondary-color)', // red
         borderPri : 'var(--border-color)', // gray
         borderSec : 'var(--border-second-color)',
+        btnHover:'var(--btn-hover)',  // green
       }
     },
   },

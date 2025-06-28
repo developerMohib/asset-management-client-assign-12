@@ -123,7 +123,7 @@ const JoinManager = () => {
   return (
     <div>
       <HelmetTitle routeName={"Join Manager"}> </HelmetTitle>
-      <div className="flex flex-wrap min-h-screen w-full content-center justify-center pt-10 bg-[#f4f3f0]">
+      <div className="flex flex-wrap min-h-screen w-full content-center justify-center pt-10">
         <div className="mt-3 w-full">
           <p className="text-center font-bold text-3xl mb-10 ">Welcome back </p>
         </div>
@@ -133,7 +133,7 @@ const JoinManager = () => {
               <h1 className="text-xl font-semibold">
                 Please Register as a Manager
               </h1>
-              <small className="text-gray-400">
+              <small className="text-textPri">
                 Welcome back! Please enter your details
               </small>
 
@@ -149,7 +149,7 @@ const JoinManager = () => {
                       type="text"
                       name="name"
                       placeholder="Enter your name"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     {errors.name?.type === "required" && (
                       <p className="text-red-600">Name is required</p>
@@ -171,7 +171,7 @@ const JoinManager = () => {
                       type="email"
                       name="email"
                       placeholder="Enter your email"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     {errors.email?.type === "required" && (
                       <p className="text-red-600">Email is required</p>
@@ -196,7 +196,7 @@ const JoinManager = () => {
                       type={showPass ? "password" : "text"}
                       name="password"
                       placeholder="*****"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     <span
                       onClick={() => setShowPass(!showPass)}
@@ -235,7 +235,7 @@ const JoinManager = () => {
                       {...register("date", { required: true })}
                       type="date"
                       name="date"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                   </div>
                 </div>
@@ -250,7 +250,7 @@ const JoinManager = () => {
                       type="text"
                       name="companyName"
                       placeholder="Enter Company name"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                     {errors.companyName?.type === "required" && (
                       <p className="text-red-600">Company Name is required</p>
@@ -269,7 +269,7 @@ const JoinManager = () => {
                     <select
                       value={value}
                       onChange={handleSelectChange}
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     >
                       <option value="">Select a Package </option>
                       <option value="5">5 Members for $5</option>
@@ -291,14 +291,14 @@ const JoinManager = () => {
                       name="photo"
                       type="file"
                       accept="image/*"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                   </div>
                   {/* Company logo */}
                   <div className="mb-3 md:w-1/2">
                     <label className="mb-2 block text-xs font-semibold">
                       Logo{" "}
-                      <span className="font-semibold text-sm text-gray-400">
+                      <span className="font-semibold text-sm text-textPri">
                         {" "}
                         (if you have){" "}
                       </span>
@@ -308,7 +308,7 @@ const JoinManager = () => {
                       name="logo"
                       type="file"
                       accept="image/*"
-                      className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                      className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                     />
                   </div>
                 </div>
@@ -316,7 +316,7 @@ const JoinManager = () => {
                 {/* Submit */}
                 <div className="mb-3">
                   <input
-                    className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
+                    className={`mb-1.5 block w-full text-center text-white bg-primary hover:bg-btnHover px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
                     value="Sign up as a manager"
                   />

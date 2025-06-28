@@ -17,6 +17,7 @@
     --bg-secondary-color : rgb(229, 57, 53); 
     --border-color: rgb(158, 158, 158);  /*border color -- gray-500 */
     --border-second-color: rgb(25, 118, 210);  /*border color -- gray-500 */
+    --btn-hover :rgb(76, 175, 80);
   }
   [data-theme="dark"] {
     --logo-primary-color: rgb(37, 99, 235); /* logo text color -- text-primary */ 
