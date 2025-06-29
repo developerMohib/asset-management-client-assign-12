@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const GoogleLogin = () => {
   const { loginWithGoogle } = useAuth();
-    const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";

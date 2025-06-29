@@ -34,6 +34,21 @@ const Login = () => {
         console.log(error);
       });
   };
+
+  // login with google
+  // const he = () =>{
+  //   loginWithGoogle()
+  //   .then((result)=>{
+  //     console.log(result.user)
+  //     notifyLogin()
+  //     navigate( location.state ? location.state : '/')
+  //   })
+  //   .catch((error)=>{
+  //     console.log(error)
+  //   })
+  // }
+
+
   return (
     <div>
       <HelmetTitle routeName={"Login"}></HelmetTitle>
@@ -94,8 +109,8 @@ const Login = () => {
                     type="submit"
                     value="Sign in"
                   />
-                  <GoogleLogin></GoogleLogin>
-                  <FacebookLogin></FacebookLogin>
+                  <GoogleLogin />
+                  <FacebookLogin />
                 </div>
               </form>
 
