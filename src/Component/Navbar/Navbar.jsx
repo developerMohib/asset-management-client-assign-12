@@ -12,10 +12,11 @@ import ThemeController from "../themeController/ThemeController";
 import { FaUser } from "react-icons/fa";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  // const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
+  console.log('adimin', user)
   const [loginUser, setLoginUser] = useState({});
+  console.log('admin', loginUser)
   const email = user?.email;
 
   useEffect(() => {
@@ -181,6 +182,28 @@ const Navbar = () => {
       </NavLink>
     </>
   );
+
+    const adminNav = (
+    <>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "text-xl isActive" : "text-xl notActive"
+        }
+        to=""
+      >
+        Home
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? "text-lg isActive" : "text-lg notActive"
+        }
+        to="dashboard"
+      >
+        dashboard
+      </NavLink>
+    </>
+  );
+
   const navLinks = (
     <>
       {user
@@ -188,7 +211,7 @@ const Navbar = () => {
           ? managerNav
           : loginUser?.status === "employee"
           ? employeeNav
-          : employeeNav
+          : adminNav
         : normalNav}
     </>
   );

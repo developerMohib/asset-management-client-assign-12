@@ -12,16 +12,17 @@ import toast from "react-hot-toast";
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [passValue, setPassValue] = useState("");
+  const [email, setEmail] = useState("");
   const { loginWithEmailPass } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const notifyLogin = () => toast.success("Login successfully");
 
-  const handleLogin = (e) => {
+  const handleLogin = (e, demoEmail, demoPassword) => {
     e.preventDefault();
     const value = e.target;
-    const email = value.email.value;
-    const password = value.password.value;
+    const email = demoEmail || value.email.value;
+    const password = demoPassword || value.password.value;
 
     loginWithEmailPass(email, password)
       .then(() => {
@@ -36,7 +37,7 @@ const Login = () => {
 
   return (
     <div>
-      <HelmetTitle routeName={"Login"}></HelmetTitle>
+      <HelmetTitle routeName={"Login"} />
 
       <div className="md:flex flex-wrap min-h-screen w-full content-center justify-center py-5">
         <div className="mt-3 w-full">
@@ -61,6 +62,8 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
+                    value={email}
+                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                     className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                   />
@@ -75,7 +78,7 @@ const Login = () => {
                     onChange={(e) => setPassValue(e.target.value)}
                     name="password"
                     placeholder="*****"
-
+                    value={passValue}                    
                     className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                   />
                   {passValue.length > 0 && (
@@ -99,6 +102,16 @@ const Login = () => {
                     type="submit"
                     value="Sign in"
                   />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setEmail("admin@demo.com");
+                      setPassValue("Abc@12345");
+                    }}
+                    className="mb-1.5 block w-full text-center text-white bg-gray-600 hover:bg-gray-700 px-2 py-1.5 rounded-md cursor-pointer"
+                  >
+                    Demo Admin
+                  </button>
                   <GoogleLogin />
                   <FacebookLogin />
                 </div>

@@ -2,14 +2,16 @@
 ## Corporate Management System
 
 ## Web application admin
-- admin-user-name : mohibullah mohim
+- admin-user-name : admin@demo.com
 - admin-password : Abc@12345
 
 ## [Live Link this application](https://manage-asset-b4cd2.web.app/)
 [click-here](https://manage-asset-b4cd2.web.app/) or [https://manage-asset-b4cd2.web.app/]
 
+## Perspective 
 ## About this application 
 ## Main Features
+
 - Any company can use this web application to manage their corporate business.
 - Allows users to request assets with features to approve, cancel, and track the status of their requests.
 - Manages both returnable and non-returnable asset types, ensuring proper categorization and handling.
