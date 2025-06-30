@@ -24,9 +24,8 @@ const EmRequPen = () => {
   );
 
   return (
-    <div>
       <div className="overflow-x-auto">
-        <h1 className="font-semibold text-center my-5">
+        <h1 className="font-semibold text-center text-textPri my-5">
           My request pending products{" "}
         </h1>
         {pendingProd.length === 0 ? (
@@ -94,7 +93,6 @@ const EmRequPen = () => {
           </>
         )}
       </div>
-    </div>
   );
 };
 

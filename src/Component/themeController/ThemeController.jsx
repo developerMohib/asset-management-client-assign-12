@@ -26,7 +26,7 @@ const ThemeController = () => {
     }
     return (
         <div>
-            <button onClick={toggleTheme}> {darkMode ? <MdDarkMode className="text-2xl" /> : <FiSun className="text-2xl" />} </button>
+            <button onClick={toggleTheme}> {darkMode ? <MdDarkMode className="text-2xl text-textPri" /> : <FiSun className="text-2xl text-textPri" />} </button>
         </div>
     );
 };

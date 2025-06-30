@@ -3,7 +3,7 @@ import Root from "../Root/Root";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import About from "../Pages/About/About";
-import Admin from "../Pages/Admin/Admin"; 
+import Dashboard from "../Pages/dashboard/Dashboard";
 import Profile from "../Pages/Profile/Profile";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import Payment from "../Pages/Payment/Payment";
@@ -19,88 +19,94 @@ import MyEmployee from "../Pages/Manager/MyEmployee/MyEmployee";
 import AllRequest from "../Pages/Manager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/Manager/AddEmployee/AddEmployee";
 import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
+import ProductDetails from "../Component/productDetails/ProductDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root> </Root>,
+    element: <Root/>,
     errorElement: <ErrorPage />,
     children: [
       //---------------------------- GENERAL USER  -------------------------
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/join-employee",
-        element: <JoinEmployee></JoinEmployee>,
+        element: <JoinEmployee/>,
       },
       {
         path: "/join-manager",
-        element: <JoinManager></JoinManager>,
+        element: <JoinManager />,
       },
       {
         path: "/login",
-        element: <Login> </Login>,
+        element: <Login />,
       },
       {
         path: "/about-us",
-        element: <About> </About>,
+        element: <About/>,
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: <Profile/>,
+      },
+      {
+        path: "/details/:id",
+        element: <ProductDetails />,
       },
       //---------------------------- E M P L O Y E E  -------------------------
       {
         path: "/my-assets",
-        element: <MyAssets></MyAssets>,
+        element: <MyAssets/>,
       },
       {
         path: "/request-assets",
-        element: <RequestAssets> </RequestAssets>,
+        element: <RequestAssets/>,
       },
       {
         path: "/my-team",
-        element: <MyTeam></MyTeam>,
+        element: <MyTeam/>,
       },
       //---------------------------- M A N A G E R  -------------------------
       {
         path: "/add-asset",
-        element: <AddAsset></AddAsset>,
+        element: <AddAsset/>,
       },
       {
         path: "/add-employee",
-        element: <AddEmployee> </AddEmployee>,
+        element: <AddEmployee/>,
       },
       {
         path: "/all-request",
-        element: <AllRequest></AllRequest>,
+        element: <AllRequest/>,
       },
       {
         path: "/asset-list",
-        element: <AssesList></AssesList>,
+        element: <AssesList/>,
       },
       {
         path: "/add-team",
-        element: <AddTeam></AddTeam>,
+        element: <AddTeam/>,
       },
       {
         path: "/my-employee",
-        element: <MyEmployee></MyEmployee>,
+        element: <MyEmployee/>,
       },
       {
         path: "/payment",
-        element: <Payment></Payment>,
+        element: <Payment/>,
       },
       {
         path: "/update/package",
-        element: <AddMore></AddMore>,
+        element: <AddMore/>,
       },
     ],
   },
   {
     path: 'dashboard',
-    element: <Admin></Admin> ,
+    // element: <Admin/> ,
+    element :<Dashboard />
   },
 ]);

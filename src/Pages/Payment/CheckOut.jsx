@@ -18,7 +18,6 @@ const CheckOut = ({ clientSecret }) => {
     if (!stripe) {
       return;
     }
-    console.log("client secret", clientSecret);
     if (!clientSecret) {
       return;
     }
@@ -40,7 +39,7 @@ const CheckOut = ({ clientSecret }) => {
       card,
     });
     if (error) {
-      console.log("payment method error", error);
+      // console.log("payment method error", error);
       setErrorMessage(error.message);
     } else {
       console.log("payment method", paymentMethod);

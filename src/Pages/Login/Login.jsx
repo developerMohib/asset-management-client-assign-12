@@ -8,12 +8,11 @@ import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
 import FacebookLogin from "../../Component/SocialLogin/FacebookLogin/FacebookLogin";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
-// import { AuthCustomContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
+  const [passValue, setPassValue] = useState("");
   const { loginWithEmailPass } = useAuth();
-  // const { loginWithEmailPass} = useContext(AuthCustomContext)
   const navigate = useNavigate();
   const location = useLocation();
   const notifyLogin = () => toast.success("Login successfully");
@@ -23,7 +22,6 @@ const Login = () => {
     const value = e.target;
     const email = value.email.value;
     const password = value.password.value;
-    // console.log(email, password, loginWithEmailPass)
 
     loginWithEmailPass(email, password)
       .then(() => {
@@ -32,34 +30,21 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Login failed")
       });
   };
-
-  // login with google
-  // const he = () =>{
-  //   loginWithGoogle()
-  //   .then((result)=>{
-  //     console.log(result.user)
-  //     notifyLogin()
-  //     navigate( location.state ? location.state : '/')
-  //   })
-  //   .catch((error)=>{
-  //     console.log(error)
-  //   })
-  // }
-
 
   return (
     <div>
       <HelmetTitle routeName={"Login"}></HelmetTitle>
 
-      <div className="md:flex flex-wrap min-h-screen w-full content-center justify-center bg-gray-200 py-5">
+      <div className="md:flex flex-wrap min-h-screen w-full content-center justify-center py-5">
         <div className="mt-3 w-full">
           <p className="text-center font-bold text-3xl mb-5">Please Sign in </p>
         </div>
         <div className="md:flex shadow-md p-2 ">
           <div
-            className="flex flex-wrap content-center justify-center rounded-l-md bg-white"
+            className="flex flex-wrap content-center justify-center rounded-l-md"
             style={{ width: "24rem", height: "32rem" }}
           >
             <div className="w-72">
@@ -77,7 +62,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
-                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+                    className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-textPri"
                   />
                 </div>
 
@@ -87,25 +72,30 @@ const Login = () => {
                   </label>
                   <input
                     type={showPass ? "text" : "password"}
+                    onChange={(e) => setPassValue(e.target.value)}
                     name="password"
                     placeholder="*****"
-                    className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
+
+                    className="block w-full rounded-md border border-borderPri focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
                   />
-                  <span
-                    onClick={() => setShowPass(!showPass)}
-                    className="absolute right-1 top-1/2 cursor-pointer"
-                  >
-                    {showPass === false ? (
-                      <IoMdEye className="text-2xl" />
-                    ) : (
-                      <IoEyeOff className="text-2xl" />
-                    )}
-                  </span>
+                  {passValue.length > 0 && (
+                    <span
+                      onClick={() => setShowPass(!showPass)}
+                      className="absolute right-1 top-1/2 cursor-pointer"
+                    >
+                      {showPass ? (
+                        <IoEyeOff className="text-2xl" />
+                      ) : (
+                        <IoMdEye className="text-2xl" />
+                      )}
+                    </span>
+                  )}
+
                 </div>
                 {/* Third Party Login  */}
                 <div className="mb-3">
                   <input
-                    className={`mb-1.5 block w-full text-center text-white bg-blue-600 hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
+                    className={`mb-1.5 block w-full text-center text-white bg-primary hover:bg-green-500 px-2 py-1.5 rounded-md cursor-pointer`}
                     type="submit"
                     value="Sign in"
                   />

@@ -16,7 +16,6 @@ const JoinManager = () => {
   const [price, setPrice] = useState(0);
   const [showPass, setShowPass] = useState(true);
   const { createUser, updateProfileUser } = useAuth();
-  // const [clientSecret, setClientSecret] = useState();
 
   const handleSelectChange = (e) => {
     const newValue = e.target.value;
@@ -38,8 +37,6 @@ const JoinManager = () => {
       setPrice(newPrice);
     }
   };
-  console.log("price", price);
-  // console.log("clientSecret", clientSecret);
 
   const {
     register,

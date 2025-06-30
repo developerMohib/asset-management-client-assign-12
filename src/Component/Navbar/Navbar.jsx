@@ -9,9 +9,10 @@ import logo from "../../assets/corporate-solution.png";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import ThemeController from "../themeController/ThemeController";
-
+import { FaUser } from "react-icons/fa";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  // const [show, setShow] = useState(false)
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
   const [loginUser, setLoginUser] = useState({});
@@ -211,7 +212,7 @@ const Navbar = () => {
           {open && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow text-textPri rounded-box w-52"
             >
               {" "}
               {navLinks}
@@ -227,7 +228,7 @@ const Navbar = () => {
               ) : (
                 <img className="w-10 mr-2" src={logo} alt="logo" />
               )}
-              <h1 className="font-extrabold">
+              <h1 className="font-extrabold text-textPri">
                 <span className="text-primary">CORPORATE</span>
                 <br />
                 SOLUTION
@@ -238,10 +239,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end md:w-[105%]">
         <div className=" md:visible md:block hidden">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+          <ul className="menu menu-horizontal px-1 text-textPri">{navLinks}</ul>
         </div>
         <div>
-          <div className="flex">
+          <div className="flex items-center">
             {user ? (
               <>
                 <div className="flex">
@@ -266,12 +267,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <div>
+                <div className="border border-borderPri rounded-full p-2">
                   <Link to="/login">
-                    <button className="btn btn-outline text-xl font-normal ">
-                      {" "}
-                      Login
-                    </button>{" "}
+                    <FaUser className="text-textPri"/>
                   </Link>
                 </div>
               </>
