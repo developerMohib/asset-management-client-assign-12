@@ -20,11 +20,12 @@ import AllRequest from "../Pages/Manager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/Manager/AddEmployee/AddEmployee";
 import RequestAssets from "../Pages/Employee/RequestAssets/RequestAssets";
 import ProductDetails from "../Component/productDetails/ProductDetails";
+import Hometwo from "../Pages/Home/Hometwo";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       //---------------------------- GENERAL USER  -------------------------
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/join-employee",
-        element: <JoinEmployee/>,
+        element: <JoinEmployee />,
       },
       {
         path: "/join-manager",
@@ -46,11 +47,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/about-us",
-        element: <About/>,
+        element: <About />,
       },
       {
         path: "/profile",
-        element: <Profile/>,
+        element: <Profile />,
       },
       {
         path: "/details/:id",
@@ -59,54 +60,57 @@ export const router = createBrowserRouter([
       //---------------------------- E M P L O Y E E  -------------------------
       {
         path: "/my-assets",
-        element: <MyAssets/>,
+        element: <MyAssets />,
       },
       {
         path: "/request-assets",
-        element: <RequestAssets/>,
+        element: <RequestAssets />,
       },
       {
         path: "/my-team",
-        element: <MyTeam/>,
+        element: <MyTeam />,
       },
       //---------------------------- M A N A G E R  -------------------------
       {
         path: "/add-asset",
-        element: <AddAsset/>,
+        element: <AddAsset />,
       },
       {
         path: "/add-employee",
-        element: <AddEmployee/>,
+        element: <AddEmployee />,
       },
       {
         path: "/all-request",
-        element: <AllRequest/>,
+        element: <AllRequest />,
       },
       {
         path: "/asset-list",
-        element: <AssesList/>,
+        element: <AssesList />,
       },
       {
         path: "/add-team",
-        element: <AddTeam/>,
+        element: <AddTeam />,
       },
       {
         path: "/my-employee",
-        element: <MyEmployee/>,
+        element: <MyEmployee />,
       },
       {
         path: "/payment",
-        element: <Payment/>,
+        element: <Payment />,
       },
       {
         path: "/update/package",
-        element: <AddMore/>,
+        element: <AddMore />,
       },
     ],
   },
   {
     path: 'dashboard',
-    // element: <Admin/> ,
-    element :<Dashboard />
+    element: <Dashboard />
+  },
+  {
+    path: "home",
+    element: <Hometwo />,
   },
 ]);

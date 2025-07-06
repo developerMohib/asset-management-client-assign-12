@@ -14,10 +14,12 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logOut } = useAuth();
-  console.log('adimin', user)
   const [loginUser, setLoginUser] = useState({});
-  console.log('admin', loginUser)
+
+  console.log('user', user)
+  console.log('login user', loginUser)
   const email = user?.email;
+  console.log('email', email)
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -183,16 +185,8 @@ const Navbar = () => {
     </>
   );
 
-    const adminNav = (
+  const adminNav = (
     <>
-      <NavLink
-        className={({ isActive }) =>
-          isActive ? "text-xl isActive" : "text-xl notActive"
-        }
-        to=""
-      >
-        Home
-      </NavLink>
       <NavLink
         className={({ isActive }) =>
           isActive ? "text-lg isActive" : "text-lg notActive"
@@ -206,13 +200,13 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      {user
-        ? loginUser?.status === "manager"
-          ? managerNav
-          : loginUser?.status === "employee"
-          ? employeeNav
-          : adminNav
-        : normalNav}
+      {(loginUser
+        ? {
+          manager: managerNav,
+          employee: employeeNav,
+          admin: adminNav,
+        }[loginUser.status] || normalNav
+        : normalNav)}
     </>
   );
 
@@ -227,9 +221,9 @@ const Navbar = () => {
             className=" mx-1 p-1 lg:hidden"
           >
             {open === true ? (
-              <RestaurantMenuIcon/>
+              <RestaurantMenuIcon />
             ) : (
-              <MenuIcon/>
+              <MenuIcon />
             )}
           </div>
           {open && (
@@ -292,7 +286,7 @@ const Navbar = () => {
               <>
                 <div className="border border-borderPri rounded-full p-2">
                   <Link to="/login">
-                    <FaUser className="text-textPri"/>
+                    <FaUser className="text-textPri" />
                   </Link>
                 </div>
               </>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import BacktoTop from "../../Component/BacktoTop/BacktoTop";
 import HelmetTitle from "../../Component/HelmetTitle/HelmetTitle";
 import NotAffaliate from "../../Component/NotAffaliate/NotAffaliate";
@@ -19,12 +20,20 @@ import Packages from "./HomeComp/Packages/Packages";
 import MyPieChart from "./HomeComp/PieChart/MyPieChart";
 import Subscription from "./HomeComp/Sebscription/Subscription";
 import Testominal from "./HomeComp/Testominal/Testominal";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { user, loading } = useAuth();
   const { loginUser, isLoading } = useUser();
 
-  console.log(loginUser?.status, "just for testing");
+  const navigate = useNavigate();
+
+  console.log('loginUser',loginUser)
+  useEffect(() => {
+    if (loginUser?.status === 'admin') {
+      navigate('dashboard');
+    }
+  }, [loginUser, navigate]);
 
   if (loading || isLoading) {
     return <Spinner />;
@@ -60,7 +69,7 @@ const Home = () => {
         // if user not login
         <div>
           <Banner />
-          <Categories/>
+          <Categories />
           <OfferSection />
           <About />
           <Packages />
