@@ -12,15 +12,25 @@ import { RxCross1 } from "react-icons/rx";
 import logo from "../../assets/corporate-solution.png";
 import { Link, NavLink } from "react-router-dom";
 import { CiHeart } from "react-icons/ci";
-
+import { TbLayoutDashboard } from "react-icons/tb";
+import { MdManageAccounts } from "react-icons/md";
 
 const ResponsiveNavbar = () => {
     const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-    const [logUser] = useState(false);
+    const [logUser] = useState(true);
     const accountMenuRef = useRef(null);
     const mobileMenuRef = useRef(null);
+    const userRole = "guest";
+
+    const getDashboardLink = (role) => {
+        if (role === "admin") return "/admin-dashboard";
+        if (role === "manager") return "/manager-dashboard";
+        if (role === "employee") return "/employee-dashboard";
+        return "/dashboard";
+    }
+
 
     // Close dropdowns on outside click
     useEffect(() => {
@@ -159,16 +169,17 @@ const ResponsiveNavbar = () => {
                             />
                         </button>
 
-                        {accountMenuOpen && (
+                        {/* {accountMenuOpen && (
                             <div className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
                                 {[
-                                    { icon: <FiUser />, text: "View Profile" },
-                                    { icon: <IoSettingsOutline />, text: "Settings" },
-                                    { icon: <FiUser />, text: "Manage Profile" }
+                                    { icon: <TbLayoutDashboard />, text: "Dashboard", link: "/dashboard" },
+                                    { icon: <FiUser />, text: "View Profile", link: "/view-profile" },
+                                    { icon: <IoSettingsOutline />, text: "Settings", link: "/settings" },
+                                    { icon: <MdManageAccounts />, text: "Manage Profile", link: "/manage-profile" }
                                 ].map((item, index) => (
                                     <Link
                                         key={index}
-                                        to="#"
+                                        to={item.link}
                                         className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
                                     >
                                         <span className="mr-2">{item.icon}</span>
@@ -176,15 +187,87 @@ const ResponsiveNavbar = () => {
                                     </Link>
                                 ))}
                                 <div className="border-t border-borderTer my-1"></div>
-                                <Link
-                                    to="#"
-                                    className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50"
+                                <button
+                                    className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50 w-full"
                                 >
                                     <span className="mr-2"><TbLogout2 /></span>
                                     Logout
-                                </Link>
+                                </button>
+                            </div>
+                        )} */}
+
+
+                        {accountMenuOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
+
+                                {/* ROLE-BASED DASHBOARD */}
+                                {userRole !== "guest" && (
+                                    <>
+                                    <div className="mx-auto text-center py-2 border-b border-borderPri">
+                                        <h1 className="font-semibold"> User Email </h1>
+                                    </div>
+                                        <Link
+                                            to={getDashboardLink(userRole)}
+                                            className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
+                                        >
+                                            <span className="mr-2"><TbLayoutDashboard /></span> Dashboard
+                                        </Link>
+                                        <Link
+                                            to={getDashboardLink(userRole)} className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen">
+                                            <span className="mr-2"><FiUser /></span> View Profile
+                                        </Link>
+                                        <Link
+                                            to={getDashboardLink(userRole)} className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen">
+                                            <span className="mr-2"><IoSettingsOutline /></span> Settings
+                                        </Link>
+                                        {userRole === "admin" && (<Link to={getDashboardLink(userRole)} className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen">
+                                            <span className="mr-2"><MdManageAccounts /></span> Manage Profile
+                                        </Link>)}
+                                    </>
+                                )}
+
+                                {/* GUEST MENU */}
+                                {userRole === "guest" && (
+                                    <>
+                                    
+                                    <div className="mx-auto text-center py-2 border-b border-borderPri">
+                                        <h1 className="font-semibold"> User Email </h1>
+                                    </div>
+
+                                        <Link
+                                            to={getDashboardLink(userRole)}
+                                            className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
+                                        >
+                                            <span className="mr-2"><TbLayoutDashboard /></span> Dashboard
+                                        </Link>
+                                        <Link
+                                            to={getDashboardLink(userRole)} className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen">
+                                            <span className="mr-2"><FiUser /></span> View Profile
+                                        </Link>
+                                        <Link
+                                            to={getDashboardLink(userRole)} className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen">
+                                            <span className="mr-2"><IoSettingsOutline /></span> Settings
+                                        </Link>
+                                    </>
+                                )}
+
+                                <div className="border-t border-borderTer my-1"></div>
+
+                                {/* LOGOUT */}
+                                {userRole && (
+                                    <button
+                                        onClick={() => {
+                                            localStorage.removeItem("user");
+                                            window.location.reload();
+                                        }}
+                                        className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50 w-full"
+                                    >
+                                        <span className="mr-2"><TbLogout2 /></span> Logout
+                                    </button>
+                                )}
                             </div>
                         )}
+
                     </div>
                 ) : (
                     <div className="relative">
@@ -196,16 +279,19 @@ const ResponsiveNavbar = () => {
                             <span className="font-medium">Log in</span>
                         </button>
 
+
                         {accountMenuOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
+                            <div onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+                                aria-expanded={accountMenuOpen} ref={accountMenuRef}
+                                aria-label="Login menu" className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
                                 {[
-                                    { icon: <FiUser />, text: "Login" },
-                                    { icon: <IoSettingsOutline />, text: "Employee Login" },
-                                    { icon: <FiUser />, text: "Manager Login" }
+                                    { icon: <FiUser />, text: "Login", link: "/login" },
+                                    { icon: <IoSettingsOutline />, text: "Register as Employee", link: "login-employee" },
+                                    { icon: <FiUser />, text: "Register as Manager", link: "login-manager" }
                                 ].map((item, index) => (
                                     <Link
                                         key={index}
-                                        to="#"
+                                        to={item.link}
                                         className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
                                     >
                                         <span className="mr-2">{item.icon}</span>
@@ -214,11 +300,11 @@ const ResponsiveNavbar = () => {
                                 ))}
                                 <div className="border-t border-borderTer my-1"></div>
                                 <Link
-                                    to="#"
+                                    to="/admin-login"
                                     className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50"
                                 >
                                     <span className="mr-2"><TbLogout2 /></span>
-                                    Boss Login
+                                    Admin Login
                                 </Link>
                             </div>
                         )}
