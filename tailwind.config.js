@@ -6,9 +6,6 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'roboto': ['Roboto', 'sans-serif'],
-      },
       colors: {
         primary : 'var(--logo-primary-color)',  // blue-600
         textPri : 'var(--text-primary-color)', // black
@@ -19,6 +16,9 @@ export default {
         borderPri : 'var(--border-color)', // gray
         borderSec : 'var(--border-second-color)',
         btnHover:'var(--btn-hover)',  // green
+        myGreen:'var(--green-color)',  // green
+        myBlack:'var(--black-color)',  // black
+        myRed:'var(--red-color)',  // red
       }
     },
   },
