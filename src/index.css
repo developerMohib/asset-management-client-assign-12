@@ -15,12 +15,15 @@
     --text-ternary-color: rgb(97, 97, 97);
     --bg-color : rgb(31,41,55); /* bg color -- gray-800*/
     --bg-secondary-color : rgb(229, 57, 53); 
-    --border-color: rgb(158, 158, 158);  /*border color -- gray-500 */
+    --border-color: rgb(158, 158, 158);  /*border color -- gray-500 rgb(209 213 219) */
     --border-second-color: rgb(25, 118, 210);  /*border color -- gray-500 */
+    --border-ternary-color: rgb(229 231 235);  /*border color -- gray-500 rgb(209 213 219) */
     --btn-hover :rgb(76, 175, 80);
-    --green-color : rgb(34, 197, 94) ;
+    --green-color : rgb(32, 196, 92) ;
     --black-color : rgb(0, 0, 0);
     --red-color : rgb(229, 57, 53);
+    --white-color : rgb(255, 255, 255);
+    --placeholder-color : rgb(122, 136, 154);
   }
   [data-theme="dark"] {
     --logo-primary-color: rgb(37, 99, 235); /* logo text color -- text-primary */ 

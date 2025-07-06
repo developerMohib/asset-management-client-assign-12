@@ -15,10 +15,13 @@ export default {
         bgSec : 'var(--bg-secondary-color)', // red
         borderPri : 'var(--border-color)', // gray
         borderSec : 'var(--border-second-color)',
+        borderTer : 'var(--border-ternary-color)',
         btnHover:'var(--btn-hover)',  // green
         myGreen:'var(--green-color)',  // green
         myBlack:'var(--black-color)',  // black
         myRed:'var(--red-color)',  // red
+        myWhite:'var(--white-color)',  // white
+        placeholder:'var(--placeholder-color)',  // white
       }
     },
   },

@@ -18,7 +18,7 @@ const ResponsiveNavbar = () => {
     const [mobileAboutUsOpen, setMobileAboutUsOpen] = useState(false);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
     const [accountMenuOpen, setAccountMenuOpen] = useState(false);
-    const [logUser] = useState(true);
+    const [logUser] = useState(false);
     const accountMenuRef = useRef(null);
     const mobileMenuRef = useRef(null);
 
@@ -47,48 +47,48 @@ const ResponsiveNavbar = () => {
     ];
 
     return (
-        <nav className="flex items-center justify-between w-full h-auto px-4 py-3 bg-white shadow-sm relative z-50">
+        <nav className="flex items-center justify-between w-full h-auto px-4 py-3 bg-myWhite shadow-sm relative z-50">
             {/* Logo */}
             <Link to="/">
-                <img 
-                    src={logo || 'https://i.ibb.co/0BZfPq6/darklogo.png'} 
-                    alt="logo" 
-                    className="w-10 h-10 object-contain" 
+                <img
+                    src={logo || 'https://i.ibb.co/0BZfPq6/darklogo.png'}
+                    alt="logo"
+                    className="w-10 h-10 object-contain"
                 />
             </Link>
 
             {/* Search option - hidden on small screens */}
             <div className="relative md:flex flex-1 max-w-md mx-4">
                 <input
-                    className="w-full py-2 pr-4 placeholder:text-gray-400 text-gray-800 border border-gray-300 pl-10 rounded-full outline-none focus:border-green-500 focus:ring-1 focus:ring-green-200 transition-all"
-                    placeholder="Search..." 
+                    className="w-full py-2 pr-4 placeholder:text-placeholder text-textPri border border-borderPri pl-10 rounded-full outline-none focus:border-myGreen focus:ring-1 focus:ring-green-200 transition-all"
+                    placeholder="Search..."
                 />
-                <IoIosSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500 text-xl" />
+                <IoIosSearch className="absolute top-1/2 left-3 transform -translate-y-1/2 text-textTer text-xl" />
             </div>
 
             {/* Desktop Navigation */}
-            <ul className="items-center gap-5 text-sm hidden md:flex">
-                <li className="hover:text-green-600 transition-colors">
-                    <Link to='/' className="font-medium text-gray-800 hover:text-green-600">
+            <ul className="items-center gap-5 text-sm hidden md:flex mr-3">
+                <li className="hover:border-b hover:border-myGreen transition-colors pb-1 ">
+                    <Link to='/' className="font-medium text-textPri hover:text-myGreen">
                         Home
                     </Link>
                 </li>
 
                 {/* Category mega menu */}
                 <li className="relative group">
-                    <div className="flex items-center gap-1 cursor-pointer font-medium text-gray-800 hover:text-green-600">
+                    <div className="flex items-center gap-1 cursor-pointer font-medium text-textPri hover:text-myGreen">
                         Categories
-                        <MdKeyboardArrowDown className="text-xl text-gray-500 group-hover:text-green-600 transition-transform group-hover:rotate-180" />
+                        <MdKeyboardArrowDown className="text-xl text-textTer group-hover:text-myGreen transition-transform group-hover:rotate-180" />
                     </div>
 
-                    <div className="absolute hidden group-hover:block left-1/2 transform -translate-x-1/2 top-full mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-100 z-30 p-4">
+                    <div className="absolute hidden group-hover:block left-1/2 transform -translate-x-1/2 top-full w-96 bg-myWhite rounded-lg shadow-xl border border-borderPri z-30 p-4">
                         <div className="grid grid-cols-2 gap-4">
                             <ul className="space-y-2">
                                 {['Company Details', 'Company Location', 'Team Members', 'Office Tour'].map((item, index) => (
                                     <li key={index}>
-                                        <Link 
-                                            to="/" 
-                                            className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition-colors"
+                                        <Link
+                                            to="/"
+                                            className="flex items-center gap-2 text-textPri hover:text-myGreen hover:translate-x-1 duration-150 transition-colors"
                                         >
                                             <BsArrowRight className="text-sm" />
                                             {item}
@@ -97,16 +97,16 @@ const ResponsiveNavbar = () => {
                                 ))}
                             </ul>
 
-                            <div className="space-y-4 border-l border-gray-200 pl-4">
+                            <div className="space-y-4 border-l border-borderTer pl-4">
                                 {[
-                                    { icon: <MdDashboardCustomize className="bg-gray-200 text-gray-800 p-1.5 rounded-full text-2xl" />, text: "Full Customize" },
-                                    { icon: <CgIfDesign className="bg-gray-200 text-gray-800 p-1.5 rounded-full text-2xl" />, text: "Modern Design" },
-                                    { icon: <FaCubesStacked className="bg-gray-200 text-gray-800 p-1.5 rounded-full text-2xl" />, text: "Well Stacktured" }
+                                    { icon: <MdDashboardCustomize className="bg-borderTer text-textPri p-1.5 rounded-full text-3xl" />, text: "Full Customize", link: "/" },
+                                    { icon: <CgIfDesign className="bg-borderTer text-textPri p-1.5 rounded-full text-3xl" />, text: "Modern Design", link: "/" },
+                                    { icon: <FaCubesStacked className="bg-borderTer text-textPri p-1.5 rounded-full text-3xl" />, text: "Well Stacktured", link: "/" }
                                 ].map((item, index) => (
-                                    <Link 
-                                        key={index} 
-                                        to="/" 
-                                        className="flex items-center gap-3 text-gray-700 hover:text-green-600 transition-colors"
+                                    <Link
+                                        key={index}
+                                        to={item.link}
+                                        className="flex items-center gap-3 text-textPri hover:text-myGreen duration-150 hover:translate-x-1 transition-colors"
                                     >
                                         {item.icon}
                                         {item.text}
@@ -114,10 +114,10 @@ const ResponsiveNavbar = () => {
                                 ))}
                             </div>
                         </div>
-                        <img 
-                            src="https://i.ibb.co/YRgsrsh/AD22-04.png" 
-                            alt="Corporate solution" 
-                            className="w-full h-32 object-cover mt-4 rounded" 
+                        <img
+                            src="https://i.ibb.co/YRgsrsh/AD22-04.png"
+                            alt="Corporate solution"
+                            className="w-full h-32 object-cover mt-4 rounded"
                         />
                     </div>
                 </li>
@@ -126,8 +126,8 @@ const ResponsiveNavbar = () => {
                     <li key={link.path}>
                         <NavLink
                             to={link.path}
-                            className={({ isActive }) => 
-                                `font-medium ${isActive ? 'text-green-600 border-b-2 border-green-600' : 'text-gray-800 hover:text-green-600'} pb-1`
+                            className={({ isActive }) =>
+                                `font-medium ${isActive ? 'text-myGreen border-b-2 border-myGreen' : 'text-textPri hover:text-myGreen hover:border-myGreen hover:border-b'} pb-1`
                             }
                         >
                             {link.name}
@@ -139,28 +139,28 @@ const ResponsiveNavbar = () => {
             {/* User/Auth Section */}
             <div className="flex items-center gap-4">
 
- {/* wish list option - hidden on big screens */}
-            <div className="relative flex justify-end lg:hidden md:hidden max-w-md mx-4">                
-                <CiHeart className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500 text-xl" />
-            </div>
+                {/* wish list option - hidden on big screens */}
+                <div className="relative flex justify-center max-w-md mx-4">
+                    <Link to="/wish-list"><CiHeart className="absolute top-1/2 -left-1 transform -translate-y-1/2 text-gray-500 text-3xl mr-3 hover:text-myGreen" /></Link>
+                </div>
 
                 {logUser ? (
                     <div ref={accountMenuRef} className="relative">
-                        <button 
+                        <button
                             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
                             className="flex items-center gap-2 focus:outline-none"
                             aria-expanded={accountMenuOpen}
                             aria-label="User menu"
                         >
                             <img
-                                src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg"
+                                src="https://i.ibb.co/0BZfPq6/darklogo.png"
                                 alt="User avatar"
-                                className="w-9 h-9 rounded-full border-2 border-green-500 object-cover"
+                                className="w-9 h-9 rounded-full border-2 border-myGreen object-cover"
                             />
                         </button>
 
                         {accountMenuOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                            <div className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
                                 {[
                                     { icon: <FiUser />, text: "View Profile" },
                                     { icon: <IoSettingsOutline />, text: "Settings" },
@@ -169,13 +169,13 @@ const ResponsiveNavbar = () => {
                                     <Link
                                         key={index}
                                         to="#"
-                                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600"
+                                        className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
                                     >
                                         <span className="mr-2">{item.icon}</span>
                                         {item.text}
                                     </Link>
                                 ))}
-                                <div className="border-t border-gray-200 my-1"></div>
+                                <div className="border-t border-borderTer my-1"></div>
                                 <Link
                                     to="#"
                                     className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50"
@@ -190,14 +190,14 @@ const ResponsiveNavbar = () => {
                     <div className="relative">
                         <button
                             onClick={() => setAccountMenuOpen(!accountMenuOpen)}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-50 text-green-700 hover:bg-green-100 transition-colors"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-green-50 text-myGreen hover:bg-green-100 transition-colors"
                         >
                             <FiUser className="text-base" />
                             <span className="font-medium">Log in</span>
                         </button>
 
                         {accountMenuOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+                            <div className="absolute right-0 mt-2 w-48 bg-myWhite rounded-md shadow-lg py-1 z-50 border border-borderTer">
                                 {[
                                     { icon: <FiUser />, text: "Login" },
                                     { icon: <IoSettingsOutline />, text: "Employee Login" },
@@ -206,13 +206,13 @@ const ResponsiveNavbar = () => {
                                     <Link
                                         key={index}
                                         to="#"
-                                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-green-600"
+                                        className="flex items-center px-4 py-2 text-sm text-textPri hover:bg-green-50 hover:text-myGreen"
                                     >
                                         <span className="mr-2">{item.icon}</span>
                                         {item.text}
                                     </Link>
                                 ))}
-                                <div className="border-t border-gray-200 my-1"></div>
+                                <div className="border-t border-borderTer my-1"></div>
                                 <Link
                                     to="#"
                                     className="flex items-center px-4 py-2 text-sm text-red-500 hover:bg-red-50"
@@ -226,9 +226,9 @@ const ResponsiveNavbar = () => {
                 )}
 
                 {/* Mobile menu button */}
-                <button 
+                <button
                     onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-                    className="md:hidden text-gray-700 focus:outline-none mobile-menu-button"
+                    className="md:hidden text-textPri focus:outline-none mobile-menu-button"
                     aria-label="Toggle menu"
                 >
                     {mobileSidebarOpen ? (
@@ -242,44 +242,35 @@ const ResponsiveNavbar = () => {
             {/* Mobile Sidebar */}
             <aside
                 ref={mobileMenuRef}
-                className={`fixed inset-y-0 right-0 w-64 bg-white shadow-xl transform ${
-                    mobileSidebarOpen ? "translate-x-0" : "translate-x-full"
-                } md:hidden transition-transform duration-300 ease-in-out z-40`}
+                className={`fixed inset-y-0 left-0 w-64 bg-myWhite shadow-xl transform ${mobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+                    } md:hidden transition-transform duration-300 ease-in-out z-40`}
             >
                 <div className="flex flex-col h-full p-4 overflow-y-auto">
                     <div className="mb-4 border-b pb-4">
                         <Link to="/" className="flex items-center">
-                            <img 
-                                src={logo || 'https://i.ibb.co/0BZfPq6/darklogo.png'} 
-                                alt="logo" 
-                                className="w-10 h-10 mr-2" 
+                            <img
+                                src={logo || 'https://i.ibb.co/0BZfPq6/darklogo.png'}
+                                alt="logo"
+                                className="w-10 h-10 mr-2"
                             />
                             <span className="font-bold text-lg">Corporate Solution</span>
                         </Link>
                     </div>
 
-                    <div className="relative mb-4">
-                        <input
-                            className="w-full py-2 pr-4 pl-10 border border-gray-300 rounded-full outline-none focus:border-green-500"
-                            placeholder="Search..."
-                        />
-                        <IoIosSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-                    </div>
-
                     <ul className="space-y-2">
                         <li>
-                            <Link 
-                                to="/" 
-                                className="block py-2 px-3 rounded-md font-medium text-gray-800 hover:bg-green-50 hover:text-green-600"
+                            <Link
+                                to="/"
+                                className="block py-2 px-3 rounded-md font-medium text-textPri hover:bg-green-50 hover:text-myGreen"
                             >
-                                Home
+                                Home two
                             </Link>
                         </li>
 
                         <li>
                             <button
                                 onClick={() => setMobileAboutUsOpen(!mobileAboutUsOpen)}
-                                className="w-full flex justify-between items-center py-2 px-3 rounded-md font-medium text-gray-800 hover:bg-green-50 hover:text-green-600"
+                                className="w-full flex justify-between items-center py-2 px-3 rounded-md font-medium text-textPri hover:bg-green-50 hover:text-myGreen"
                             >
                                 <span>Categories</span>
                                 <IoIosArrowDown className={`transition-transform ${mobileAboutUsOpen ? "rotate-180" : ""}`} />
@@ -292,7 +283,7 @@ const ResponsiveNavbar = () => {
                                             <Link
                                                 key={index}
                                                 to="/"
-                                                className="block py-1.5 px-3 rounded-md text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 flex items-center gap-2"
+                                                className="py-1.5 px-3 rounded-md text-sm text-textPri hover:bg-green-50 hover:text-myGreen flex items-center gap-2"
                                             >
                                                 <BsArrowRight className="text-xs" />
                                                 {item}
@@ -309,7 +300,7 @@ const ResponsiveNavbar = () => {
                                             <Link
                                                 key={index}
                                                 to="/"
-                                                className="block py-1.5 px-3 rounded-md text-sm text-gray-700 hover:bg-green-50 hover:text-green-600 flex items-center gap-3"
+                                                className="py-1.5 px-3 rounded-md text-sm text-textPri hover:bg-green-50 hover:text-myGreen flex items-center gap-3"
                                             >
                                                 {item.icon}
                                                 {item.text}
@@ -325,8 +316,7 @@ const ResponsiveNavbar = () => {
                                 <NavLink
                                     to={link.path}
                                     className={({ isActive }) =>
-                                        `block py-2 px-3 rounded-md font-medium ${
-                                            isActive ? 'text-green-600 bg-green-50' : 'text-gray-800 hover:bg-green-50 hover:text-green-600'
+                                        `block py-2 px-3 rounded-md font-medium ${isActive ? 'text-myGreen bg-green-50' : 'text-textPri hover:bg-green-50 hover:text-myGreen'
                                         }`
                                     }
                                 >
